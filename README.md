@@ -35,6 +35,7 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/preproduzione/SEQ01_SCALETTA_CANONICA_V0.md](docs/preproduzione/SEQ01_SCALETTA_CANONICA_V0.md): 12 memorie della Sequenza 1, collegamento al prologo V2 e continuità della famiglia (bozza)
 - [docs/preproduzione/SEQ01_TRATTAMENTO_NARRATIVO_V1.md](docs/preproduzione/SEQ01_TRATTAMENTO_NARRATIVO_V1.md): trattamento narrativo V1 con 14 scene, raccordi e arco emotivo di Ezio (bozza)
 - [docs/preproduzione/SEQ01_CAST_CONTINUITA_AUDITORE_V1.md](docs/preproduzione/SEQ01_CAST_CONTINUITA_AUDITORE_V1.md): schede di famiglia, Uberto, Annetta e oggetti di scena (bozza)
+- [docs/preproduzione/SEQ01_REVISIONE_FONTI_V1.md](docs/preproduzione/SEQ01_REVISIONE_FONTI_V1.md): verifica delle fonti e conflitto di collocazione del titolo (R-TITOLO; in attesa)
 - [docs/preproduzione/LOC-001_005_SCHEDE_OPERATIVE.md](docs/preproduzione/LOC-001_005_SCHEDE_OPERATIVE.md): schede operative di Abstergo, rifugio, Firenze, casa e Monteriggioni
 - [docs/05_DECISIONI.md](docs/05_DECISIONI.md): log decisioni e questioni aperte
 - [docs/reference/README.md](docs/reference/README.md): criteri per le fonti visive
