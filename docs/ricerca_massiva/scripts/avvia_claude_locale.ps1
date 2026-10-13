@@ -133,7 +133,7 @@ Assert-NoReparsePoint $work 'WorkDir'
 Assert-Separated $archive $work
 Write-Host "Copia privata AC II: $archive"
 Write-Host "Cartella lavoro:      $work"
-Write-Host "Il launcher NON apre né verifica la cartella del gioco originale."
+Write-Host "Il launcher NON apre ne' verifica la cartella del gioco originale."
 
 Write-Host "== 1b: account Windows dedicato =="
 $principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
@@ -154,7 +154,15 @@ Assert-NoReparsePoint $manifestFile 'Manifest'
 if (-not (Test-Path -LiteralPath $manifestFile -PathType Leaf)) { throw "Manifest copia mancante: $manifestFile" }
 try { $m = Get-Content -LiteralPath $manifestFile -Raw -ErrorAction Stop | ConvertFrom-Json -ErrorAction Stop }
 catch { throw "Manifest illeggibile/non valido: $($_.Exception.Message)" }
-if ($m.Format -ne 'FILM_PRIVATE_ACII_COPY_V1') { throw "Formato manifest sconosciuto." }
+if ($m.Format -ne 'FILM_PRIVATE_ACII_COPY_V2') { throw "Formato manifest sconosciuto o precedente (serve V2 da prepara_copia_privata_acii.ps1 con permessi automatici)." }
+$meSid = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value
+if ([string]$m.ClaudeAccountSid -ne $meSid) {
+    throw "Questo account ($meSid) non e' l'account Claude per cui e' stata protetta la copia ($($m.ClaudeAccountSid)). STOP."
+}
+if ([string]$m.PreparerSid -eq $meSid) { throw "L'account Claude coincide con il preparatore della copia: STOP." }
+# La DACL della cartella copia deve essere protetta (nessuna ereditarieta') e l'account Claude non proprietario.
+$rootAcl = Get-Acl -LiteralPath $archive
+if (-not $rootAcl.AreAccessRulesProtected) { throw "La DACL di $archive eredita dal genitore: protezione non conforme. Rieseguire la preparazione." }
 $entries = @($m.Copies)
 if ($entries.Count -lt 1) { throw "Manifest vuoto." }
 $allowedNames = @('DataPC_Abstergo.forge', 'DataPC_Hideout.forge', 'SoundData\pc\sounds_ita.pck')
@@ -176,20 +184,23 @@ foreach ($item in $items) {
     if ($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
         throw "Link/junction all'interno della copia: $($item.FullName)"
     }
+    $ownerSid = (New-Object Security.Principal.NTAccount((Get-Acl -LiteralPath $item.FullName).Owner)).Translate([Security.Principal.SecurityIdentifier]).Value
+    if ($ownerSid -eq $meSid) { throw "L'account Claude e' proprietario di $($item.FullName): potrebbe cambiarne i permessi. STOP." }
     $granted = [FilmAccess]::MaximumAllowed($item.FullName)
+    if (($granted -band 0x1) -eq 0) { throw "L'account Claude non puo' leggere $($item.FullName)." }
     $w = $granted -band $WriteMask
     if ($w -ne 0) {
         throw ("L'account di Claude ha diritti di scrittura/eliminazione sulla COPIA: {0} (0x{1:X}). Bloccare con ACL di Windows, senza cambiare il gioco." -f $item.FullName, $w)
     }
     if (-not $item.PSIsContainer) { $fileCount++ }
 }
-# Un DELETE_CHILD sul parent consentirebbe di cancellare/renominare l'intera cartella della copia.
+# Sul genitore: DELETE_CHILD (cancellare/rinominare la copia), DELETE, WRITE_DAC, WRITE_OWNER -> STOP.
 $parent = Split-Path -Path $archive -Parent
-if ($parent) {
-    $rightsParent = [FilmAccess]::MaximumAllowed($parent)
-    if (($rightsParent -band [uint32]0x40) -ne 0) {
-        throw "L'account Claude possiede DELETE_CHILD sul parent della copia ($parent). Usare un contenitore protetto."
-    }
+if (-not $parent) { throw "Cartella genitore della copia non determinabile." }
+$rightsParent = [FilmAccess]::MaximumAllowed($parent)
+$parentIssue = $rightsParent -band [uint32]0xD0040
+if ($parentIssue -ne 0) {
+    throw ("L'account Claude ha 0x{0:X} sulla cartella genitore {1} (puo' cancellare/rinominare la copia o cambiarne i permessi). STOP." -f $parentIssue, $parent)
 }
 if ($fileCount -ne ($entries.Count + 1)) {
     throw "Nella copia esistono file inattesi o ne mancano ($fileCount vs $($entries.Count + 1))."

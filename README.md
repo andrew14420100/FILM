@@ -1,6 +1,6 @@
 # FILM — Assassin's Creed II | Progetto cinematografico privato
 
-**Aggiornamento operativo (opzione 2 approvata):** su questa PR Claude non legge la cartella originale. Eseguire prima una [copia privata verificata e protetta](docs/ricerca_massiva/OPZIONE2_ARCHIVI_COPIATI.md): `D:\Games\Assassin's Creed II` → `D:\FILM_ARCHIVI_RO` (solo l'archivio Abstergo, hash SHA256) → Claude su `D:\FILM_PRIVATO`. Il nuovo launcher richiede `-ArchiveDir`, non `-GameDir`. **Nessuna fase è stata eseguita qui su Windows; il repo pubblico non contiene asset di gioco**.
+**Aggiornamento operativo (opzione 2 approvata):** su questa PR Claude non legge la cartella originale. Eseguire prima una [copia privata verificata e protetta](docs/ricerca_massiva/OPZIONE2_ARCHIVI_COPIATI.md): `D:\Games\Assassin's Creed II` → `D:\FILM_ARCHIVI_RO` (solo l'archivio Abstergo, hash SHA256) → Claude su `D:\FILM_PRIVATO`. Il nuovo launcher richiede `-ArchiveDir`, non `-GameDir`. Lo script di staging configura **automaticamente** i permessi NTFS della sola copia per l'account Claude (`-ClaudeAccount`, conferma `PROTEGGI`, ripristino `-RipristinaAcl`); test Windows previsti in [TEST_WINDOWS_OPZIONE2.md](docs/ricerca_massiva/TEST_WINDOWS_OPZIONE2.md). **Nessuna fase è stata eseguita qui su Windows; il repo pubblico non contiene asset di gioco**.
 
 
 **Fase attuale: PRE-PRODUZIONE.** Nessun video o asset definitivo approvato.

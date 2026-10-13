@@ -16,16 +16,25 @@
 ## Prima fase — staging, eseguito dall'account che possiede una copia valida del gioco
 
 1. Ottenere sul PC una copia del branch della PR #14 e **leggere prima gli script**; non usarli dal cloud come se fossero stati provati.
-2. Verificare la cartella `D:\Games\Assassin's Creed II`, i file, lo spazio libero e l'assenza di reparse point. **Dry-run in PowerShell** (dal clone FILM, in cartella controllata):
+2. **Creare prima**, con un account amministratore, un **account Windows locale standard dedicato a Claude** (es. `film_claude`). Lo script lo rifiuta se è amministratore, disabilitato, non locale o uguale al preparatore.
+3. **Dry-run.** Si esegue con l'account preparatore in PowerShell **non elevato**, dal clone FILM. Mostra controlli e riepilogo **senza creare, copiare o modificare nulla**:
 
    ```powershell
-   .\docs\ricerca_massiva\scripts\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -DryRun
+   .\docs\ricerca_massiva\scripts\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ClaudeAccount "film_claude" -DryRun
    ```
 
-3. Solo dopo controllo della lista, eseguire lo stesso comando **senza `-DryRun`**, digitando `COPIA` quando richiesto. Verrà copiato **solo `DataPC_Abstergo.forge`**. Se assente, STOP. Lo script calcola SHA-256 sorgente/copia e registra `D:\FILM_ARCHIVI_RO\MANIFEST_ARCHIVI.json`. Se la destinazione esiste già, interrompe: non sovrascrive mai copie/manifest.
-4. **Non** passare `-IncludeHideout` o `-IncludeItalianVoices` ora: sono opzioni per fasi future separate, solo dopo esplicita approvazione e nuova directory di staging. I dati audio rimangono privati, mai su GitHub.
-5. Su Windows, dal **proprietario della copia**, impostare **manualmente le ACL** affinché l'account Claude possa **leggere, ma non scrivere/cancellare/rinominare/cambiare ACL o proprietà** dei file e della directory di staging. Verificare inoltre la possibilità di eliminare/renominare la directory dall'immediata directory genitore. **Non modificare** le ACL dell'installazione Ubisoft Connect.
-6. Verificare **Sicurezza → Avanzate → Accesso effettivo** sulla directory e sul file `DataPC_Abstergo.forge`, selezionando esattamente l'account che lancerà Claude. Il launcher ripeterà un controllo Windows AccessCheck: se la copia non è protetta, **rifiuterà l'avvio**. Un attributo «Sola lettura» da Esplora file non sostituisce l'ACL.
+   L'unica scrittura possibile è la compilazione temporanea del codice di controllo permessi (`Add-Type`) che PowerShell fa nella cartella temporanea dell'utente. La lettura dell'originale per le verifiche può aggiornare la data di ultimo accesso dei file, se Windows la registra.
+4. **Esecuzione reale.** Stesso comando **senza `-DryRun`**. Lo script mostra lo stesso riepilogo (file, byte, account Claude con SID, permessi da applicare) e procede **solo se si digita `PROTEGGI`**. Poi, in ordine:
+   1. crea `D:\FILM_ARCHIVI_RO` (si ferma se esiste già);
+   2. salva il descrittore iniziale della copia in `%LOCALAPPDATA%\FILM\acl_backup\`, cioè nel profilo del preparatore, non accessibile all'account Claude;
+   3. applica alla **sola copia** una DACL **senza ereditarietà**: SYSTEM, Administrators e preparatore con controllo completo; account Claude con **sola lettura ed esecuzione**;
+   4. copia **solo** `DataPC_Abstergo.forge` e verifica SHA256 e byte tra originale e copia;
+   5. scrive `MANIFEST_ARCHIVI.json` in formato **V2**, con il SID dell'account Claude;
+   6. verifica con **AuthZ** l'accesso **effettivo** dell'account Claude su cartella, file e **cartella genitore**. Basta un solo diritto di scrittura, cancellazione, rinomina, modifica dei permessi o proprietà, oppure DELETE_CHILD / DELETE / WRITE_DAC / WRITE_OWNER sul genitore, per far scattare il ripristino automatico delle ACL iniziali **della sola copia** e lo STOP.
+5. **Ripristino manuale**, se serve: `prepara_copia_privata_acii.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -RipristinaAcl`, con conferma `RIPRISTINA`. Rimette solo i permessi salvati della copia, mai quelli del genitore o del gioco. Dopo il ripristino il launcher rifiuta l'avvio.
+6. **Mai** cartelle, file o permessi dell'installazione `D:\Games\Assassin's Creed II` vengono modificati. Lo script **non** modifica la cartella genitore: se questa concede diritti critici all'account Claude, si ferma prima di creare qualsiasi cosa.
+7. Facoltativo: **Proprietà → Sicurezza → Avanzate → Accesso effettivo** su cartella e file, selezionando `film_claude`. Il launcher ripete comunque il controllo con il **token reale** dell'account. L'attributo «Sola lettura» viene impostato solo come segnale visivo: non sostituisce l'ACL.
+8. Claude **non** viene avviato da questo script. **Non** passare ora `-IncludeHideout` o `-IncludeItalianVoices`: servono nuove decisioni e una nuova cartella di staging.
 
 **Il primo account prepara la copia e i permessi; il secondo account, standard, esegue Claude.** Non usare lo stesso account proprietario della copia per tutte e due le fasi: in molti casi il proprietario può modificare la DACL o i file.
 
@@ -39,7 +48,14 @@ $commit = (git rev-parse HEAD).Trim()
 ```
 
 - **Non** esiste più `-GameDir` nel launcher: un vecchio comando che lo usa deve fallire, non tornare ad aprire Ubisoft Connect.
-- Il launcher controlla account non amministratore, separazione dei percorsi, junction/symlink, diritti Windows della **copia** su ogni file/cartella, `DELETE_CHILD` nel parent, SHA256/byte rispetto al manifest, eventuali configurazioni Claude precedenti e commit del clone pulito.
+- Il launcher ricontrolla, e si ferma alla **prima** discrepanza:
+  - account non amministratore e **SID uguale** a `ClaudeAccountSid` del manifest V2, diverso dal preparatore;
+  - DACL della copia **protetta** (senza ereditarietà) e account Claude **non proprietario** di alcun elemento;
+  - diritti **effettivi** (AccessCheck sul token reale) di sola lettura su ogni file e cartella;
+  - assenza di DELETE_CHILD / DELETE / WRITE_DAC / WRITE_OWNER sul genitore;
+  - SHA256 e byte rispetto al manifest, nessun file in più o in meno;
+  - separazione dei percorsi e junction/symlink;
+  - configurazioni Claude preesistenti e commit del clone pulito.
 - Chiede conferma **prima** di creare la configurazione `D:\FILM_PRIVATO\.claude` e **prima** di lanciare Claude in modalità `plan`.
 - Copia soltanto **documentazione di FILM** nel WorkDir; non ricopia alcuna risorsa Ubisoft dentro il repo né nel capitolato. Claude legge `D:\FILM_ARCHIVI_RO`, esporta e modifica soltanto file di lavoro in `D:\FILM_PRIVATO`.
 - Claude deve fermarsi a ogni passaggio L0–L6 e mostrare report; nessuna generazione automatica dei primi 15 minuti.
@@ -56,7 +72,8 @@ L6. **Solo dopo approvazione separata dei personaggi**, una immagine finale 4K c
 
 ## Criticità non ancora dimostrate
 
-- Script e P/Invoke AccessCheck **non sono stati eseguiti su Windows** nella presente sessione; controllo del codice statico non è test delle ACL reali.
+- Script, AuthZ e AccessCheck **non sono stati eseguiti su Windows**. I controlli statici superati sono elencati in [TEST_WINDOWS_OPZIONE2.md](TEST_WINDOWS_OPZIONE2.md): sintassi, PSScriptAnalyzer, compilazione C# e solo ASCII. Non equivalgono a un test delle ACL reali.
+- AuthZ da SID, usato nella preparazione, non include i gruppi legati alla sessione (es. INTERACTIVE). Per questo la DACL della copia contiene solo voci esplicite e la verifica definitiva è quella del launcher con il token reale.
 - Non è stata verificata l'esistenza di `DataPC_Abstergo.forge` sulla copia installata dell'utente.
 - Il manifesto con SHA256 protegge da variazioni **rispetto al momento dello staging**, ma non verifica automaticamente la provenienza canonica di ogni mesh contenuta nel file.
 - Accesso nativo di Claude a PowerShell/strumenti esterni non è un isolamento forte. Con account separato e permessi NTFS si limita il rischio; niente promessa di «impossibile modificare ogni altro file del computer».
