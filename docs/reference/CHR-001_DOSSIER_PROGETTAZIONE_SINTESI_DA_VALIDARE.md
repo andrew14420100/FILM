@@ -1,5 +1,7 @@
 # CHR-001 · Ezio — Sintesi del dossier di Claude e decisioni da ratificare
 
+> **STORICO / SUPERATO PER LA CONSULTAZIONE (2026-10-13):** il [dossier integrale originale di Claude](CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md) è stato successivamente ricevuto e archiviato. Questa sintesi è conservata soltanto per tracciabilità; per dettagli tecnici e decisioni D4–D7 fare riferimento al **dossier originale**, che resta una PROPOSTA non approvata.
+
 **Stato:** SINTESI RICOSTRUITA DAL RESOCONTO FORNITO DALL'UTENTE, **NON** COPIA DEL DOSSIER ORIGINALE.  
 **Data:** 2026-10-13  
 **Documento originale annunciato da Claude:** `CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md` — non ancora disponibile in questo scambio né nel repository. **Non dichiararlo verificato o archiviato.**  
