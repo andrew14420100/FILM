@@ -40,7 +40,7 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 
 ## Correzione età e dossier da browser (2026-10-13)
 - **Età corretta:** Ezio è nato il 24 giugno 1459; **nell'aprile 1478 ha 18 anni, non 19**. Prima di associare un'età a una scena, considerare giorno e mese.
-- Il resoconto del nuovo dossier di Claude è raccolto in `docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md`, che **NON è il file integrale del dossier**. Non presentarlo come tale.
+- Il **dossier integrale originale di Claude è ora archiviato** in `docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md` (ricevuto dall'utente 2026-10-13): è la base documentale aggiornata per D4–D7. La precedente `docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md` rimane **solo come traccia storica**; consultare l'originale integrale al suo posto. Il dossier non approva automaticamente alcuna proposta.
 - D4-a/b/c, D5, D6-a/b/c e D7/D7-b rimangono **PROPOSTE NON APPROVATE** finché l'utente non decide.
 - Restare in pre-produzione esclusivamente documentale e da browser; nessuna cattura personale obbligatoria, nessun modello, immagine o video.
 
