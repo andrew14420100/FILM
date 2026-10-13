@@ -53,6 +53,13 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md](docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md): **dossier integrale di Claude**, proposta D4–D7 da approvare
 - [docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md](docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md): sintesi storica precedente all'arrivo del dossier completo
 
+- [Monteriggioni — trattamento cinematografico V0](docs/preproduzione/MONTERIGGIONI_TRATTAMENTO_CINEMATOGRAFICO_V0.md): Mario Auditore, crescita di Ezio, San Gimignano, Vieri e Santuario (proposta)
+- [Monteriggioni — cast, ambienti e continuità V0](docs/preproduzione/MONTERIGGIONI_CAST_LOCATION_CONTINUITA_V0.md): Ezio 17–18 anni, Maria/Claudia, armi, Codice e Armatura (proposta)
+- [Monteriggioni — verifica fonti e decisioni MON-01…05](docs/preproduzione/MONTERIGGIONI_FONTI_E_DECISIONI_V0.md): lacune cronologiche e creatività da approvare (proposta)
+- [Monteriggioni — sceneggiatura italiana V0](docs/preproduzione/MONTERIGGIONI_SCENEGGIATURA_ITALIANA_V0.md): 11 scene originali, prima stesura non approvata
+- [Monteriggioni — audit della sceneggiatura](docs/preproduzione/MONTERIGGIONI_AUDIT_SCENEGGIATURA_V0.md): criticità e fonti da verificare, nessun gameplay
+- [FILM — stato d'avanzamento e lavoro restante](docs/preproduzione/STATO_FILM_E_PROSSIME_FASI_20261013.md): distinzione fra prime bozze e produzione completa
+
 ## GitHub e media
 Git non è il posto giusto per grandi file video, scene renderizzate, pesi dei modelli IA o asset protetti. Conservare i file pesanti sul PC e archiviare solo metadati e riferimenti leciti. **Verificare la visibilità del repository: risulta pubblico; per un progetto privato impostarlo manualmente su Private.**
 
