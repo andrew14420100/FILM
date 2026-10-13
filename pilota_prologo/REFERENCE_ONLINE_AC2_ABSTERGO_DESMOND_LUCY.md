@@ -40,6 +40,8 @@
 | DE-03 | [Desmond con Lucy nella fuga](https://images.squarespace-cdn.com/content/v1/64ec1ab68b1c4574700fcd3c/1726677666019-NN00Q56GI82963HYB5V6/Assassin%27s%2BCreed%2B2%2B9_2_2024%2B1_41_39%2BAM.png) | Profilo parziale da dietro, costume nella scena con Lucy; compatibile con incipit AC II. | **A-EXT**, non è una frontale di approvazione. |
 | DE-04 | [Gameplay di apertura completo](https://www.youtube.com/watch?v=4x6eUHMrJgc) | Ricavare il volto scoperto di fronte/3⁄4/profilo **solo mediante osservazione della fonte esterna** e annotazioni. | **Da fare**, non scrivere «volto confermato» prima delle viste. |
 
+**Dettaglio ulteriore da verificare per il volto:** [scheda Desmond (wiki)](https://assassinscreed.fandom.com/wiki/Desmond_Miles) indica che nel 2009/2010 volto e cicatrice al labbro sono apparentati al modello del protagonista storico; l'occhio è descritto come marrone per AC II, mentre cambia nei capitoli successivi. Sono **informazioni comunitarie da verificare visivamente su AC II**, NON autorizzazioni a copiare il modello di Brotherhood o AC III.
+
 **Regola per il pilota:** usare il **medesimo Desmond AC II** in tutte le clip. Scatti del personaggio in AC III con tattoo/borse diverse, lama, cuffie o altri costumi NON definiscono l'aspetto iniziale del 2009/2010. Non trasporre il volto di un doppiatore o attore reale sul personaggio, salvo scelta esplicita.
 
 ## CHR-003 — LUCY STILLMAN (aspetto AC II)
