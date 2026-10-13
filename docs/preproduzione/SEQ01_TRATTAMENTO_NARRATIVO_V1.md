@@ -11,6 +11,8 @@
 - [Paperboy](https://assassinscreed.fandom.com/wiki/Paperboy), [Consegna speciale](https://assassinscreed.fandom.com/it/wiki/Consegna_speciale), [Jailbird](https://assassinscreed.fandom.com/wiki/Jailbird), [Family Heirloom](https://assassinscreed.fandom.com/wiki/Family_Heirloom), [Last Man Standing](https://assassinscreed.fandom.com/wiki/Last_Man_Standing).
 - Tutti gli eventi ricostruiti da pagine comunitarie sono **V-C**, non catture primarie dell'installazione PC dell'utente. L'ordine delle missioni secondarie può dipendere dalle scelte del giocatore. Le soluzioni di regia e il montaggio sono **PROPOSTE FILM**, non nuovi fatti del gioco. I dialoghi in questo documento sono solo **intenzioni**, mai trascrizioni o citazioni delle battute originali.
 
+**Chiarimento approvato:** le memorie del gioco citate in queste schede servono soltanto per identificare gli avvenimenti. Lo spettatore vedrà scene di un film, senza tutorial, comandi, HUD o annunci di missione. Le 14 schede sono una scaletta modificabile, non quattordici scene obbligatorie. [Regola di adattamento](REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md).
+
 ## Tema e trasformazione
 In tre giorni, il ragazzo che si sente protetto dalla propria famiglia diventa l'unico Auditore libero. Non è ancora un eroe pienamente addestrato: il dolore che lo cambia è tanto più forte perché abbiamo visto la sua vita prima che venisse distrutta.
 
