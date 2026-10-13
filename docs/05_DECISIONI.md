@@ -68,3 +68,11 @@ Le scelte **P-01/P-02/P-03/P-04** e **S-01/S-02/S-03/S-04** sono state confermat
 3. Compilare le schede per tutte le missioni e personaggi.
 4. Preparare un trattamento cinematografico verificato.
 5. Sottoporre il primo blocco di sceneggiatura ad approvazione.
+
+## SEQ1-A/B/C/D — approvazione del 2026-10-13
+- **SEQ1-A APPROVATA:** mantenere 12 memorie, condensando le azioni ripetitive; le commissioni domestiche possono avvenire in ordine variabile nel gioco.
+- **SEQ1-B APPROVATA:** sviluppo in tre blocchi (giovinezza, famiglia, tradimento), senza ripetere il prologo. Titolo unico sui tetti con Federico, come previsto da R-TITOLO.
+- **SEQ1-C APPROVATA:** decidere durata e formato dopo i trattamenti delle prime tre sequenze.
+- **SEQ1-D APPROVATA:** dare priorità alle schede della famiglia, di Uberto e alle proposte relative ad Annetta e Duccio. Questa scelta non approva automaticamente i nuovi ID.
+
+La fase resta soltanto di pre-produzione documentale; nessun contenuto audiovisivo è autorizzato.
