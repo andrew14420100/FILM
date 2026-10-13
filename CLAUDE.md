@@ -62,7 +62,7 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 - **Stato canon:** nessuna approvazione trasforma dettagli incerti in fatti. Il documento `docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md` ha **revisione interna V3** dopo R-TITOLO; `docs/preproduzione/PIANO_SEQUENZE_01_14.md` integra le scelte S. **Pre-produzione soltanto; niente modelli, blockout, immagini, audio, animazioni, render o video.**
 
 ## R-TITOLO — approvata (2026-10-13)
-- L'utente ha approvato lo spostamento dell'**unico cartello del film** alla conclusione di `Sibling Rivalry` sui tetti con Federico, **come nel gioco originale**. **NON** mostrarlo dopo PRO-014/rissa e **NON** duplicarlo. La modifica puntuale al prologo precedentemente approvato è registrata in `docs/05_DECISIONI.md`; il testo corrente del prologo è **revisione interna V3**, sempre nel file `docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md`. Le proposte SEQ1-A/B/C/D rimangono non approvate.
+- L'utente ha approvato lo spostamento dell'**unico cartello del film** alla conclusione di `Sibling Rivalry` sui tetti con Federico, **come nel gioco originale**. **NON** mostrarlo dopo PRO-014/rissa e **NON** duplicarlo. La modifica puntuale al prologo precedentemente approvato è registrata in `docs/05_DECISIONI.md`; il testo corrente del prologo è **revisione interna V3**, sempre nel file `docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md`. SEQ1-A/B/C/D risultano ora APPROVATE dal 2026-10-13; i nuovi ID personaggi restano proposte senza approvazione.
 - **Nessun merge della PR #8 senza separata approvazione**, nessun modello, immagine, audio, video o render.
 
 ## Flusso iniziale
