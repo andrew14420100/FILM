@@ -24,22 +24,38 @@ Una qualsiasi immagine prodotta oggi sarebbe un'invenzione non ancorata ai file 
 | `LUCY_MASTER_ACII` | Come sopra, per Lucy (abbigliamento Abstergo del 2012) | Come sopra | PROPOSTA |
 | Inquadratura `FILM_PREVIEW_01_ABSTERGO` | PRO-002/003: **Lucy entra e Desmond si volta**. 16:9, nessun HUD, nessun logo leggibile in primo piano (regole su film e diritti) | `PROLOGO_TRATTAMENTO_V1.md` (V3) | PROPOSTA |
 
-**Criterio «pipeline verificata»:** T1–T4 di [BENCHMARK_TOOLCHAIN.md](BENCHMARK_TOOLCHAIN.md) superati e annotati, più i master Desmond e Lucy approvati dall'utente. Solo allora si fa **un solo** render.
+**Criterio «pipeline verificata»:**
+- T1, T2 (provenienza del mesh da `DataPC_Abstergo.forge` dimostrata), T3 (istanze e posizioni della stanza accertate o dichiarate mancanti) e T4a (test 720p/1080p con scala, UV, materiali e camera verificati) di [BENCHMARK_TOOLCHAIN.md](BENCHMARK_TOOLCHAIN.md) superati e annotati;
+- T4b (4K) solo dopo T4a;
+- i master Desmond e Lucy approvati dall'utente.
 
-## 3. Unico percorso manuale (da eseguire sul PC dell'utente, quando e se vorrà)
-I passi seguono la documentazione degli autori (vedi BENCHMARK). **Non sono stati testati da Claude**: ogni passo ha il suo controllo.
+Solo allora si fa **un solo** render finale fotorealistico con Desmond e Lucy.
 
-1. **Inventario in sola lettura.** In PowerShell, eseguire `docs/ricerca_massiva/scripts/inventario_acii_readonly.ps1 -GameDir "<cartella AC II>" -OutDir "D:\FILM_PRIVATO\inventario"`. *Controllo:* il CSV elenca `DataPC_Abstergo.forge` e riporta l'MD5 dell'exe.
-2. **Copia privata.** Copiare **soltanto** `DataPC_Abstergo.forge` (e in seguito `DataPC.forge`) in `D:\FILM_PRIVATO\acii_copia\`. *Controllo:* la data di modifica dei file originali non cambia.
-3. **AnvilToolkit** (dalla pagina ufficiale dell'autore, dopo il controllo antivirus): aprire la **copia** del forge, cercare il laboratorio o la camera nel Mesh Viewer ed esportare la scena in glTF in `D:\FILM_PRIVATO\estratti\abstergo\`. Convertire le normal map AC II con il Texture Viewer. *Controllo:* il glTF si apre in Blender 5.2 con il preset AnvilToolkit per Blender 5.0.
-4. **Blender 5.2 LTS:** creare `ABSTERGO_ENV_MASTER.blend` in `D:\FILM_PRIVATO\blender\`. Usare il glTF come riferimento di scala e forma, rimodellare e assegnare materiali PBR, illuminare, poi un render di prova **solo dell'ambiente** a 3840×2160 con Cycles/OptiX. *Controllo:* annotare il tempo per fotogramma e la VRAM (T4).
-5. **Stop e decisione:** l'utente valuta il render dell'ambiente e decide se approvare il lavoro sugli umani `DESMOND_MASTER_ACII` e `LUCY_MASTER_ACII` (ad esempio con MetaHuman, previa lettura della licenza). Solo dopo l'approvazione dei master si fa il render unico `FILM_PREVIEW_01_ABSTERGO.png`, salvato in `D:\FILM_PRIVATO\render\` e **mai su GitHub**.
+## 3. Unico percorso — delegabile a Claude Code locale
+Su richiesta del committente (revisione della PR #14) il percorso è pensato per essere **eseguito da Claude Code locale con accesso limitato** sul PC dell'utente, non come procedura manuale in molti passi. Dettagli, permessi e launcher sono in [CLAUDE_CODE_LOCALE_DELEGA.md](CLAUDE_CODE_LOCALE_DELEGA.md). I passi seguono la documentazione degli autori e **non sono stati testati**.
 
-Le alternative (ac2-rtx e RTX Remix come planimetria USD) restano **facoltative** e solo su una copia dell'intera installazione: non fanno parte del percorso unico.
+**Avvio (unico intervento manuale dell'utente):** installare Claude Code e lanciare `scripts/avvia_claude_locale.ps1 -GameDir "<cartella AC II>" -WorkDir "D:\FILM_PRIVATO"`. Il launcher fa solo controlli in lettura, poi chiede conferma per creare la configurazione privata e avviare Claude in modalità `plan`.
+
+**Fasi eseguite da Claude locale (stop e consenso a ogni fase):**
+1. **L0 Ricognizione** in sola lettura: GPU, disco, cartella del gioco, tool presenti.
+2. **L1 Inventario** (T1): prima un dry-run dei percorsi, poi il CSV privato. *Controllo:* `DataPC_Abstergo.forge` presente, inventario completo.
+3. **L2 Copia privata** soltanto di `DataPC_Abstergo.forge`, con consenso esplicito. *Controllo:* la data di modifica dell'originale non cambia.
+4. **L3 Tool di terzi:** AnvilToolkit e Blender 5.2, installati dall'utente dalle pagine ufficiali. Claude registra versione e SHA256 e chiede consenso prima del primo avvio.
+5. **L4 Estrazione (T2/T3):** prova della provenienza di un mesh e verifica delle istanze della stanza.
+6. **L5 Test 720p/1080p (T4a)** di `ABSTERGO_ENV_MASTER`, **solo ambiente**. Poi **stop e decisione**.
+7. Dopo l'approvazione: lavoro su `DESMOND_MASTER_ACII` e `LUCY_MASTER_ACII` (es. MetaHuman, previa lettura della licenza). Poi **L6 4K (T4b)** e infine **un solo** render `FILM_PREVIEW_01_ABSTERGO.png` con Desmond e Lucy, in `D:\FILM_PRIVATO\render\`, **mai su GitHub**.
+
+Le alternative (ac2-rtx e RTX Remix come planimetria USD) restano **facoltative** e solo su una copia dell'intera installazione.
+
+## 3-bis. Gate creativi invariati
+- **Un solo** frame finale fotorealistico con **Desmond e Lucy**. I render di prova dell'ambiente non sono l'anteprima.
+- Voci solo originali italiane, mai sintetizzate o modificate; dove mancano le battute originali: `AUDIO_ORIGINALE_ASSENTE`, indicato chiaramente.
+- Nessun file Ubisoft (audio, texture, mesh, immagini) su GitHub pubblico.
+- Nessuna produzione dei primi 15 minuti prima dell'approvazione dell'anteprima.
 
 ## 4. Richiesta di decisione all'utente
 Per l'anteprima rispondere **APPROVO / MODIFICA / NON VA BENE**. Poiché l'immagine non esiste, la decisione riguarda il percorso del §3:
-- **APPROVO:** l'utente esegue i passi 1–4 sul suo PC (o chiede a Claude di affiancarlo passo per passo con i risultati incollati come testo) e poi si valuta il passo 5.
+- **APPROVO:** l'utente avvia Claude Code locale con il launcher; Claude esegue L0–L5 fermandosi a ogni fase per il consenso, poi si decide sui master Desmond e Lucy.
 - **MODIFICA:** indicare cosa cambiare (es. RTX Remix come via principale, oppure nessuna estrazione e blockout soltanto dalle reference A-EXT secondo D9).
 - **NON VA BENE:** si resta nella pre-produzione documentale.
 

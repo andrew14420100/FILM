@@ -44,10 +44,11 @@
 ## 5. Benchmark da eseguire sulla macchina dell'utente (non eseguiti)
 | Test | Misura | Criterio di accettazione proposto |
 |---|---|---|
-| T1 Inventario | Script in sola lettura: nomi, dimensioni, MD5 dell'exe | CSV privato prodotto; nessun file del gioco modificato (data di modifica invariata) |
-| T2 AnvilToolkit | Apertura della **copia** di `DataPC_Abstergo.forge`; export glTF di un mesh del laboratorio | glTF che si apre in Blender 5.2 con le texture convertite |
-| T3 Scena | Export della scena intera: verificare se mantiene le posizioni | Sì → pipeline B completa; No → valutare A come planimetria |
-| T4 Cycles 4K | Render 3840×2160 di `ABSTERGO_ENV_MASTER` | Tempo per fotogramma e VRAM misurati e annotati; **nessuna dichiarazione di 4K nativo senza la misura** |
+| T1 Inventario | Script in sola lettura: nomi, dimensioni, MD5 dell'exe (MD5 = solo confronto della build per ac2-rtx, **non** prova di sicurezza) | CSV privato prodotto; nessun file del gioco modificato (data di modifica invariata); inventario **completo**, cioè senza file `_errori.txt` |
+| T2 Provenienza del mesh | Apertura della **copia** di `DataPC_Abstergo.forge` in AnvilToolkit; export glTF di **un** mesh del laboratorio | **Prova visibile e verificabile, solo in privato:** cattura del Mesh Viewer con il nome del forge e dell'entità, nome e SHA256 del glTF, stesso mesh aperto in Blender 5.2 con le texture convertite. Su GitHub va solo lo stato. **Un glTF esportato non dimostra di aver recuperato la sala intera.** |
+| T3 Stanza intera | Export della **scena**: conteggio delle istanze e verifica di posizioni e rotazioni rispetto alle reference A-EXT (D9) | Sì, le istanze sono preservate → pipeline B completa. No → la pianta resta un'IPOTESI e si valuta A (cattura USD) come planimetria |
+| T4a Test modesto 720p/1080p | Blockout `ABSTERGO_ENV_MASTER` in Cycles a 1280×720 e poi 1920×1080 | Verificate e annotate **scala** (es. porte e statura di 1,83 m come riferimento), **UV**, **materiali** e **camera** 16:9. Stop e decisione dell'utente |
+| T4b 4K | Render 3840×2160, **solo dopo** l'esito favorevole di T4a | Tempo per fotogramma e VRAM misurati; **nessuna dichiarazione di 4K nativo senza la misura** |
 | T5 Audio | Estrazione di `sounds_ita.pck` (copia) e ascolto di una clip `BNK_VO_P01_*` | Clip ascoltata e annotata **solo in privato**; nessun upload |
 
 ## 6. Strumenti scartati o non verificabili
