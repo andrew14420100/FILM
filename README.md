@@ -1,5 +1,8 @@
 # FILM — Assassin's Creed II | Progetto cinematografico privato
 
+**Aggiornamento operativo (opzione 2 approvata):** su questa PR Claude non legge la cartella originale. Eseguire prima una [copia privata verificata e protetta](docs/ricerca_massiva/OPZIONE2_ARCHIVI_COPIATI.md): `D:\Games\Assassin's Creed II` → `D:\FILM_ARCHIVI_RO` (solo l'archivio Abstergo, hash SHA256) → Claude su `D:\FILM_PRIVATO`. Il nuovo launcher richiede `-ArchiveDir`, non `-GameDir`. Lo script di staging configura **automaticamente** i permessi NTFS della sola copia per l'account Claude (`-ProtectCopyForUser`, conferme separate `COPIA` e `PROTEGGI`, ripristino `-RipristinaAcl`); test Windows previsti in [TEST_WINDOWS_OPZIONE2.md](docs/ricerca_massiva/TEST_WINDOWS_OPZIONE2.md). **Nuova modalità Windows Sandbox** (archivio e capitolato in sola lettura, risultati persistenti separati, gioco mai condiviso): [SANDBOX_WINDOWS.md](docs/ricerca_massiva/SANDBOX_WINDOWS.md). **Nessuna fase è stata eseguita qui su Windows; il repo pubblico non contiene asset di gioco**.
+
+
 **Fase attuale: PRE-PRODUZIONE.** Nessun video o asset definitivo approvato.
 
 Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Creed II*, con storia, personaggi, ambientazioni, ordine degli eventi e prologo fedeli al videogioco, ma con una resa **live-action fotorealistica** (persone dall'aspetto reale, ambientazioni realistiche) e un master obiettivo **4K UHD (3840 × 2160)**.
@@ -52,6 +55,7 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/reference/CHR-001_PREPRODUZIONE_DA_BROWSER.md](docs/reference/CHR-001_PREPRODUZIONE_DA_BROWSER.md): workflow attivo senza nuove catture; reference esistenti e dossier D4–D7
 - [docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md](docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md): **dossier integrale di Claude**, proposta D4–D7 da approvare
 - [docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md](docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md): sintesi storica precedente all'arrivo del dossier completo
+- [docs/ricerca_massiva/README.md](docs/ricerca_massiva/README.md): **ricerca massiva dell'incarico #12** (asset, matrice, toolchain, diritti, voci italiane originali); anteprima **non generata**, in attesa di decisione
 
 ## GitHub e media
 Git non è il posto giusto per grandi file video, scene renderizzate, pesi dei modelli IA o asset protetti. Conservare i file pesanti sul PC e archiviare solo metadati e riferimenti leciti. **Verificare la visibilità del repository: risulta pubblico; per un progetto privato impostarlo manualmente su Private.**
