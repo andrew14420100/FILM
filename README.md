@@ -38,6 +38,7 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/reference/CHR-001_PIANO_LACUNE_E_DECISIONI.md](docs/reference/CHR-001_PIANO_LACUNE_E_DECISIONI.md): piano di raccolta dei dati e proposte non ancora approvate
 - [docs/reference/CHR-001_VERIFICHE_R1_R4.md](docs/reference/CHR-001_VERIFICHE_R1_R4.md): verifica del manuale, replay, team di modellazione e candidati per le catture
 - [docs/reference/CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md](docs/reference/CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md): decisione D1 e piano per le catture A1–A15 dall'originale PC su Ubisoft Connect
+- [docs/reference/CHR-001_PREPRODUZIONE_DA_BROWSER.md](docs/reference/CHR-001_PREPRODUZIONE_DA_BROWSER.md): workflow attivo senza nuove catture; reference esistenti e dossier D4–D7
 
 ## GitHub e media
 Git non è il posto giusto per grandi file video, scene renderizzate, pesi dei modelli IA o asset protetti. Conservare i file pesanti sul PC e archiviare solo metadati e riferimenti leciti. **Verificare la visibilità del repository: risulta pubblico; per un progetto privato impostarlo manualmente su Private.**
