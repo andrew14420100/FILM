@@ -6,7 +6,7 @@
 ## 1. Fonte dell'elenco file
 | Fonte | URL | Stato | Note |
 |---|---|---|---|
-| Report GameSaveInfo, installazione **Steam** Windows del 22/06/2011 | https://raw.githubusercontent.com/GameSaveInfo/Reports/master/AssassinsCreed2.Windows.txt | DOCUMENTATO | Una sola installazione, su Steam e non su Ubisoft Connect, con patch del 2011. **La copia dell'utente (D1, Ubisoft Connect) può avere nomi, dimensioni ed eseguibile diversi**: verificare con lo [script in sola lettura](scripts/inventario_acii_readonly.ps1). |
+| Report GameSaveInfo, installazione **Steam** Windows del 22/06/2011 | https://raw.githubusercontent.com/GameSaveInfo/Reports/master/AssassinsCreed2.Windows.txt | DOCUMENTATO | Una sola installazione, su Steam e non su Ubisoft Connect, con patch del 2011. **La copia dell'utente (D1, Ubisoft Connect) può avere nomi, dimensioni ed eseguibile diversi**: verificare prima la disponibilità degli archivi tramite [staging controllato](scripts/prepara_copia_privata_acii.ps1) e poi inventariare **solo la copia privata**, non il gioco, con lo [script in sola lettura](scripts/inventario_acii_readonly.ps1). |
 | Liste file AnvilToolkit (`AC2.fgfl`, *Full File Lists*) | https://github.com/Kamzik123/AnvilToolkit-Resources (cartella `Full File Lists`) — repository verificato con `git ls-remote` | DOCUMENTATO (esistenza) / non leggibile | Formato compresso: si decodifica soltanto con AnvilToolkit («Export FGFL»), che non è eseguibile in questa sessione. |
 | Lista nomi Wwise di AC II per **X360** | https://github.com/bnnm/wwiser-utils (`wwnames/Assassin's Creed II (X360).txt`) | DOCUMENTATO | Nomi dei banchi; usata nel [catalogo voci](VOCE_ITALIANA_ORIGINALE_CATALOGO.md). I nomi su PC potrebbero differire: **IPOTESI** che coincidano. |
 
@@ -58,6 +58,6 @@ I `.bik` sono filmati proprietari: si possono soltanto **guardare** in privato c
 | `AssassinsCreedIIGame.exe` (Steam 2011) | 35.049.472 | La mod **ac2-rtx** è testata sull'MD5 `2dd4d3c196fa270945826d2faab42007`. Su build diverse le sue patch «no-op» (dalla README dell'autore). Confrontare l'MD5 della copia Ubisoft Connect con lo script, **senza modificare l'exe**. | DOCUMENTATO |
 
 ## 6. Come trasformare le IPOTESI in TESTATO (solo quando l'utente vorrà, sul suo PC)
-1. Eseguire [scripts/inventario_acii_readonly.ps1](scripts/inventario_acii_readonly.ps1). Lo script si limita a leggere e scrive il CSV **fuori** dalla cartella del gioco.
-2. Copiare la cartella del gioco in un percorso privato (es. `D:\FILM_PRIVATO\acii_copia\`) e usare **solo la copia** per AnvilToolkit e QuickBMS.
+1. **Opzione 2 approvata:** eseguire da account proprietario [scripts/prepara_copia_privata_acii.ps1](scripts/prepara_copia_privata_acii.ps1), prima con `-DryRun`, per copiare **solo** `DataPC_Abstergo.forge` in `D:\FILM_ARCHIVI_RO`. Validare SHA256/manifest e impostare ACL sola lettura **sulla copia** per l'account Claude; nessun cambio all'originale.
+2. Solo dopo il controllo permessi: Claude usa [scripts/inventario_acii_readonly.ps1](scripts/inventario_acii_readonly.ps1) con `-ArchiveDir "D:\FILM_ARCHIVI_RO" -OutDir "D:\FILM_PRIVATO\inventario"`; l'estrazione va esclusivamente nel WorkDir. Non accede alla cartella del gioco. Procedura completa: [OPZIONE2_ARCHIVI_COPIATI.md](OPZIONE2_ARCHIVI_COPIATI.md).
 3. Aprire `DataPC_Abstergo.forge` (copia) con AnvilToolkit e annotare nomi delle entità e dei mesh **solo nel file privato**. Su GitHub va unicamente lo stato «TROVATO NEL FILE LOCALE».
