@@ -14,6 +14,8 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - Questo repository contiene per ora **solo documentazione di progetto**. Niente rendering o scene generate finché non sono approvati copione e schede.
 - Destinazione dichiarata: visione personale. L'uso privato non concede automaticamente diritti Ubisoft.
 
+**Regola approvata di adattamento:** FILM non contiene gameplay, tutorial, comandi né interfacce ludiche. Le sequenze di AC II sono riferimenti interni per ricostruire la storia, non capitoli mostrati allo spettatore. Consultare [regola cinematografica](docs/preproduzione/REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md).
+
 ## Percorso di lavoro
 1. Ricostruire una cronologia **verificata** sulle fonti di gioco.
 2. Catalogare sequenze, scene, personaggi, costumi e ambientazioni.
@@ -51,10 +53,9 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md](docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md): **dossier integrale di Claude**, proposta D4–D7 da approvare
 - [docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md](docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md): sintesi storica precedente all'arrivo del dossier completo
 
-
-- [Fuga da Firenze, trattamento cinematografico V1](docs/preproduzione/SEQ02_TRATTAMENTO_CINEMATOGRAFICO_V1.md)
-- [Fuga da Firenze, personaggi e location](docs/preproduzione/SEQ02_CAST_LOCATION_CONTINUITA_V1.md)
-- [Fuga da Firenze, fonti e proposte aperte](docs/preproduzione/SEQ02_VERIFICHE_E_DECISIONI_V0.md)
+- [Fuga da Firenze — trattamento cinematografico V1](docs/preproduzione/SEQ02_TRATTAMENTO_CINEMATOGRAFICO_V1.md)
+- [Fuga da Firenze — cast e ambientazioni V1](docs/preproduzione/SEQ02_CAST_LOCATION_CONTINUITA_V1.md)
+- [Fuga da Firenze — verifica delle fonti e decisioni](docs/preproduzione/SEQ02_VERIFICHE_E_DECISIONI_V0.md)
 
 ## GitHub e media
 Git non è il posto giusto per grandi file video, scene renderizzate, pesi dei modelli IA o asset protetti. Conservare i file pesanti sul PC e archiviare solo metadati e riferimenti leciti. **Verificare la visibilità del repository: risulta pubblico; per un progetto privato impostarlo manualmente su Private.**
