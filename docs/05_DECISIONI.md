@@ -34,6 +34,13 @@ Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. No
 ## Protocollo ufficiale D1
 **Il piano catture è facoltativo e differito; non serve eseguirlo ora.** Vedi [Piano catture AC II PC / Ubisoft Connect](reference/CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md) soltanto per eventuali verifiche successive. Le catture A sono locali e gli screenshot di terzi A-EXT restano riferimenti preliminari, non prova di piattaforma PC. Non salvare né immagini né video del gioco in questo repository (al momento pubblico).
 
+## Nuovo dossier di Claude (resoconto ricevuto 2026-10-13)
+**Non è stato ricevuto il file integrale** `CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md`; nel repository è stata archiviata **solo la sintesi basata sul resoconto dell'utente**, con provenienza esplicita: [CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md](reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md).
+
+**Correzione di età verificabile:** Ezio, nato il 24 giugno 1459, ha **18 anni nell'aprile 1478**, non 19. Questa rettifica non approva automaticamente il design di D5.
+
+**D4-a/b/c, D5, D6-a/b/c, D7 e D7-b restano TUTTE IN ATTESA DI APPROVAZIONE ESPLICITA.** La loro descrizione nella sintesi è una proposta di Claude, non una decisione del film. Non generare modelli, immagini, render o video.
+
 ## Prossimi passi
 1. Rendere privato il repository nelle impostazioni GitHub.
 2. Controllare ordine dell'apertura e capitoli sul gioco.
