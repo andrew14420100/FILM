@@ -2,7 +2,7 @@
 
 **Data:** 2026-10-13 · **Stato:** BOZZA DA REVISIONARE. Nessun Character Master né set 3D creato.  
 **Fonte documentale:** [Trattamento Monteriggioni V0](MONTERIGGIONI_TRATTAMENTO_CINEMATOGRAFICO_V0.md), [Personaggi già registrati](../02_PERSONAGGI.md), [Ambientazioni](../03_AMBIENTAZIONI.md), [Decisioni](../05_DECISIONI.md).  
-**Raccordo dichiarato:** il trattamento [Fuga da Firenze](SEQ02_TRATTAMENTO_CINEMATOGRAFICO_V1.md) e la sua [sceneggiatura V0](SEQ02_SCENEGGIATURA_ORIGINALE_V0.md) sono **in PR #9, ancora in bozza e non approvati**. La continuità con il loro finale è un prerequisito da verificare.
+**Raccordo dichiarato:** il trattamento [Fuga da Firenze](https://github.com/andrew14420100/FILM/blob/preproduzione/seq02-piano-v0-20261013/docs/preproduzione/SEQ02_TRATTAMENTO_CINEMATOGRAFICO_V1.md) e la sua [sceneggiatura V0](https://github.com/andrew14420100/FILM/blob/preproduzione/seq02-piano-v0-20261013/docs/preproduzione/SEQ02_SCENEGGIATURA_ORIGINALE_V0.md) sono **in PR #9, ancora in bozza e non approvati**. La continuità con il loro finale è un prerequisito da verificare.
 
 ## 1. Personaggi già esistenti: identità e arco
 
