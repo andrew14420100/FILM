@@ -6,7 +6,7 @@ La priorità è mantenere **identità riconoscibili** in un film live-action sim
 
 | ID | Personaggio | Ruolo nel gioco / nel film | Continuità da catalogare |
 | --- | --- | --- | --- |
-| CHR-001 | Ezio Auditore da Firenze | Protagonista storico | Età 1459–1499, abiti civili/da Assassino, cicatrici, equipaggiamento |
+| CHR-001 | Ezio Auditore da Firenze | Protagonista storico | Età 1459–1499, abiti civili/da Assassino, cicatrici, equipaggiamento · [reference pack dedicato](reference/CHR-001_EZIO_MASTER.md) |
 | CHR-002 | Desmond Miles | Protagonista nel presente | Outfit 2012, fisicità, memoria genetica |
 | CHR-003 | Lucy Stillman | Collega e guida di Desmond | Abstergo vs rifugio |
 | CHR-004 | Rebecca Crane | Tecnica Animus 2.0 | Rifugio e fuga |
