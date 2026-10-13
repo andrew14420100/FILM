@@ -35,6 +35,8 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/reference/CHR-001_REVISIONE_SCHEDA.md](docs/reference/CHR-001_REVISIONE_SCHEDA.md): revisione, correzioni e proposte D1–D7
 - [docs/reference/CHR-001_EZIO_SCHEDA_VISIVA.md](docs/reference/CHR-001_EZIO_SCHEDA_VISIVA.md): nuova raccolta di riferimenti per volto e Armatura di Altaïr
 - [docs/reference/CHR-001_REVISIONE_VISIVA.md](docs/reference/CHR-001_REVISIONE_VISIVA.md): verifiche delle due tavole e decisioni ancora aperte
+- [docs/reference/CHR-001_PIANO_LACUNE_E_DECISIONI.md](docs/reference/CHR-001_PIANO_LACUNE_E_DECISIONI.md): piano di raccolta dei dati e proposte non ancora approvate
+- [docs/reference/CHR-001_VERIFICHE_R1_R4.md](docs/reference/CHR-001_VERIFICHE_R1_R4.md): verifica del manuale, replay, team di modellazione e candidati per le catture
 
 ## GitHub e media
 Git non è il posto giusto per grandi file video, scene renderizzate, pesi dei modelli IA o asset protetti. Conservare i file pesanti sul PC e archiviare solo metadati e riferimenti leciti. **Verificare la visibilità del repository: risulta pubblico; per un progetto privato impostarlo manualmente su Private.**
