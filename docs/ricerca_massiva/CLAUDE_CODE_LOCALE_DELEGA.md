@@ -11,39 +11,59 @@
 | Cartella del gioco | Accesso **in sola lettura**; mai scrittura, mai avvio del gioco o del launcher |
 | Modalità iniziale | `plan` (Claude propone, l'utente approva) e poi `default`, con **richiesta di conferma per ogni comando** |
 | Costi | Usa il piano Claude esistente dell'utente; **nessun** servizio o API aggiuntivo a pagamento (CLAUDE.md, vincolo 7) |
-| Istruzioni per il Claude locale | Un `CLAUDE.md` nella cartella privata che rimanda a questo file, a `LIMITI_E_DIRITTI.md` e ai gate del §4 |
+| Istruzioni per il Claude locale | Un `CLAUDE.md` nella cartella privata e una **copia del capitolato** in `D:\FILM_PRIVATO\capitolato\`, che comprende questa cartella, il `CLAUDE.md` del repository, `05_DECISIONI.md` e la regola di adattamento, con `MANIFEST_SHA256.txt` e la revisione Git. **Prima di L0** Claude locale legge il capitolato e dichiara quale revisione ha letto; l'utente conferma. |
 
-Il **launcher** [scripts/avvia_claude_locale.ps1](scripts/avvia_claude_locale.ps1):
-- esegue solo controlli in lettura (GPU, percorso del gioco, cartella privata, presenza della CLI `claude`);
-- se l'utente conferma, crea la cartella privata e i file di configurazione **solo dentro** `D:\FILM_PRIVATO\`;
-- avvia Claude Code in modalità `plan`.
+Il **launcher** [scripts/avvia_claude_locale.ps1](scripts/avvia_claude_locale.ps1) va eseguito dalla copia locale del branch. Nell'ordine:
+1. Esegue solo controlli in lettura, **prima di creare qualsiasi file**:
+   - `WorkDir` separata dal gioco (non uguale, non contenuta, non contenitore);
+   - **nessuna junction o symlink** in alcun componente di `GameDir` o `WorkDir`;
+   - PowerShell **non elevato**;
+   - GPU, CLI `claude` e file chiave del gioco.
+2. Solo con conferma:
+   - crea `WorkDir` e **ricontrolla** che sia un percorso reale fuori dal gioco;
+   - copia il capitolato senza sovrascrivere;
+   - crea `.claude\settings.json` e `CLAUDE.md` se assenti.
+3. Solo con conferma, avvia Claude Code in modalità `plan`.
 
-Anche il launcher è **non eseguito né testato**.
+In modalità `plan` Claude **non scrive file** finché l'utente non approva un piano e un cambio di modalità. `bypassPermissions` e auto mode sono disattivati nelle impostazioni.
 
-## 2. Permessi proposti (`D:\FILM_PRIVATO\.claude\settings.json`)
-Il launcher lo crea solo con conferma. **La sintassi dei percorsi Windows nelle regole va verificata** con il comando `/permissions` dentro Claude Code prima di iniziare, perché le regole usano percorsi in stile POSIX (`//c/...`). In caso di dubbio Claude locale deve fermarsi e chiedere.
+Anche il launcher è **non eseguito né testato**: nessuno di questi punti si considera risolto finché non è provato in locale.
 
+## 2. Permessi Claude ≠ protezione del filesystem
+Fonte: documentazione ufficiale di Claude Code, consultata il 2026-10-13: https://code.claude.com/docs/en/permissions e https://code.claude.com/docs/en/sandboxing. Ne derivano tre punti:
+- Le regole sui file consultano **solo `Edit(path)` e `Read(path)`**. Una regola `Write(path)` viene accettata ma **ignorata**, quindi si usa `Edit`, che copre anche le scritture.
+- Le regole `Edit` e `Read` valgono per gli strumenti di file di Claude, per i comandi riconosciuti (es. `cat`, `sed`, `tee`) e per le redirezioni. **Non** valgono per sottoprocessi arbitrari: uno script o un tool avviato dalla shell può scrivere dove `Edit` è negato. Le regole `Bash(...)` **non** coprono lo strumento `PowerShell(...)`: servono regole separate.
+- Su **Windows nativo il sandbox di Claude Code non è disponibile**: i comandi girano senza isolamento. Il sandbox esiste solo su macOS, Linux e WSL2.
+
+**Di conseguenza** le regole di Claude sono una **seconda linea**. La protezione reale della cartella del gioco deve venire dal **sistema operativo**:
+
+| Livello | Misura | Stato |
+|---|---|---|
+| 1 (obbligatorio) | Eseguire launcher e Claude **da utente standard non elevato** (il launcher rifiuta una sessione da amministratore). Se il gioco è sotto `Program Files`, i permessi NTFS predefiniti di Windows negano normalmente la scrittura a un utente standard. | Il launcher controlla elevazione e posizione; i permessi effettivi sono **DA VERIFICARE** sul PC |
+| 2 (consigliato se il gioco **non** è sotto Program Files) | **Utente Windows dedicato** e standard (es. `film_claude`) che ha solo lettura sulla cartella del gioco e scrittura solo su `D:\FILM_PRIVATO`. Le ACL si impostano a mano dall'utente; il launcher **non** modifica i permessi della cartella del gioco. | **DA DECIDERE** dall'utente |
+| 3 (facoltativo) | Claude Code dentro **WSL2** con sandbox attivo, con la cartella del gioco in sola lettura. Da valutare: AnvilToolkit è un programma Windows. | IPOTESI |
+
+Le impostazioni generate dal launcher (`D:\FILM_PRIVATO\.claude\settings.json`):
 ```json
 {
   "permissions": {
     "defaultMode": "plan",
+    "disableBypassPermissionsMode": "disable",
+    "disableAutoMode": "disable",
     "deny": [
       "Edit(//<GAME_DIR_POSIX>/**)",
-      "Write(//<GAME_DIR_POSIX>/**)",
-      "Bash(git push:*)",
-      "Bash(curl:*)",
-      "Bash(Invoke-WebRequest:*)",
+      "Bash(git push *)", "Bash(curl *)", "Bash(wget *)",
+      "PowerShell(git push *)", "PowerShell(Invoke-WebRequest *)", "PowerShell(Invoke-RestMethod *)",
+      "PowerShell(Start-BitsTransfer *)", "PowerShell(Remove-Item *)",
       "WebFetch"
     ],
-    "ask": [
-      "Bash",
-      "Edit",
-      "Write"
-    ]
+    "ask": ["Bash", "PowerShell", "Edit"]
   }
 }
 ```
-`<GAME_DIR_POSIX>` è la cartella del gioco in forma POSIX, ad esempio `c/Program Files (x86)/Ubisoft/...`; la compila il launcher. Il blocco di `WebFetch` e dei download è voluto: i tool di terzi li scarica **l'utente** dalle pagine ufficiali ([BENCHMARK_TOOLCHAIN.md](BENCHMARK_TOOLCHAIN.md)) e Claude locale ne verifica solo la presenza e l'hash.
+`<GAME_DIR_POSIX>` è la cartella del gioco in forma POSIX: per esempio `C:\Program Files (x86)\...` diventa `/c/Program Files (x86)/...`, e nella regola si scrive `//c/...`. La compila il launcher. **Verificare con `/permissions`** che le regole compaiano senza avvisi prima di L0.
+
+Il blocco di `WebFetch` e dei download è voluto: i tool di terzi li scarica **l'utente** dalle pagine ufficiali ([BENCHMARK_TOOLCHAIN.md](BENCHMARK_TOOLCHAIN.md)); Claude locale ne verifica solo presenza e hash.
 
 ## 3. Fasi con stop obbligatori
 Ogni fase termina con un **resoconto testuale** (incollabile nella PR o in chat, senza file del gioco) e uno **STOP** in attesa di consenso.

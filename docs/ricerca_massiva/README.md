@@ -22,7 +22,7 @@
 | [VOCE_ITALIANA_ORIGINALE_CATALOGO.md](VOCE_ITALIANA_ORIGINALE_CATALOGO.md) | Banchi vocali, metodo di estrazione privata, tabella PERSONAGGIO → CLIP → SCENA (vuota finché non verificata). |
 | [PIPELINE_E_STATO_ANTEPRIMA.md](PIPELINE_E_STATO_ANTEPRIMA.md) | Fase B/C: pipeline proposta, **blocco circostanziato dell'anteprima**, unico percorso manuale. |
 | [CLAUDE_CODE_LOCALE_DELEGA.md](CLAUDE_CODE_LOCALE_DELEGA.md) | Proposta per delegare il lavoro a **Claude Code locale** con accesso limitato: permessi, fasi L0–L6 con stop, gate creativi. |
-| [scripts/avvia_claude_locale.ps1](scripts/avvia_claude_locale.ps1) | Launcher: controlli in sola lettura, poi (solo con conferma) configurazione in `D:\FILM_PRIVATO` e avvio in modalità `plan`. **Non eseguito né testato.** |
+| [scripts/avvia_claude_locale.ps1](scripts/avvia_claude_locale.ps1) | Launcher: controlli in sola lettura (separazione dal gioco, junction/symlink, sessione non elevata), poi, solo con conferma, copia del capitolato con manifest, configurazione in `D:\FILM_PRIVATO` e avvio in modalità `plan`. **Non eseguito né testato.** |
 | [scripts/inventario_acii_readonly.ps1](scripts/inventario_acii_readonly.ps1) | Inventario facoltativo in sola lettura (nomi, dimensioni, hash). Rifiuta `OutDir` uguale o interna al gioco e i percorsi con junction/symlink; segnala gli errori di lettura come inventario INCOMPLETO. Da eseguire solo se e quando l'utente lo decide. **Non eseguito né testato** (nella sessione cloud non c'è PowerShell): rileggerlo prima dell'uso. |
 
 ## Esito sintetico
