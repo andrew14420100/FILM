@@ -157,7 +157,7 @@ In tre giorni, il ragazzo che si sente protetto dalla propria famiglia diventa l
 - **SEQ1-C:** non fissare durata/numero di minuti finché non si completa il trattamento delle Seq. 1–3 (in coerenza con S-04).
 - **SEQ1-D:** dare priorità alle schede CHR-018, CHR-039, CHR-040 e agli Auditore.
 
-Queste quattro proposte **NON sono ancora approvate**. Questo trattamento V1 costituisce la base documentale per la successiva sceneggiatura, non la sceneggiatura definitiva.
+**Aggiornamento 2026-10-13:** le quattro decisioni SEQ1-A/B/C/D sono state **APPROVATE**; le etichette di proposta sopra si conservano come storia della stesura. I nuovi codici personaggio restano da ratificare. Questo trattamento V1 costituisce la base documentale per la successiva sceneggiatura, non la sceneggiatura definitiva.
 
 **Diritti e produzione:** usare solo collegamenti e descrizioni documentali sul repository, non caricare asset o filmati Ubisoft. Restare esclusivamente nella pre-produzione senza modelli 3D, render, immagini, audio, animazioni o video.
 
