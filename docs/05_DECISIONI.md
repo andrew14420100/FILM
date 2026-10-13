@@ -6,7 +6,7 @@
 | --- | --- | --- |
 | Repository chiamato FILM su GitHub | APPROVATA | Usare `andrew14420100/FILM` |
 | Progetto privato per visione personale | APPROVATA | Non pubblicare il film né caricare asset originali |
-| Storia fedele ad Assassin's Creed II | APPROVATA | Cronologia, personaggi e finale dal gioco |
+| **FILM NARRATIVO, NON GAMEPLAY** | **APPROVATA · 2026-10-13** | Il gioco è **fonte degli eventi**, non il formato da riprodurre: nel film **nessun HUD, tutorial, comando, obiettivo, annuncio di missione/sequenza, meccanica ripetitiva o movimento da videogioco**. I nomi di sequenze e memorie sono esclusivamente etichette di archivio **interne**. Scene create per motivazioni e conseguenze umane; più memorie possono fondersi in una scena e una memoria può generare più scene. Gli eventi importanti restano. Vedi [regola cinematografica](preproduzione/REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md). |
 | Prologo fedele all'inizio del gioco | APPROVATA | Nessun prologo apocalittico nuovo |
 | D2 — Costume di Ezio nella Seq. 14 (Vaticano e Cripta) | APPROVATA · 2026-10-13 | **Armatura di Altaïr**, secondo la scelta dell'utente. Pianificare una precedente acquisizione dei sigilli/tombe coerente con il gioco; non presentare questa scelta opzionale come equipaggiamento obbligatorio in ogni partita. |
 | D2-bis — Armatura anche in Seq. 13 (Falò delle Vanità) | APPROVATA · 2026-10-13 | Ezio indossa l'**Armatura di Altaïr** anche nella Sequenza 13; progettare l'acquisizione dei sei sigilli e della tenuta prima di questa sequenza, senza imporla come percorso obbligatorio del gioco. |
