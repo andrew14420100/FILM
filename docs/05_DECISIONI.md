@@ -14,6 +14,10 @@
 | D9 — Reference di terzi per modello iniziale | APPROVATA · 2026-10-13 | Autorizzato utilizzare screenshot **A-EXT** come riferimento **solo per il futuro blockout provvisorio**. Non attestano automaticamente la versione PC e non bastano per approvare EZIO_MASTER. **Nessun modello o render deve essere generato in questa fase.** |
 | D3 — Cappa con Armatura di Altaïr | APPROVATA · 2026-10-13 | Configurazione cinematografica: **esterno scuro, fodera interna rossa** nelle scene con Armatura di Altaïr; eventuali differenze rispetto ai fotogrammi del gioco devono restare documentate. |
 | D1 — Versione canonica AC II | **APPROVATA · 2026-10-13** | **Assassin's Creed II originale per PC Windows, posseduto su Ubisoft Connect**. Usare tale installazione come riferimento primario A, senza mod, ReShade o cambio di shader; *Ezio Collection* solo fonte secondaria. **Build/patch, risoluzione effettiva e presenza/accessibilità delle Seq. 12–13 restano DA VERIFICARE sull'installazione**, senza acquisti. |
+| D4 — Armi e continuità dell'equipaggiamento | **APPROVATA · 2026-10-13** | Come proposto nel [dossier](reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md) §3. **D4-a:** Seq. 13–14 con Spada di Altaïr, Cinquedea dentellata, lame celate e pistola. **D4-b:** spada comune di Giovanni dal 1476 al 1496, senza cambi. **D4-c:** matrice §3.2 e regole §3.3 come base di continuità (Carnevale senza armi visibili, prima lama provvisoriamente sul braccio sinistro, nessun acquisto opzionale del gioco). Braccio delle lame e dettagli restano DA VERIFICARE. |
+| D5 — Età e varianti del volto | **APPROVATA · 2026-10-13** | `EZIO_MASTER` di riferimento = **Ezio a 18 anni (Seq. 4, aprile 1478)**. Varianti sulla stessa struttura facciale: 17 / 22–28 / 29 con barba / 37–40 con barba (dossier §2.2); cicatrice a 4 stati (assente, fresca, crosta, guarita). Barba in Seq. 11 e forma della cicatrice guarita DA VERIFICARE. |
+| D6 — Materiali e specifiche tecniche future | **APPROVATA · 2026-10-13** | **D6-a:** tabella materiali del dossier §6.2 come bozza di lookdev. **D6-b:** risoluzioni texture rinviate a un benchmark futuro (livelli A/B). **D6-c:** Armatura di Altaïr in acciaio scurito con bordi e rivetti dorati, bracciali in ottone inciso. Nessun codice colore canonico: i colori restano bersagli relativi. |
+| D7 — Collana e accessori | **APPROVATA · 2026-10-13** | **D7:** collana presente in tutte le epoche, anche con l'Armatura (resa: argento opaco su cuoio; numero e materiale delle perline DA VERIFICARE). **D7-b:** cappa semplice fino al dono di Lorenzo (fine Seq. 5), poi cappa Medici fino alla Seq. 12; cappa veneziana non usata. Con l'Armatura vale D3. |
 | Personaggi dall'aspetto umano e ambienti reali | APPROVATA | Live-action fotorealistico digitale |
 | Qualità obiettivo 4K UHD | APPROVATA | Pianificare per 3840 × 2160, testare effettivamente |
 | Tutto il workflow di produzione sul PC Windows | APPROVATA | RTX 5070 Ti 16 GB, niente rendering cloud richiesto |
@@ -29,7 +33,7 @@
 Ogni cambiamento ad una decisione APPROVATA va annotato con data, motivo e approvazione esplicita. Non convertire bozze in canon implicitamente.
 
 ## Stato creativo confermato
-Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. Non autorizzano la generazione del blockout, di digital doubles, di immagini sintetiche, modelli 3D, animazioni, audio o video. La **D1 è approvata per l'edizione originale PC posseduta su Ubisoft Connect**; build, patch e DLC restano da verificare. D4, D5, D6 e D7 sono ancora da ratificare.
+Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. Non autorizzano la generazione del blockout, di digital doubles, di immagini sintetiche, modelli 3D, animazioni, audio o video. La **D1 è approvata per l'edizione originale PC posseduta su Ubisoft Connect**; build, patch e DLC restano da verificare. **D4, D5, D6 e D7 sono approvate il 2026-10-13** come proposte nel dossier. Anche queste approvazioni riguardano **soltanto la progettazione**: nessun blockout, modello, immagine, render o video è autorizzato.
 
 ## Protocollo ufficiale D1
 **Il piano catture è facoltativo e differito; non serve eseguirlo ora.** Vedi [Piano catture AC II PC / Ubisoft Connect](reference/CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md) soltanto per eventuali verifiche successive. Le catture A sono locali e gli screenshot di terzi A-EXT restano riferimenti preliminari, non prova di piattaforma PC. Non salvare né immagini né video del gioco in questo repository (al momento pubblico).
@@ -39,7 +43,7 @@ Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. No
 
 **Correzione di età verificabile:** Ezio, nato il 24 giugno 1459, ha **18 anni nell'aprile 1478**, non 19. Questa rettifica non approva automaticamente il design di D5.
 
-**D4-a/b/c, D5, D6-a/b/c, D7 e D7-b restano TUTTE IN ATTESA DI APPROVAZIONE ESPLICITA.** La loro descrizione nella sintesi è una proposta di Claude, non una decisione del film. Non generare modelli, immagini, render o video.
+~~D4-a/b/c, D5, D6-a/b/c, D7 e D7-b restano in attesa di approvazione.~~ **Aggiornamento 2026-10-13: l'utente ha approvato D4 (a/b/c), D5, D6 (a/b/c) e D7 (+ D7-b) esattamente come proposte nel dossier integrale.** La sintesi storica resta solo traccia. Non generare modelli, immagini, render o video.
 
 ## Prossimi passi
 1. Rendere privato il repository nelle impostazioni GitHub.

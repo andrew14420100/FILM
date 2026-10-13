@@ -27,7 +27,7 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 - Per Ezio leggere obbligatoriamente `docs/reference/CHR-001_EZIO_MASTER.md` e `docs/reference/README.md`.
 - Leggere anche la nuova `docs/reference/CHR-001_EZIO_SCHEDA_VISIVA.md` e la relativa `docs/reference/CHR-001_REVISIONE_VISIVA.md`. Le tavole JPG sono reference private dell'utente, **non** file del repository.
 - **Approvazioni utente 2026-10-13:** D2 = Armatura di Altaïr al Vaticano/Cripta; **D2-bis = Armatura anche in Seq. 13 (Falò delle Vanità)**; **D8 = cappuccio alzato nelle Seq. 13–14**; **D9 = reference A-EXT utilizzabili solo per il futuro blockout provvisorio**; **D3 = cappa scura con fodera rossa quando indossa l'Armatura di Altaïr**. L'acquisizione dei sei sigilli deve precedere la Seq. 13 nella pianificazione.
-- **Restare esclusivamente in pre-produzione.** Nessun modello 3D, neppure provvisorio, render, immagine generata o video autorizzato. **D1 APPROVATA: AC II originale PC Windows posseduto su Ubisoft Connect**; build/patch, risoluzione e disponibilità Seq. 12–13 ancora da verificare. D4/D5/D6/D7 ancora aperte.
+- **Restare esclusivamente in pre-produzione.** Nessun modello 3D, neppure provvisorio, render, immagine generata o video autorizzato. **D1 APPROVATA: AC II originale PC Windows posseduto su Ubisoft Connect**; build/patch, risoluzione e disponibilità Seq. 12–13 ancora da verificare. D4/D5/D6/D7 **approvate il 2026-10-13** (vedi sotto).
 - Gli screenshot classificati A-EXT sono catture di terzi con versione/piattaforma non accertata: utilizzabili come prove provvisorie, non come identità canonica approvata.
 - Preferire fotogrammi verificati dal videogioco per anatomia e costumi; concept preliminari, mod e statue non costituiscono canone definitivo.
 - Non considerare quattro screenshot, una mesh scaricata o una renderizzazione 4K sufficienti per dichiarare la fedeltà del personaggio.
@@ -41,7 +41,7 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 ## Correzione età e dossier da browser (2026-10-13)
 - **Età corretta:** Ezio è nato il 24 giugno 1459; **nell'aprile 1478 ha 18 anni, non 19**. Prima di associare un'età a una scena, considerare giorno e mese.
 - Il **dossier integrale originale di Claude è ora archiviato** in `docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md` (ricevuto dall'utente 2026-10-13): è la base documentale aggiornata per D4–D7. La precedente `docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md` rimane **solo come traccia storica**; consultare l'originale integrale al suo posto. Il dossier non approva automaticamente alcuna proposta.
-- D4-a/b/c, D5, D6-a/b/c e D7/D7-b rimangono **PROPOSTE NON APPROVATE** finché l'utente non decide.
+- **Aggiornamento 2026-10-13:** l'utente ha **APPROVATO D4-a/b/c, D5, D6-a/b/c e D7/D7-b esattamente come proposte nel dossier integrale** (vedi `docs/05_DECISIONI.md`). Il dossier resta il riferimento; i punti segnati DA VERIFICARE restano tali. Le approvazioni sono di progettazione, non autorizzano la produzione.
 - Restare in pre-produzione esclusivamente documentale e da browser; nessuna cattura personale obbligatoria, nessun modello, immagine o video.
 
 ## Flusso iniziale
