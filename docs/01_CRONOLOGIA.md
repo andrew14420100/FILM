@@ -43,3 +43,12 @@
 
 ## Regola per l'espansione
 Per ogni sequenza, creare file `scene/Sxx_*.md` con **singole unità cinematiche**: chi, dove, quando, cosa accade, raccordo, continuità, stato, fonte. La lista preliminare di 144 unità condivisa in chat va considerata **BOZZA NON VALIDATA** e non è da riportare come canon esatto senza confronto diretto con la campagna.
+
+
+## Nota pre-produzione: acquisizione dell'Armatura di Altaïr (decisioni 2026-10-13)
+
+**SCELTA DEL FILM, non missione obbligatoria di ogni partita:** D2 e D2-bis stabiliscono Ezio con Armatura di Altaïr già nella Seq. 13 (*Falò delle Vanità*) e nel finale Seq. 14, Vaticano/Cripta. Di conseguenza il futuro adattamento deve prevedere, **prima della Seq. 13**, la scoperta dei sei sigilli nelle tombe degli Assassini e l'accesso all'armatura nel Santuario della Villa Auditore. Collocazione puntuale e raccordi narrativi **DA VERIFICARE** con il gioco e la cronologia delle missioni opzionali; non inventare una data precisa.
+
+**Vincoli di continuità:** D8 cappuccio alzato nelle Seq. 13–14; D3 cappa scura con fodera rossa quando indossa l'armatura. Fotogrammi A-EXT possono documentare il futuro blockout soltanto (D9): nessun asset generato ora.
+
+**Riferimento:** [Archivio master Ezio aggiornato](reference/CHR-001_EZIO_MASTER.md). Stato: **PRE-PRODUZIONE, DA VERIFICARE**.
