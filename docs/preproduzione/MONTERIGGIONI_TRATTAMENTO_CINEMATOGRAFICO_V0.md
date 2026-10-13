@@ -4,7 +4,7 @@
 **Data:** 13 ottobre 2026  
 **Stato:** BOZZA DOCUMENTALE DA REVISIONARE, non sceneggiatura definitiva né decisione approvata.  
 **Provenienza narrativa:** *Assassin's Creed II*, «Requiescat in Pace» (cinque memorie). I nomi delle memorie sono riferimenti editoriali interni, **mai scritte o capitoli da inserire nel film**.  
-**Raccordo obbligatorio:** [Fuga da Firenze — trattamento](SEQ02_TRATTAMENTO_CINEMATOGRAFICO_V1.md), [sceneggiatura italiana V0](SEQ02_SCENEGGIATURA_ORIGINALE_V0.md) **attualmente in PR #9, NON approvate e NON su main**. Questo progetto segue la loro direzione narrativa senza approvarne le soluzioni creative.  
+**Raccordo obbligatorio:** [Fuga da Firenze — trattamento](https://github.com/andrew14420100/FILM/blob/preproduzione/seq02-piano-v0-20261013/docs/preproduzione/SEQ02_TRATTAMENTO_CINEMATOGRAFICO_V1.md), [sceneggiatura italiana V0](https://github.com/andrew14420100/FILM/blob/preproduzione/seq02-piano-v0-20261013/docs/preproduzione/SEQ02_SCENEGGIATURA_ORIGINALE_V0.md) **attualmente in PR #9, NON approvate e NON su main**. Questo progetto segue la loro direzione narrativa senza approvarne le soluzioni creative.  
 **Vincolo assoluto:** [FILM È CINEMA, NON GAMEPLAY](REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md). Nessun modello, render, immagine, video, audio, doppiaggio o animazione generato.
 
 ## Fonti e affidabilità
