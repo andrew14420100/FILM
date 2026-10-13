@@ -23,7 +23,8 @@
 - [Animus Project laboratory](https://assassinscreed.fandom.com/wiki/Animus_Project_laboratory)
 - [Rome hideout](https://assassinscreed.fandom.com/wiki/Rome_hideout)
 - [Animi Training Program](https://assassinscreed.fandom.com/wiki/Animi_Training_Program)
-- [Palazzo Auditore](https://assassinscreed.fandom.com/wiki/Palazzo_Auditore)
+- [Palazzo Auditore](https://assassinscreed.fandom.com/wiki/Palazzo_Auditore) · [Database: Palazzo Auditore](https://assassinscreed.fandom.com/wiki/Database:_Palazzo_Auditore)
+- [Conversazioni del XXI secolo (wiki italiana)](https://assassinscreed.fandom.com/it/wiki/Conversazioni_del_XXI_secolo)
 - [Template delle memorie di AC II](https://assassinscreed.fandom.com/wiki/Template:AC2Memories)
 
 ---
@@ -36,7 +37,7 @@
 2. Nella sua stanza ad Abstergo, Desmond vede con l'Occhio dell'aquila i **messaggi scritti col sangue dal Soggetto 16**.
 3. **Lucy entra con la camicia macchiata di sangue**, dice che hanno pochissimo tempo e lo porta all'Animus, che ricalibra.
 4. L'Animus (versione 1.28) **confronta il DNA di Desmond con quello del Soggetto 16** per trovare un antenato comune. Desmond rivive la **nascita di Ezio** (Palazzo Auditore, 24/6/1459).
-5. La simulazione sfuma nel bianco. Prima che finisca, Desmond intravede **immagini sfocate di un Ezio giovane con le vesti da Assassino che combatte** (la wiki indica il Palazzo Ducale di Venezia).
+5. La simulazione sfuma nel bianco. Prima che finisca, Desmond intravede **immagini sfocate di un Ezio giovane con le vesti da Assassino che combatte** (luogo e data **DA VERIFICARE**; la wiki inglese indica il Palazzo Ducale di Venezia).
 6. Lucy lo estrae e **toglie un'unità dati dall'Animus** (il «memory core»). Escono nel corridoio.
 7. Due guardie li scoprono. Lucy **blocca una porta con un codice**; una guardia dà l'allarme di un'intrusione nell'ala di ricerca. **Corridoi con pareti di vetro.** Lucy mette fuori combattimento altre guardie. Scendono in ascensore.
 8. **Sala con decine di Animi.** Attraversamento furtivo. Il badge di Lucy **non apre** il tastierino; Desmond **legge le impronte con l'Occhio dell'aquila** e inserisce il codice. Lucy accenna che «si sono sbagliati» e rimanda le spiegazioni.
@@ -69,12 +70,12 @@
 Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR-002_014_CAST_BIBLE_INIZIALE.md); luoghi da [03_AMBIENTAZIONI.md](../03_AMBIENTAZIONI.md) e [LOC-001–005](LOC-001_005_SCHEDE_OPERATIVE.md). Ezio da [CHR-001_EZIO_MASTER.md](../reference/CHR-001_EZIO_MASTER.md) e dal [dossier](../reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md).
 
 **Nuovi codici proposti (da approvare):**
-- **CHR-038 Soggetto 16 (Clay Kaczmarek):** presente solo tramite i messaggi.
+- **CHR-038 Soggetto 16:** presente solo tramite i messaggi. Nel film limitato ad AC II si usa **solo «Soggetto 16»**. *Nota tecnica: l'identità del personaggio viene svelata solo nella continuità successiva ad AC II e non va anticipata.*
 - **CMP-ABS:** guardie Abstergo.
 - **CMP-NAS:** due domestiche di casa Auditore.
 - **CMP-FIR:** amici di Ezio e banda di Vieri.
 
-**Datazione del presente:** la wiki indica il **9 settembre 2012** come giorno d'arrivo al rifugio (V-C). Ora del giorno: DA VERIFICARE.
+**Datazione del presente:** **settembre 2012 — giorno DA VERIFICARE.** Le fonti comunitarie discordano: [Rome hideout](https://assassinscreed.fandom.com/wiki/Rome_hideout) (wiki inglese) indica il **9 settembre**, [Conversazioni del XXI secolo](https://assassinscreed.fandom.com/it/wiki/Conversazioni_del_XXI_secolo) (wiki italiana, sezione AC II) indica l'**8 settembre**. Nessun giorno si fissa come canon senza riscontro nel gioco. Ora del giorno: DA VERIFICARE.
 
 ---
 
@@ -125,24 +126,24 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 ### PRO-005 · La nascita di Ezio
 | Campo | Contenuto |
 | --- | --- |
-| Luogo / tempo | LOC-004 Palazzo Auditore, camera da letto · Firenze · **24 giugno 1459** |
+| Luogo / tempo | **Interno della camera mostrato nella memoria** («The Birth of an Assassin», che indica Palazzo Auditore) · Firenze · **24 giugno 1459**. Identificazione storico-architettonica dell'edificio: **P-01, da approvare** |
 | Personaggi | CHR-007 Maria, CMP-NAS (due domestiche), CHR-006 Giovanni, CHR-001 Ezio neonato |
 | Avvenimento (V-C) | Maria partorisce assistita dalle domestiche. Il bambino non respira. Giovanni arriva di corsa dal banco, prende il figlio e lo esorta a combattere da Auditore; il neonato piange. Giovanni lo chiama **Ezio Auditore da Firenze** |
 | Raccordo | Immagini sfocate → PRO-006 |
 | Necessità | Set camera rinascimentale; neonato (asset separato dal Master, dossier §2.1); costumi del 1459 di Maria, Giovanni e domestiche |
 | Continuità | Giovanni e Maria **17 anni più giovani** che nella Seq. 1 (età esatte DA VERIFICARE): stessi attori digitali con variante di età. Primo sguardo sul legame padre-figlio che si spezzerà nella Seq. 1 |
-| **Incongruenza** | La wiki colloca la nascita a **Palazzo Auditore**, ma lo stesso palazzo risulta **completato nel 1473**. Va segnalata, non corretta in silenzio: **decisione P-01** |
+| **Contraddizione delle fonti** | [The Birth of an Assassin](https://assassinscreed.fandom.com/wiki/The_Birth_of_an_Assassin) colloca la memoria a **Palazzo Auditore**; il [Database del gioco](https://assassinscreed.fandom.com/wiki/Database:_Palazzo_Auditore) descrive il palazzo come **completato nel 1473**. È una contraddizione fra fonti, non una certezza architettonica: non si sceglie una nuova casa e non si afferma che l'edificio del 1459 sia identico a quello del 1476. Per il film vale l'interno effettivamente mostrato nella memoria; il resto è in **P-01** |
 | Da verificare | Arredo della stanza; aspetto di Maria e Giovanni nel 1459 |
 
 ### PRO-006 · Visione di Ezio adulto
 | Campo | Contenuto |
 | --- | --- |
-| Luogo / tempo | LOC-010 Palazzo Ducale, Venezia (V-C) · anni 1480 |
+| Luogo / tempo | **DA VERIFICARE.** Ipotesi della wiki inglese: Palazzo Ducale di Venezia (LOC-010). Non va cristallizzata prima del confronto col fotogramma |
 | Personaggi | CHR-001 Ezio adulto in vesti da Assassino (COS-EZ-02); guardie |
 | Avvenimento (V-C) | Mentre la simulazione sfuma, Desmond intravede immagini sfocate di Ezio in combattimento |
 | Raccordo | Bianco → estrazione in PRO-007 |
 | Necessità | Pochi frammenti, nessuna scena completa |
-| Continuità | Seq. 8 = 14/9/1485 → variante **EZ_26** (D5), loadout della Seq. 8 (D4) |
+| Continuità | Età, variante (D5) e loadout (D4) **DA VERIFICARE** dopo l'identificazione del luogo. Se l'ipotesi Palazzo Ducale fosse confermata: Seq. 8 (14/9/1485) → EZ_26. Ipotesi, non scelta |
 | Da verificare | Luogo esatto e azioni mostrate |
 
 ### PRO-007 · Estrazione e memory core
@@ -188,7 +189,7 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 ### PRO-011 · Arrivo e scelta
 | Campo | Contenuto |
 | --- | --- |
-| Luogo / tempo | LOC-002 · esterno/garage del rifugio · Roma (V-C) · 9/9/2012 (V-C) |
+| Luogo / tempo | LOC-002 · esterno/garage del rifugio · Roma (V-C) · **settembre 2012, giorno DA VERIFICARE** (8 o 9/9 secondo fonti diverse) |
 | Personaggi | CHR-002, CHR-003 |
 | Avvenimento (V-C, parafrasi) | Lucy apre il bagagliaio. Mentre camminano spiega: Abstergo può rimpiazzare la Mela grazie alla mappa trovata con Altaïr; gli Assassini perdono la guerra; vogliono addestrare Desmond con l'Animus sfruttando l'Effetto osmosi e i ricordi di Ezio. Desmond accetta; Lucy, sorpresa, lo abbraccia |
 | Necessità | Garage e accesso al rifugio (la wiki descrive un magazzino con piccolo garage) |
@@ -240,7 +241,7 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 
 **4. 1459.** Un confronto di codici genetici, una linea che collega Desmond a un uomo mai visto. Poi luce calda di candele. Una donna partorisce, due domestiche la sostengono. Il bambino nasce, ma non respira. Un uomo entra di corsa: è Giovanni, il padre, di ritorno dal banco. Prende il figlio, gli parla all'orecchio, lo sfida a lottare. Il pianto esplode. Giovanni lo solleva e gli dà un nome: Ezio. *(Regia: piano sequenza morbido, luce naturale di fiamma, il volto del neonato mai in primo piano «da spot». Il dialogo andrà riscritto in modo originale.)*
 
-**5. Lampi.** L'immagine si sgrana. Per un battito di ciglia, un uomo incappucciato, in bianco e rosso, combatte in un cortile di marmo. Poi tutto bianco. *(Regia: tre o quattro inquadrature di un secondo, fuori fuoco: promessa del film.)*
+**5. Lampi.** L'immagine si sgrana. Per un battito di ciglia, un uomo incappucciato, in bianco e rosso, combatte in un luogo che Desmond non riconosce *(ambientazione DA VERIFICARE, PRO-006)*. Poi tutto bianco. *(Regia: tre o quattro inquadrature di un secondo, fuori fuoco: promessa del film.)*
 
 **6. Fuga.** Desmond torna in sé, nauseato. Lucy strappa un'unità dati dalla macchina e lo spinge fuori. Corridoi di vetro, guardie, una porta chiusa al momento giusto, un allarme che rimbomba. Lucy combatte con un'efficienza che lascia Desmond senza parole. Ascensore.
 
@@ -288,8 +289,8 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 ## 6. Punti che richiedono ancora verifica o decisione
 
 **Decisioni richieste:**
-- **P-01 · Luogo della nascita.** Palazzo Auditore come nel gioco, documentando l'incongruenza con la data del 1473 (**consigliato**, massima fedeltà), oppure una casa non specificata.
-- **P-02 · Nuovi codici.** Approvare CHR-038 e CMP-ABS / CMP-NAS / CMP-FIR.
+- **P-01 · Luogo della nascita.** Le fonti si contraddicono (memoria: Palazzo Auditore; Database: palazzo completato nel 1473). Proposta: in scena **l'interno mostrato nella memoria**, senza dichiarare quale edificio sia né che coincida con quello del 1476. L'identificazione resta da decidere.
+- **P-02 · Nuovi codici.** Approvare CHR-038 «Soggetto 16» e CMP-ABS / CMP-NAS / CMP-FIR.
 - **P-03 · Linguaggio visivo del presente e dell'Animus** (§4).
 - **P-04 · Monologo d'apertura** da riscrivere in modo originale, con lo stesso contenuto informativo.
 

@@ -23,7 +23,7 @@
 | 09 — Carnevale | Venezia | Teodora, giochi del Carnevale, Marco Barbarigo |
 | 10 — Force Majeure | Venezia | Bartolomeo, Dante Moro, Silvio Barbarigo |
 | 11 — Alter Egos | Venezia, 1488 | Carico di Cipro, Rodrigo, Mela dell'Eden, Confraternita |
-| 12 — Battle of Forlì | Forlì, 1488 | Caterina Sforza, fratelli Orsi, scomparsa della Mela |
+| 12 — Forlì Under Attack *(DLC: Battaglia di Forlì)* | Forlì, 1488 | Caterina Sforza, fratelli Orsi, scomparsa della Mela |
 | 13 — Bonfire of the Vanities | Firenze, 1497 | Savonarola, nove sostenitori, Mela |
 | 14 — Veni, Vidi, Vici | Monteriggioni/Roma, 1499 | Codice, Vaticano, Rodrigo Borgia, Cripta, Minerva |
 
@@ -52,3 +52,6 @@ Per ogni sequenza, creare file `scene/Sxx_*.md` con **singole unità cinematiche
 **Vincoli di continuità:** D8 cappuccio alzato nelle Seq. 13–14; D3 cappa scura con fodera rossa quando indossa l'armatura. Fotogrammi A-EXT possono documentare il futuro blockout soltanto (D9): nessun asset generato ora.
 
 **Riferimento:** [Archivio master Ezio aggiornato](reference/CHR-001_EZIO_MASTER.md). Stato: **PRE-PRODUZIONE, DA VERIFICARE**.
+
+## Correzioni tracciate
+- **2026-10-13 · Seq. 12:** il titolo ufficiale della sequenza è «Forlì Under Attack»; la tabella riportava «Battle of Forlì», che è il nome del DLC (*Battaglia di Forlì*), conservato tra parentesi. Fonti: [Template delle memorie di AC II](https://assassinscreed.fandom.com/wiki/Template:AC2Memories), [Doomsday](https://assassinscreed.fandom.com/wiki/Doomsday). Nessun altro contenuto modificato.

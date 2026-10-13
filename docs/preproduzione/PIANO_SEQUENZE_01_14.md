@@ -33,7 +33,7 @@
 | 5 | Loose Ends | 1478 – 3/1/1480 | LOC-003, LOC-005, LOC-006, Toscana | CHR-016, CHR-011, CHR-020 | 18–20 · EZ_18 · COS-EZ-02 · **cappa Medici dalla fine** (D7-b) | Lama avvelenata, caccia ai congiurati, Jacopo de' Pazzi |
 | 6 | Rocky Road | 1480 – 3/3/1481 | LOC-003, LOC-007, Romagna | CHR-013, CHR-016, CHR-021 | 20–21 · EZ_22 · COS-EZ-02 | Viaggio con Leonardo, Appennini, Romagna, Caterina Sforza, imbarco per Venezia |
 | 7 | The Merchant of Venice | 1481 – 11/9/1485 | LOC-009 | CHR-022, CHR-023, CHR-026, CHR-013 | 21–26 · EZ_22→EZ_26 · COS-EZ-02 | Arrivo a Venezia, Rosa, Antonio e i ladri, Emilio Barbarigo |
-| 8 | Necessity, Mother of Invention | 14/9/1485 | LOC-009, LOC-010 | CHR-027, CHR-030, CHR-022, CHR-013 | 26 · EZ_26 · COS-EZ-02 | Complotto contro il Doge, macchina volante, Palazzo Ducale, Carlo Grimaldi (**luogo della visione nel prologo**) |
+| 8 | Necessity, Mother of Invention | 14/9/1485 | LOC-009, LOC-010 | CHR-027, CHR-030, CHR-022, CHR-013 | 26 · EZ_26 · COS-EZ-02 | Complotto contro il Doge, macchina volante, Palazzo Ducale, Carlo Grimaldi (possibile luogo della visione del prologo: **DA VERIFICARE**, PRO-006) |
 | 9 | Carnevale | feb. 1486 (15/2) | LOC-009 | CHR-024, CHR-022, CHR-028, CHR-029 | 26 · EZ_26 · **COS-EZ-03** · nessuna arma visibile (D4) | Pistola celata, giochi per la Maschera d'oro, Marco Barbarigo |
 | 10 | Force Majeure | 1486 – 11/7/1486 | LOC-009, LOC-011 | CHR-025, CHR-029, CHR-030 | 26–27 · EZ_26 · COS-EZ-02 | Bartolomeo e i mercenari, Arsenale, Dante Moro e Silvio Barbarigo |
 | 11 | Alter Egos | 24–25/6/1488 | LOC-009 | CHR-031, CHR-032, CHR-011, CHR-013, Assassini presenti all'iniziazione (elenco DA VERIFICARE) | 28→29 · EZ_28 · **COS-EZ-04** | Nave da Cipro, travestimento da guardia Borgia, Rodrigo e la Mela, **iniziazione** e marchio sull'anulare |
@@ -41,7 +41,7 @@
 | 13 | Bonfire of the Vanities (DLC) | 7/2/1497 – 23/5/1498 | LOC-003 | CHR-033, CHR-032, CHR-015, CHR-014 | 37–38 · EZ_38_BARBA · **COS-EZ-05 Armatura** (D2-bis, D3, **cappuccio alzato** D8) | Nove luogotenenti di Savonarola, rivolta popolare, recupero della Mela, condanna di Savonarola |
 | 14 | Veni, Vidi, Vici | dic. 1499 (28/12) | LOC-005, LOC-012, LOC-013 | CHR-011, CHR-031, CHR-034, Assassini | 40 · EZ_40_BARBA · COS-EZ-05 (D2, D8) | Muro del Codice a Monteriggioni, Cappella Sistina, Bastone papale, duello a pugni, Cripta, Minerva |
 
-**Nota sul nome della Seq. 12:** il titolo ufficiale della sequenza è **«Forlì Under Attack»**; «Battaglia di Forlì» è il nome del DLC. In [01_CRONOLOGIA.md](../01_CRONOLOGIA.md) la riga è «Battle of Forlì»: va allineata (non modificata in questa PR).
+**Nota sul nome della Seq. 12:** il titolo ufficiale della sequenza è **«Forlì Under Attack»**; «Battaglia di Forlì» è il nome del DLC. [01_CRONOLOGIA.md](../01_CRONOLOGIA.md) è stato allineato in questa PR con una correzione tracciata, conservando «Battaglia di Forlì» come nome del DLC.
 
 ---
 
@@ -67,7 +67,7 @@
 | Seq. 3 | L'Armatura | Rebecca indica l'Armatura come obiettivo; poi la prima tomba |
 | **Seq. 6** | Precauzioni · Effetto osmosi · Altaïr (Acri, 1197) · Ritorno al lavoro | Desmond viene estratto e fa esercizio nel rifugio; allucinazione di Altaïr; riprende il giorno dopo |
 | Seq. 7 (inizio Venezia) | La Serenissima | Contatto di Rebecca |
-| Seq. 11 | Sequenze corrotte | Estrazione dopo l'iniziazione; Desmond si tiene l'anulare |
+| Seq. 11 | Sequenze corrotte | Estrazione dopo l'iniziazione; Desmond si tiene l'anulare. Nel gioco seguono riferimenti alla corruzione e al recupero delle Seq. 12–13 (gestione nel film: S-01) |
 | Seq. 14 | Minerva e fuga | Commento del messaggio, attacco di Vidic, evacuazione del rifugio |
 | Variabile | La Verità | Video del Soggetto 16 dopo i 20 glifi |
 
@@ -77,7 +77,7 @@
 
 | ID | Domanda | Proposta |
 | --- | --- | --- |
-| **S-01** | Le Seq. 12–13 sono «sequenze corrotte» (saltate e recuperate) come nel gioco su console, o integrate in ordine cronologico come nella versione PC (D1)? | **Ordine cronologico 11 → 12 → 13 → 14**, senza la cornice delle sequenze corrotte. Coerente con D1; l'intermezzo dopo la Seq. 11 si riduce all'estrazione (anulare). Presenza del dialogo su PC DA VERIFICARE |
+| **S-01** | Le Seq. 12–13 sono «sequenze corrotte» (saltate e recuperate) come nel gioco su console, o integrate in ordine cronologico come nella versione PC (D1)? | **Scelta di montaggio filmico (PROPOSTA):** ordine cronologico **11 → 12 → 13 → 14**, senza la cornice delle sequenze corrotte. **Non è un fatto accertato** che la versione PC elimini i dialoghi sulla corruzione delle memorie: sono documentate anche battute di riparazione/recupero ([fonte](https://thehiddenblade.com/sequence-12-battle-forl%C3%AC-%E2%80%93-what-expect)). Il comportamento della copia PC Ubisoft Connect (D1) resta **DA VERIFICARE** |
 | **S-02** | Dove collocare «La Verità» (video del Soggetto 16)? | **Prima della Seq. 14**, come climax del filo dei glifi |
 | **S-03** | Quante tombe mostrare? | **Novella per intero** (è una missione principale), le altre cinque in **montaggio** prima della Seq. 13, poi l'apertura del Santuario |
 | **S-04** | Formato del film (un film unico o più parti) e durata | Da decidere dopo i trattamenti delle Seq. 1–3 (la voce «Durata finale» è già DA DEFINIRE) |
