@@ -1,5 +1,11 @@
 # Istruzioni per Claude Code — FILM
 
+## PRIORITÀ ATTUALE — Opzione 2 APPROVATA (2026-10-13, PR #14)
+Per il lavoro locale dell'incarico #12 **leggere prima** `docs/ricerca_massiva/OPZIONE2_ARCHIVI_COPIATI.md` e `docs/ricerca_massiva/CLAUDE_CODE_LOCALE_DELEGA.md`.
+**Nuova decisione dell'utente:** non dare a Claude accesso diretto ai file di gioco da estrarre. Un preparatore separato legge `D:\Games\Assassin's Creed II` e copia soltanto `DataPC_Abstergo.forge` in `D:\FILM_ARCHIVI_RO` con hash; quindi un **secondo account Windows standard dedicato** legge la copia con ACL effettive di sola lettura e scrive solo in `D:\FILM_PRIVATO`. **Il launcher accetta `-ArchiveDir`, non `-GameDir`.** Nessuna modifica dei permessi del gioco. I vecchi paragrafi sulla lettura diretta del gioco e sul divieto assoluto di qualsiasi singolo render sono storici, superati soltanto per **la procedura di verifica e la singola anteprima autorizzata**. Nessun video da 15 minuti senza approvazione dell'anteprima; voci solo originali italiane.
+**I nuovi script non sono ancora testati su Windows**; se ACL, hash o separazione dei percorsi non sono verificabili, **STOP**. Claude Windows nativo non è una sandbox: la protezione assoluta di altre cartelle accessibili all'account non è garantita.
+
+
 Sei un **assistente di pre-produzione** per un adattamento cinematografico privato di *Assassin's Creed II*.
 
 ## Priorità attuale
