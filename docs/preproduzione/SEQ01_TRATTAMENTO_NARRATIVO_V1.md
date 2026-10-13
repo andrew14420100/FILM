@@ -4,7 +4,7 @@
 **Data:** 13 ottobre 2026 · **Stato:** BOZZA DA REVISIONARE nella PR #8.  
 **Ambito:** narrativa e continuità soltanto; **niente modelli, immagini, audio, video o rendering**.  
 **Luogo/epoca:** Firenze, dal 26 al 29 dicembre 1476. Ezio ha **17 anni**.  
-**Raccordo:** [Prologo V2](PROLOGO_TRATTAMENTO_V1.md) e [scaletta di 12 memorie](SEQ01_SCALETTA_CANONICA_V0.md). Il file è un **trattamento**, non un copione dialogato.
+**Raccordo:** [Prologo V3](PROLOGO_TRATTAMENTO_V1.md) e [scaletta di 12 memorie](SEQ01_SCALETTA_CANONICA_V0.md). Il file è un **trattamento**, non un copione dialogato.
 
 ### Fonti e metodo
 - Elenco di dodici memorie: [The Hidden Blade — AC II FAQ](https://thehiddenblade.com/assassins-creed-ii-faq), [SDA Knowledge Base](https://kb.speeddemosarchive.com/Assassin%27s_Creed_II/Sequence_1), [StrategyWiki](https://strategywiki.org/wiki/Assassin%27s_Creed_II/Sequence_1%3A_Ignorance_is_Bliss).
@@ -35,8 +35,8 @@ In tre giorni, il ragazzo che si sente protetto dalla propria famiglia diventa l
 **Memoria:** S01-M03 «Sibling Rivalry».  
 **Personaggi:** Ezio, Federico.
 **Fatto V-C:** gara di arrampicata dei fratelli e panoramica di Firenze.
-**Trattamento — PROPOSTA FILM:** il percorso verticale diventa un gioco affettuoso, capace di mostrare la familiarità con una città ancora sicura per loro. In cima Federico ed Ezio hanno un momento di quiete condivisa. Non serve aggiungere una profezia o un'inquietudine estranea al gioco: proprio la normale felicità renderà la perdita più dolorosa.
-**Continuità:** il prologo V2 ha già il titolo del film; **non inserire un secondo titolo** qui. Nel gioco la panoramica ha una funzione di apertura: lo spostamento è una scelta di adattamento già emersa nel raccordo.
+**Trattamento — PROPOSTA FILM:** il percorso verticale diventa un gioco affettuoso, capace di mostrare la familiarità con una città ancora sicura per loro. In cima Federico ed Ezio hanno un momento di quiete condivisa. Non serve aggiungere una profezia o un'inquietudine estranea al gioco: proprio la normale felicità renderà la perdita più dolorosa. **Al termine del momento sul tetto, mentre lo sguardo si apre sulla Firenze del 1476, compare il titolo unico del film.** Questo posizionamento, come nel gioco, è **APPROVATO con R-TITOLO**.
+**Continuità:** non compare alcun titolo in PRO-014 dopo la rissa. **Qui è l'unica apparizione del cartello**. Dopo il titolo si continua con `Nightcap`, senza saltare eventi, raddoppiare la rissa o alterare la ferita.
 
 ## Scena 04 — Cristina
 **Memoria:** S01-M04 «Nightcap».
@@ -160,3 +160,7 @@ In tre giorni, il ragazzo che si sente protetto dalla propria famiglia diventa l
 Queste quattro proposte **NON sono ancora approvate**. Questo trattamento V1 costituisce la base documentale per la successiva sceneggiatura, non la sceneggiatura definitiva.
 
 **Diritti e produzione:** usare solo collegamenti e descrizioni documentali sul repository, non caricare asset o filmati Ubisoft. Restare esclusivamente nella pre-produzione senza modelli 3D, render, immagini, audio, animazioni o video.
+
+
+## Rettifica approvata R-TITOLO (2026-10-13)
+**Unica sede del cartello:** Scena 03 (`Sibling Rivalry`), dopo l'incontro sui tetti di Ezio e Federico. **Posizione precedente:** fine di `PRO-014` dopo rissa e pietra, **superata** da questa esplicita approvazione dell'utente. Raccordo di storia e personaggi invariato. Le decisioni SEQ1-A/B/C/D rimangono in attesa, nessun merge autorizzato con questa sola rettifica.
