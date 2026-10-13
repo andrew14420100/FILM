@@ -4,6 +4,8 @@
 **Esistenza dei repository:** verificata il 2026-10-13 con `git ls-remote`. Le pagine HTML di github.com rispondono 403 al proxy della sessione, mentre i contenuti sono stati letti da `raw.githubusercontent.com` e dai wiki clonati.
 **Regola anti-promessa:** nessun numero di prestazioni o di qualità 4K è dichiarato qui. Le misure sulla RTX 5070 Ti dell'utente sono **da eseguire** (CLAUDE.md, vincolo 4).
 
+**Procedura attiva 2026-10-13:** Opzione 2 approvata; leggere [OPZIONE2_ARCHIVI_COPIATI.md](OPZIONE2_ARCHIVI_COPIATI.md). Ogni riferimento seguente a `DataPC_Abstergo.forge` o `sounds_ita.pck` riguarda **copie private separate**, non la cartella originale. Per il primo test copiare e validare **solo Abstergo**, mantenendolo read-only per Claude; qualsiasi esportazione di asset viene scritta nella WorkDir. L'audio italiano si tratterà soltanto dopo nuova autorizzazione. Nessun tool già provato su Windows.
+
 ## 1. Estrazione dei dati del gioco (solo su una COPIA privata)
 | Strumento | URL | Cosa fa per AC II (dalla documentazione) | Stato | Rischi / note |
 |---|---|---|---|---|
