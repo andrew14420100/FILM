@@ -1,5 +1,7 @@
 # CHR-001 · EZIO_MASTER — Piano per chiudere le lacune e le decisioni D1, D4, D5, D6, D7
 
+> **ADDENDUM 2026-10-13 (non sostituisce la bozza originale):** D1 è già approvata per AC II PC Ubisoft Connect. L'utente non è a casa e **non richiede nuove catture A** per continuare la pre-produzione. La shot list A1–A15 e il gate §4 costituiscono un **protocollo futuro facoltativo**, non un impedimento alla redazione di schede, sceneggiatura, verifica narrativa, continuità o decisioni sulla base delle immagini A-EXT e B già documentate. Le incertezze su occhi/cicatrice/materiali vanno annotate e non inventate. Nessun nuovo ordine autorizza blockout, modelli, rendering, immagini sintetiche o video. Vedi [piano remoto](CHR-001_PREPRODUZIONE_DA_BROWSER.md).
+
 **Stato:** PROPOSTA DI PRE-PRODUZIONE · DA APPROVARE · **Data:** 2026-10-13
 **Base:** repository FILM al commit `72ac14e` (`CLAUDE.md`, `05_DECISIONI.md`, `CHR-001_EZIO_MASTER.md` con l'addendum, `CHR-001_EZIO_SCHEDA_VISIVA.md`, `CHR-001_REVISIONE_VISIVA.md`, `01_CRONOLOGIA.md`, `02_PERSONAGGI.md`).
 **Già approvate (non riaperte):** D2, D2-bis, D3, D8, D9.
