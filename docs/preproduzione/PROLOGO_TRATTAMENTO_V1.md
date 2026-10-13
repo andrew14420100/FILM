@@ -1,6 +1,7 @@
-# PROLOGO — Verifica dell'ordine, scene card e trattamento cinematografico (V1)
+# PROLOGO — Verifica dell'ordine, scene card e trattamento cinematografico (revisione V2)
 
-**Stato:** BOZZA DI PRE-PRODUZIONE · DA APPROVARE · **Data:** 2026-10-13
+**Stato:** BOZZA DI PRE-PRODUZIONE · REVISIONE V2 · DA APPROVARE · **Data:** 2026-10-13
+**Nome del file:** resta `PROLOGO_TRATTAMENTO_V1.md` per non rompere i collegamenti; la versione corrente è indicata qui e nel registro delle revisioni in fondo.
 **Sostituisce per la consultazione:** [PROLOGO_BREAKDOWN_V0.md](PROLOGO_BREAKDOWN_V0.md), che resta invariato come storico.
 **Natura del documento:** è un **trattamento**, non la sceneggiatura. Non contiene battute del gioco. I contenuti dei dialoghi sono riassunti in parafrasi solo per orientare la futura scrittura, che dovrà essere originale (vincolo 5 di `CLAUDE.md`).
 **Nessuna produzione:** niente modelli, immagini, audio, animazioni o video. Nessuna nuova cattura richiesta.
@@ -305,3 +306,14 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 - Ubicazione del rifugio a Roma (Tor Tre Teste è dato wiki, non di AC II).
 - Pianta del rifugio.
 - Composizione delle bande sul Ponte Vecchio.
+
+---
+
+## Registro delle revisioni
+
+| Versione | Data | Modifiche |
+| --- | --- | --- |
+| V1 | 2026-10-13 | Prima stesura: ordine verificato, 14 scene card, trattamento, continuità |
+| **V2** | 2026-10-13 | Correzioni della revisione dell'utente su PR #7: (1) data del rifugio «settembre 2012 — DA VERIFICARE», con le varianti 8/9 e 9/9 e le fonti; (2) nascita di Ezio come contraddizione fra fonti (memoria → Palazzo Auditore; Database → completato nel 1473), interno della memoria in scena, identificazione in P-01; (3) «Soggetto 16» senza anticiparne l'identità; (4) S-01 come scelta di montaggio (nel piano); (5) titolo della Seq. 12 allineato in `01_CRONOLOGIA.md`; (6) luogo e data della visione di Ezio adulto DA VERIFICARE |
+
+**Stato delle proposte:** P-01, P-02, P-03, P-04 (prologo) e S-01, S-02, S-03, S-04 (piano) restano **raccomandazioni non approvate** finché l'utente non le conferma esplicitamente.
