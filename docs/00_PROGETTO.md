@@ -15,6 +15,11 @@
 ## Priorità
 **Fedeltà agli eventi del gioco prima degli effetti visivi.** Stesse identità, nomi, snodi narrativi, luoghi, relazioni e finale. L'apertura parte da Desmond ad Abstergo come nell'originale; nessun prologo apocalittico aggiunto.
 
+## Linguaggio cinematografico approvato (2026-10-13)
+Il progetto è **un film di narrazione live-action fotorealistica digitale**, non un montaggio di gameplay e non un videogioco. Le sequenze e le memorie di AC II servono **solo alla ricerca e alla collocazione degli eventi nella storia**. Sullo schermo non compariranno HUD, comandi, tutorial, istruzioni, obiettivi, indicazioni di missione o attività ripetitive legate a meccaniche ludiche. Nel film vedremo le conseguenze e le motivazioni di azioni credibili. Le memorie **non impongono** una corrispondenza uno-a-uno con le scene: vanno fuse, condensate o espanse secondo la necessità narrativa, senza cambiare i fatti cruciali.
+
+Regola integrale: [REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md](preproduzione/REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md). L'Animus resta un elemento della storia; il titolo sui tetti è una scelta cinematografica già approvata.
+
 ## Materiali da approvare prima di produrre
 - Cronologia completa confrontata con il gioco (inclusi Forlì e Savonarola)
 - Elenco delle scene con fonte, personaggi, descrizione, durata prevista e stato
