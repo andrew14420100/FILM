@@ -1,6 +1,6 @@
 # Sequenza 1 — Revisione documentale indipendente del trattamento V1
 
-**Data:** 2026-10-13 · **Stato:** REVISIONE / DA SOTTOPORRE ALL'UTENTE. Non costituisce approvazione di SEQ1-A/B/C/D né modifica delle decisioni P/S già approvate.  
+**Data:** 2026-10-13 · **Stato:** REVISIONE STORICA (R-TITOLO poi APPROVATA; vedi addendum in fondo) / SEQ1-A/B/C/D DA SOTTOPORRE ALL'UTENTE. Non costituisce approvazione di SEQ1-A/B/C/D né modifica delle decisioni P/S già approvate.  
 **Documenti esaminati:** [Scaletta V0](SEQ01_SCALETTA_CANONICA_V0.md), [Trattamento V1](SEQ01_TRATTAMENTO_NARRATIVO_V1.md), [Cast/Continuità Auditore V1](SEQ01_CAST_CONTINUITA_AUDITORE_V1.md), [Prologo V2](PROLOGO_TRATTAMENTO_V1.md), [Registro decisioni](../05_DECISIONI.md).
 
 ## 1. Riscontri documentati
