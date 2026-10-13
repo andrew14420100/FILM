@@ -33,3 +33,16 @@ temp/
 renders/
 exports/
 models/
+# PILOTA: reference e risultati mai su GitHub pubblico
+/pilota_prologo/assets_privati/
+/pilota_prologo/outputs/
+/pilota_prologo/models/
+/pilota_prologo/cache/
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.wav
+*.flac
+*.safetensors
+*.gguf
