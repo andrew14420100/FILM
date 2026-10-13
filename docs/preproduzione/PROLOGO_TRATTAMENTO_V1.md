@@ -1,6 +1,6 @@
 # PROLOGO — Verifica dell'ordine, scene card e trattamento cinematografico (revisione V2)
 
-**Stato:** BOZZA DI PRE-PRODUZIONE · REVISIONE V2 · DA APPROVARE · **Data:** 2026-10-13
+**Stato:** TRATTAMENTO V2 · **SCELTE P-01–P-04 APPROVATE** · DETTAGLI CANONICI NON VERIFICATI · **Data:** 2026-10-13
 **Nome del file:** resta `PROLOGO_TRATTAMENTO_V1.md` per non rompere i collegamenti; la versione corrente è indicata qui e nel registro delle revisioni in fondo.
 **Sostituisce per la consultazione:** [PROLOGO_BREAKDOWN_V0.md](PROLOGO_BREAKDOWN_V0.md), che resta invariato come storico.
 **Natura del documento:** è un **trattamento**, non la sceneggiatura. Non contiene battute del gioco. I contenuti dei dialoghi sono riassunti in parafrasi solo per orientare la futura scrittura, che dovrà essere originale (vincolo 5 di `CLAUDE.md`).
@@ -289,7 +289,7 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 
 ## 6. Punti che richiedono ancora verifica o decisione
 
-**Decisioni richieste:**
+**Decisioni approvate (2026-10-13; non costituiscono verifica delle fonti):**
 - **P-01 · Luogo della nascita.** Le fonti si contraddicono (memoria: Palazzo Auditore; Database: palazzo completato nel 1473). Proposta: in scena **l'interno mostrato nella memoria**, senza dichiarare quale edificio sia né che coincida con quello del 1476. L'identificazione resta da decidere.
 - **P-02 · Nuovi codici.** Approvare CHR-038 «Soggetto 16» e CMP-ABS / CMP-NAS / CMP-FIR.
 - **P-03 · Linguaggio visivo del presente e dell'Animus** (§4).
@@ -316,4 +316,7 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 | V1 | 2026-10-13 | Prima stesura: ordine verificato, 14 scene card, trattamento, continuità |
 | **V2** | 2026-10-13 | Correzioni della revisione dell'utente su PR #7: (1) data del rifugio «settembre 2012 — DA VERIFICARE», con le varianti 8/9 e 9/9 e le fonti; (2) nascita di Ezio come contraddizione fra fonti (memoria → Palazzo Auditore; Database → completato nel 1473), interno della memoria in scena, identificazione in P-01; (3) «Soggetto 16» senza anticiparne l'identità; (4) S-01 come scelta di montaggio (nel piano); (5) titolo della Seq. 12 allineato in `01_CRONOLOGIA.md`; (6) luogo e data della visione di Ezio adulto DA VERIFICARE |
 
-**Stato delle proposte:** P-01, P-02, P-03, P-04 (prologo) e S-01, S-02, S-03, S-04 (piano) restano **raccomandazioni non approvate** finché l'utente non le conferma esplicitamente.
+
+| **V2 — approvazione** | 2026-10-13 | P-01–P-04 e S-01–S-04 approvate esplicitamente; fonti e incongruenze ancora da verificare. |
+
+**Aggiornamento approvazioni (2026-10-13):** l'utente ha **APPROVATO P-01, P-02, P-03 e P-04** come formulate in questa revisione V2; e **S-01, S-02, S-03, S-04** come formulate nel piano. Vedi [registro decisioni](../05_DECISIONI.md). I dettagli che questo documento segnala come DA VERIFICARE rimangono tali. Il monologo specifico e le battute restano da scrivere e approvare. Nessuna generazione di asset autorizzata.
