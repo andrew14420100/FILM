@@ -1,0 +1,3 @@
+NEGATIVE — incollare nel campo negative prompt se presente nel workflow
+
+video game footage, video game HUD, quest marker, minimap, subtitles, tutorial instructions, title cards, cartoon, anime, stylized illustration, 3d game render, CGI plastic skin, doll-like faces, identity drift, inconsistent facial identity, changing clothing, missing hands, malformed fingers, fused fingers, distorted anatomy, extra limbs, floating objects, unnatural facial expression, overly smoothed skin, waxy skin, uncanny valley, extreme camera shake, flicker, temporal instability, duplicate people, random crowds, low detail, low resolution, unnatural motion, rapid cuts, watermarks, logos, text overlays

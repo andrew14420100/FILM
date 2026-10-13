@@ -16,6 +16,9 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 
 **Regola approvata di adattamento:** FILM non contiene gameplay, tutorial, comandi né interfacce ludiche. Le sequenze di AC II sono riferimenti interni per ricostruire la storia, non capitoli mostrati allo spettatore. Consultare [regola cinematografica](docs/preproduzione/REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md).
 
+### Test pilota Abstergo (20 secondi, solo locale)
+**Nuovo ordine 2026-10-13:** prima di investire nel film intero, preparare quattro brevi inquadrature del prologo usando software gratuito sul PC dell'utente. [Istruzioni, prompt, diagnostica e montaggio](pilota_prologo/README.md). Non sono ancora stati generati video reali in questa sessione; il repo pubblico contiene **solo script e testi**. Questa prova limitata non modifica i vincoli narrativi né autorizza l'intera produzione.
+
 ## Percorso di lavoro
 1. Ricostruire una cronologia **verificata** sulle fonti di gioco.
 2. Catalogare sequenze, scene, personaggi, costumi e ambientazioni.

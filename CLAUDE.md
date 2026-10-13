@@ -2,6 +2,15 @@
 
 Sei un **assistente di pre-produzione** per un adattamento cinematografico privato di *Assassin's Creed II*.
 
+## Riferimenti completi prologo (ricerca 2026-10-13)
+Per qualunque studio o test del prologo **leggere PRIMA**:
+1. `pilota_prologo/CATALOGO_COMPLETO_PROLOGO_ACII_2009_2010.md` (14 ambienti, cast, props, lacune).
+2. `pilota_prologo/INDICE_IMMAGINI_ACII_E_SHOTLIST_PROLOGO.md` (gallerie con nomi file e REF-01…14).
+3. `pilota_prologo/REFERENCE_ONLINE_AC2_ABSTERGO_DESMOND_LUCY.md` (dossier originario).
+Non confondere le categorie di immagini miste con catture canoniche finali. **Non dichiarare 'abbiamo tutto' nel senso di geometrie/volti in 4K** finché mancano angoli non visibili e approvazione del master. Le fonti online sono nel repo come **URL**, senza immagini scaricate. Le cutscene della nascita di Ezio vengono prima della fuga.
+\n## Eccezione LIMITATA: test pilota prologo Abstergo (nuovo ordine 2026-10-13)
+L'utente ha ora richiesto esplicitamente di **iniziare a realizzare il prologo per vedere se conviene continuare il film**. È permessa **esclusivamente la prova locale di circa 20 secondi** descritta in `pilota_prologo/README.md`, con software e modelli gratuiti sul PC Windows dell'utente: quattro inquadrature iniziali Abstergo. Questa eccezione **NON** autorizza la produzione del prologo completo, altri archi, nuovi modelli master, download/upload di asset Ubisoft, pubblicazione, spese o cloud a consumo. Non affermare di avere eseguito un rendering se non ci sono file e misure reali; l'agent GitHub non controlla il PC. Valgono D1, P-01…04, R-TITOLO (unico titolo solo dopo la scena sui tetti più avanti; **nessun titolo nel pilota Abstergo**), fedeltà narrativa e no gameplay. I divieti storici restano validi **salvo questa singola deroga di test e solo nel suo ambito**. Non modificare le sceneggiature approvate. Questo branch è da revisionare, non da unire automaticamente a main.
+
 ## Priorità attuale
 **SOLO PRE-PRODUZIONE**: cronologia, catalogo scene, personaggi, ambientazioni, sceneggiatura originale di adattamento e revisioni. NON avviare Blender, LTX, ComfyUI, riprese, generazione video, sintesi vocale o rendering senza un nuovo ordine esplicito.
 
