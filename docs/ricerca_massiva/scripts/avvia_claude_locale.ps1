@@ -70,7 +70,8 @@ public static class FilmAccess {
             uint granted; bool status;
             if (!AccessCheck(sd, imp, 0x02000000, ref map, ps, ref psLen, out granted, out status)) // MAXIMUM_ALLOWED
                 throw new Win32Exception(Marshal.GetLastWin32Error(), "AccessCheck: " + path);
-            return status ? granted : 0u;
+            if (!status) throw new InvalidOperationException("AccessCheck non ha concesso alcun accesso verificabile: " + path);
+            return granted;
         } finally {
             if (ps != IntPtr.Zero) Marshal.FreeHGlobal(ps);
             Marshal.FreeHGlobal(sd);
@@ -117,6 +118,9 @@ function Confirm-Step([string]$question) {
 
 $archive = Get-AbsolutePath $ArchiveDir
 $work = Get-AbsolutePath $WorkDir
+if ($archive -notmatch '^[A-Za-z]:\\' -or $work -notmatch '^[A-Za-z]:\\') {
+    throw "Usare solo percorsi locali con lettera disco, non UNC/network path."
+}
 Write-Host "== 1a: archivi COPIATI e cartelle separate =="
 if (-not (Test-Path -LiteralPath $archive -PathType Container)) {
     throw "Archivio privato assente: $archive. Prima eseguire lo staging fuori da Claude."
