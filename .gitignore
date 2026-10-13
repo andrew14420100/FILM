@@ -1,0 +1,35 @@
+# Media e file voluminosi: custodire localmente
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.wav
+*.mp3
+*.flac
+*.blend
+*.blend1
+*.fbx
+*.obj
+*.glb
+*.gltf
+*.safetensors
+*.ckpt
+*.pth
+*.gguf
+*.onnx
+*.exr
+*.psd
+*.kra
+*.zip
+*.7z
+*.rar
+# Runtime e cache
+__pycache__/
+.venv/
+venv/
+node_modules/
+.cache/
+temp/
+renders/
+exports/
+models/
