@@ -10,6 +10,7 @@
 - [Revisione delle tavole e proposte D2-bis/D3/D8/D9](CHR-001_REVISIONE_VISIVA.md)
 - [Piano delle lacune e delle decisioni D1/D4/D5/D6/D7](CHR-001_PIANO_LACUNE_E_DECISIONI.md)
 - [Verifiche R1–R4: artisti, manuale, replay, catture](CHR-001_VERIFICHE_R1_R4.md)
+- [D1 confermata: protocollo di cattura per AC II PC Ubisoft Connect](CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md)
 
 ## Criteri di classificazione
 1. **A — Canon visivo primario:** fotogrammi acquisiti legittimamente da *Assassin's Creed II* (versione, anno e sequenza registrati). L'acquisizione e il controllo visivo devono avvenire sul PC dell'utente.
