@@ -26,7 +26,7 @@ Una qualsiasi immagine prodotta oggi sarebbe un'invenzione non ancorata ai file 
 
 **Criterio «pipeline verificata»:**
 - T1, T2 (provenienza del mesh da `DataPC_Abstergo.forge` dimostrata), T3 (istanze e posizioni della stanza accertate o dichiarate mancanti) e T4a (test 720p/1080p con scala, UV, materiali e camera verificati) di [BENCHMARK_TOOLCHAIN.md](BENCHMARK_TOOLCHAIN.md) superati e annotati;
-- T4b (4K) solo dopo T4a;
+- T4b (4K) solo dopo T4a e **solo sul frame finale con Desmond e Lucy** (nessun 4K della stanza vuota);
 - i master Desmond e Lucy approvati dall'utente.
 
 Solo allora si fa **un solo** render finale fotorealistico con Desmond e Lucy.
@@ -43,7 +43,7 @@ Su richiesta del committente (revisione della PR #14) il percorso è pensato per
 4. **L3 Tool di terzi:** AnvilToolkit e Blender 5.2, installati dall'utente dalle pagine ufficiali. Claude registra versione e SHA256 e chiede consenso prima del primo avvio.
 5. **L4 Estrazione (T2/T3):** prova della provenienza di un mesh e verifica delle istanze della stanza.
 6. **L5 Test 720p/1080p (T4a)** di `ABSTERGO_ENV_MASTER`, **solo ambiente**. Poi **stop e decisione**.
-7. Dopo l'approvazione: lavoro su `DESMOND_MASTER_ACII` e `LUCY_MASTER_ACII` (es. MetaHuman, previa lettura della licenza). Poi **L6 4K (T4b)** e infine **un solo** render `FILM_PREVIEW_01_ABSTERGO.png` con Desmond e Lucy, in `D:\FILM_PRIVATO\render\`, **mai su GitHub**.
+7. Dopo l'approvazione: lavoro su `DESMOND_MASTER_ACII` e `LUCY_MASTER_ACII` (es. MetaHuman, previa lettura della licenza). Infine **L6**: **un solo** render 4K (T4b, nessun 4K precedente della stanza vuota) `FILM_PREVIEW_01_ABSTERGO.png` con Desmond e Lucy, in `D:\FILM_PRIVATO\render\`, **mai su GitHub**.
 
 Le alternative (ac2-rtx e RTX Remix come planimetria USD) restano **facoltative** e solo su una copia dell'intera installazione.
 

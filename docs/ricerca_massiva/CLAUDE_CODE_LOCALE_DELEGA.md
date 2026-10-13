@@ -56,7 +56,7 @@ Ogni fase termina con un **resoconto testuale** (incollabile nella PR o in chat,
 | L3 Tool di terzi | Verifica che l'utente abbia installato AnvilToolkit, Blender 5.2 ecc. dalle pagine ufficiali; registra versione e SHA256 | sola lettura | **Consenso esplicito** prima del primo avvio di ogni tool |
 | L4 Estrazione T2/T3 | Vedi i criteri nel [BENCHMARK](BENCHMARK_TOOLCHAIN.md) §5: prova di un mesh **realmente proveniente** dalla copia di `DataPC_Abstergo.forge` e verifica di istanze e posizioni della stanza | lavoro sulle copie | Stop: l'utente vede le prove private |
 | L5 Test 720p/1080p | Blockout e render di prova a bassa risoluzione; verifica di scala, UV, materiali e camera | render privato | Stop e decisione |
-| L6 4K | Solo dopo l'esito favorevole di L5 e il benchmark | render privato | **Consenso esplicito** |
+| L6 Frame finale 4K | **Nessun 4K della stanza vuota.** Un solo render 3840×2160 con Desmond e Lucy, dopo L5 e l'approvazione dei master | render privato | **Consenso esplicito** |
 
 **Regole per il Claude locale:**
 - non dichiarare un risultato senza prova;
@@ -66,7 +66,7 @@ Ogni fase termina con un **resoconto testuale** (incollabile nella PR o in chat,
 - fermarsi a ogni errore o ambiguità.
 
 ## 4. Gate creativi invariati (punto 4 della revisione)
-- **Un solo** frame finale fotorealistico, `FILM_PREVIEW_01_ABSTERGO.png`, con **Desmond e Lucy** (Lucy entra, Desmond si volta). I render di prova L5/L6 dell'ambiente **non** sono l'anteprima e restano privati.
+- **Un solo** frame finale fotorealistico, `FILM_PREVIEW_01_ABSTERGO.png`, con **Desmond e Lucy** (Lucy entra, Desmond si volta). I render di prova L5 dell'ambiente (720p/1080p) **non** sono l'anteprima e restano privati.
 - Voci **solo** dalle registrazioni originali italiane, **mai** sintetizzate, clonate o modificate; dove mancano: `AUDIO_ORIGINALE_ASSENTE`, indicato in chiaro.
 - **Nessun** file Ubisoft (audio, texture, mesh, immagini) su GitHub pubblico.
 - **Nessuna** produzione dei primi 15 minuti prima dell'approvazione dell'anteprima.
