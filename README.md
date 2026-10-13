@@ -33,6 +33,8 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/reference/CHR-001_EZIO_MASTER.md](docs/reference/CHR-001_EZIO_MASTER.md): reference Ezio, link verificati, lacune e Character Lock
 - [docs/reference/CHR-001_EZIO_SCHEDA_TECNICA.md](docs/reference/CHR-001_EZIO_SCHEDA_TECNICA.md): scheda tecnica ricevuta da Claude, ancora in bozza
 - [docs/reference/CHR-001_REVISIONE_SCHEDA.md](docs/reference/CHR-001_REVISIONE_SCHEDA.md): revisione, correzioni e proposte D1–D7
+- [docs/reference/CHR-001_EZIO_SCHEDA_VISIVA.md](docs/reference/CHR-001_EZIO_SCHEDA_VISIVA.md): nuova raccolta di riferimenti per volto e Armatura di Altaïr
+- [docs/reference/CHR-001_REVISIONE_VISIVA.md](docs/reference/CHR-001_REVISIONE_VISIVA.md): verifiche delle due tavole e decisioni ancora aperte
 
 ## GitHub e media
 Git non è il posto giusto per grandi file video, scene renderizzate, pesi dei modelli IA o asset protetti. Conservare i file pesanti sul PC e archiviare solo metadati e riferimenti leciti. **Verificare la visibilità del repository: risulta pubblico; per un progetto privato impostarlo manualmente su Private.**
