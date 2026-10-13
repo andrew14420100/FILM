@@ -39,7 +39,7 @@
       - fa un **test finale di sola lettura**, riverificando le impronte rispetto al manifest.
 
       Qualsiasi errore fa scattare il **ripristino automatico** delle ACL salvate della sola copia, con le istruzioni a schermo, e lo STOP.
-   4. **Protezione in un secondo momento** di una copia già preparata, che riverifica manifest, impronte e contenuto esatto: `prepara_copia_privata_acii.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude"`, anche con `-DryRun`.
+   4. **Protezione in un secondo momento** di una copia già preparata, che riverifica manifest, impronte e contenuto esatto: `prepara_copia_privata_acii.ps1 -ProtectExistingCopy -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude"`, anche con `-DryRun`. Lo switch **`-ProtectExistingCopy` è obbligatorio**: rende la modalità esplicita. Senza `-GameDir` e senza uno switch di modalità (`-ProtectExistingCopy` o `-RipristinaAcl`), lo script **si ferma con un messaggio e non modifica nulla**.
 5. **Ripristino manuale**, se serve: `prepara_copia_privata_acii.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -RipristinaAcl`, con conferma `RIPRISTINA`. Rimette solo i permessi salvati della copia, mai quelli del genitore o del gioco. Dopo il ripristino il launcher rifiuta l'avvio.
 6. **Mai** cartelle, file o permessi dell'installazione `D:\Games\Assassin's Creed II` vengono modificati. Lo script **non** modifica la cartella genitore: se questa concede diritti critici all'account Claude, si ferma prima di creare qualsiasi cosa.
 7. Facoltativo: **Proprietà → Sicurezza → Avanzate → Accesso effettivo** su cartella e file, selezionando `film_claude`. Il launcher ripete comunque il controllo con il **token reale** dell'account. L'attributo «Sola lettura» viene impostato solo come segnale visivo: non sostituisce l'ACL.
@@ -58,7 +58,7 @@ $commit = (git rev-parse HEAD).Trim()
 
 - **Non** esiste più `-GameDir` nel launcher: un vecchio comando che lo usa deve fallire, non tornare ad aprire Ubisoft Connect.
 - Il launcher ricontrolla, e si ferma alla **prima** discrepanza:
-  - account non amministratore e **SID uguale** a `ClaudeAccountSid` del manifest V2, diverso dal preparatore;
+  - account non amministratore, **non** membro di gruppi privilegiati (Backup, Server, Account o Print Operators, Power Users, Hyper-V Administrators) e **senza** privilegi del token che aggirano le ACL (`SeBackupPrivilege`, `SeRestorePrivilege`, `SeTakeOwnershipPrivilege`, `SeDebugPrivilege`, …) e **SID uguale** a `ClaudeAccountSid` del manifest V2, diverso dal preparatore;
   - DACL della copia **protetta** (senza ereditarietà) e account Claude **non proprietario** di alcun elemento;
   - diritti **effettivi** (AccessCheck sul token reale) di sola lettura su ogni file e cartella;
   - assenza di DELETE_CHILD / DELETE / WRITE_DAC / WRITE_OWNER sul genitore;
@@ -81,6 +81,7 @@ L6. **Solo dopo approvazione separata dei personaggi**, una immagine finale 4K c
 
 ## Criticità non ancora dimostrate
 
+- **Consigliato:** eseguire `prepara_copia_privata_acii.ps1` con **Windows PowerShell 5.1** (`powershell.exe`, 64 bit), dove `Get-LocalUser` e `Get-LocalGroupMember` sono sempre disponibili. In PowerShell 7 dipendono dal modulo di compatibilità: se mancano, lo script si ferma (fail-closed). `Get-LocalGroupMember` può fallire anche se nel gruppo Administrators ci sono SID orfani; in quel caso lo script si ferma.
 - Script, AuthZ e AccessCheck **non sono stati eseguiti su Windows**. I controlli statici superati sono elencati in [TEST_WINDOWS_OPZIONE2.md](TEST_WINDOWS_OPZIONE2.md): sintassi, PSScriptAnalyzer, compilazione C# e solo ASCII. Non equivalgono a un test delle ACL reali.
 - **La copia in sola lettura non isola da sola l'installazione originale:** se l'account Claude può scrivere in `D:\Games\Assassin's Creed II`, quella cartella resta esposta. Gli script non ne modificano mai i permessi; l'utente può verificarne l'accesso effettivo per `film_claude` ed eventualmente decidere in autonomia.
 - AuthZ da SID, usato nella preparazione, non include i gruppi legati alla sessione (es. INTERACTIVE). Per questo la DACL della copia contiene solo voci esplicite e la verifica definitiva è quella del launcher con il token reale.

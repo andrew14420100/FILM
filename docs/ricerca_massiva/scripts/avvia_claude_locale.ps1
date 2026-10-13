@@ -146,6 +146,19 @@ $groups = $groupsCsv | ConvertFrom-Csv -Header 'Name', 'Type', 'SID', 'Attribute
 if ($groups | Where-Object { $_.SID -eq 'S-1-5-32-544' }) {
     throw "Account membro di Administrators: usare un account standard separato per Claude."
 }
+# Altri gruppi privilegiati (Backup/Server/Account/Print Operators, Power Users, Hyper-V Administrators): STOP.
+$privGroups = @('S-1-5-32-551', 'S-1-5-32-549', 'S-1-5-32-548', 'S-1-5-32-550', 'S-1-5-32-547', 'S-1-5-32-578')
+$badGroup = $groups | Where-Object { $privGroups -contains $_.SID } | Select-Object -First 1
+if ($badGroup) { throw "Account membro del gruppo privilegiato $($badGroup.Name) ($($badGroup.SID)): non sicuro per Claude." }
+# Privilegi del token che aggirano le ACL (anche se disabilitati): STOP.
+$privCsv = & "$env:SystemRoot\System32\whoami.exe" /priv /fo csv /nh
+if ($LASTEXITCODE -ne 0 -or -not $privCsv) { throw "Impossibile verificare i privilegi dell'account." }
+$privs = $privCsv | ConvertFrom-Csv -Header 'Name', 'Description', 'State'
+$dangerous = @('SeBackupPrivilege', 'SeRestorePrivilege', 'SeTakeOwnershipPrivilege', 'SeDebugPrivilege',
+    'SeSecurityPrivilege', 'SeTcbPrivilege', 'SeLoadDriverPrivilege', 'SeManageVolumePrivilege', 'SeImpersonatePrivilege',
+    'SeAssignPrimaryTokenPrivilege', 'SeCreateTokenPrivilege', 'SeRelabelPrivilege')
+$badPriv = @($privs | Where-Object { $dangerous -contains $_.Name } | ForEach-Object { $_.Name })
+if ($badPriv.Count -gt 0) { throw "Il token dell'account ha privilegi che possono aggirare le ACL: $($badPriv -join ', '). Usare un account standard." }
 Write-Host "Token standard. Verificare a cura dell'utente che l'account sia dedicato."
 
 Write-Host "== 1c: integrita' e permessi EFFETTIVI della copia =="

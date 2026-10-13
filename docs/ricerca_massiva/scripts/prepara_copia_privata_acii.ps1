@@ -16,7 +16,8 @@
                 DataPC_Abstergo.forge (default) con verifica SHA256 e byte; manifest V2;
                 4) se -ProtectCopyForUser: mostra ACL attuali e proposte, conferma SEPARATA digitata
                 PROTEGGI, poi protezione (vedi sotto).
-    Proteggi  : -ArchiveDir -ProtectCopyForUser [-DryRun]
+    Proteggi  : -ProtectExistingCopy -ArchiveDir -ProtectCopyForUser [-DryRun]
+                (lo switch -ProtectExistingCopy rende la modalita' esplicita e non ambigua)
                 protegge in un secondo momento una copia gia' preparata, dopo aver riverificato
                 manifest, impronte e contenuto esatto della cartella.
     Ripristina: -ArchiveDir -RipristinaAcl
@@ -45,16 +46,20 @@
 .EXAMPLE
   .\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude" -DryRun
   .\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude"
-  .\prepara_copia_privata_acii.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude"
+  .\prepara_copia_privata_acii.ps1 -ProtectExistingCopy -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude" -DryRun
+  .\prepara_copia_privata_acii.ps1 -ProtectExistingCopy -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude"
   .\prepara_copia_privata_acii.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -RipristinaAcl
 #>
 [CmdletBinding(DefaultParameterSetName = 'Prepara')]
 param(
-    [Parameter(Mandatory = $true, ParameterSetName = 'Prepara')][string]$GameDir,
+    # GameDir non e' Mandatory a livello di binding: se manca in modalita' Prepara lo script si ferma con un
+    # messaggio esplicito (evita che PowerShell chieda GameDir in modo interattivo quando si voleva proteggere).
+    [Parameter(ParameterSetName = 'Prepara')][string]$GameDir,
     [Parameter(Mandatory = $true)][string]$ArchiveDir,
     [Parameter(ParameterSetName = 'Prepara')]
     [Parameter(Mandatory = $true, ParameterSetName = 'Proteggi')]
     [Alias('ClaudeAccount')][string]$ProtectCopyForUser,
+    [Parameter(Mandatory = $true, ParameterSetName = 'Proteggi')][switch]$ProtectExistingCopy,
     [Parameter(ParameterSetName = 'Prepara')][string]$WorkDir = 'D:\FILM_PRIVATO',
     [Parameter(ParameterSetName = 'Prepara')][switch]$IncludeHideout,
     [Parameter(ParameterSetName = 'Prepara')][switch]$IncludeItalianVoices,
@@ -259,12 +264,27 @@ function Resolve-ClaudeAccount([string]$name, [Security.Principal.SecurityIdenti
     if ($null -eq $sid.AccountDomainSid -or $sid.Value -match '^S-1-5-(18|19|20)$' -or $sid.Value -match '^S-1-5-32-') {
         throw "'$full' non e' un account utente valido (SID $($sid.Value))."
     }
-    if (-not (Get-Command Get-LocalUser -ErrorAction SilentlyContinue)) { throw "Get-LocalUser non disponibile: impossibile verificare l'account." }
+    foreach ($c in @('Get-LocalUser', 'Get-LocalGroupMember')) {
+        if (-not (Get-Command $c -ErrorAction SilentlyContinue)) {
+            throw "$c non disponibile in questa sessione PowerShell: impossibile verificare l'account (fail-closed). Usare Windows PowerShell 5.1 (powershell.exe, 64 bit)."
+        }
+    }
     $lu = Get-LocalUser -SID $sid -ErrorAction SilentlyContinue
     if (-not $lu) { throw "'$full' non e' un account LOCALE di questo PC (account di dominio/Microsoft non supportati)." }
     if (-not $lu.Enabled) { throw "L'account '$full' e' disabilitato." }
     $admins = @(Get-LocalGroupMember -SID 'S-1-5-32-544' -ErrorAction Stop)
     if ($admins | Where-Object { $_.SID -and $_.SID.Value -eq $sid.Value }) { throw "L'account '$full' appartiene ad Administrators: deve essere STANDARD." }
+    # Gruppi locali con privilegi che possono aggirare le ACL (backup/ripristino) o amministrare: rifiutati.
+    foreach ($g in @('S-1-5-32-551', 'S-1-5-32-547', 'S-1-5-32-578', 'S-1-5-32-549', 'S-1-5-32-550', 'S-1-5-32-548')) {
+        $members = @()
+        try { $members = @(Get-LocalGroupMember -SID $g -ErrorAction Stop) }
+        catch {
+            # Gruppo assente su questa edizione di Windows (es. Server/Account/Print Operators sui client): si salta.
+            if ([string]$_.FullyQualifiedErrorId -like 'GroupNotFound*') { continue }
+            throw "Impossibile leggere i membri del gruppo ${g}: $($_.Exception.Message) (fail-closed)."
+        }
+        if ($members | Where-Object { $_.SID -and $_.SID.Value -eq $sid.Value }) { throw "L'account '$full' appartiene al gruppo privilegiato ${g}: non sicuro per Claude." }
+    }
     return [pscustomobject]@{ Sid = $sid; Name = $full }
 }
 function Show-CurrentAcl([string]$path) {
@@ -399,13 +419,16 @@ if ($PSCmdlet.ParameterSetName -eq 'Proteggi') {
 }
 
 # ---------------- Prepara: Fase 1, controlli in sola lettura ----------------
+if (-not $GameDir) {
+    throw "Modalita' non determinata: per PREPARARE una copia indicare -GameDir; per PROTEGGERE una copia esistente usare -ProtectExistingCopy -ArchiveDir <copia> -ProtectCopyForUser <account>; per RIPRISTINARE usare -RipristinaAcl. Nessuna modifica eseguita."
+}
 Write-Host "== Fase 1: controlli in sola lettura =="
 $game = Get-AbsolutePath $GameDir
 $work = Get-AbsolutePath $WorkDir
 Assert-LocalPath $game 'GameDir'
 Assert-LocalPath $work 'WorkDir'
 if (-not (Test-Path -LiteralPath $game -PathType Container)) { throw "GameDir non trovato: $game" }
-if (Test-Path -LiteralPath $archive) { throw "Destinazione gia' esistente: $archive. Lo script non riusa ne' sovrascrive copie precedenti (per proteggere una copia esistente usare -ArchiveDir con -ProtectCopyForUser, senza -GameDir)." }
+if (Test-Path -LiteralPath $archive) { throw "Destinazione gia' esistente: $archive. Lo script non riusa ne' sovrascrive copie precedenti (per proteggere una copia esistente: -ProtectExistingCopy -ArchiveDir <copia> -ProtectCopyForUser <account>)." }
 Assert-NoReparsePoint $game 'GameDir'
 Assert-NoReparsePoint $archive 'ArchiveDir'
 Assert-NoReparsePoint $work 'WorkDir'
@@ -480,6 +503,6 @@ Write-Host "Copia e manifest V2 creati in $archive."
 
 # ---------------- Fase 4: protezione (solo se richiesta) ----------------
 if ($claude) { Invoke-ProtectCopy $archive $meSid $claude }
-else { Write-Warning "Copia NON protetta. Per proteggerla: prepara_copia_privata_acii.ps1 -ArchiveDir `"$archive`" -ProtectCopyForUser <account Claude>" }
+else { Write-Warning "Copia NON protetta. Per proteggerla: prepara_copia_privata_acii.ps1 -ProtectExistingCopy -ArchiveDir `"$archive`" -ProtectCopyForUser <account Claude>" }
 Write-Host ""
 Write-Host "FINE. Claude NON e' stato avviato. Il launcher, eseguito dall'account Claude, ripetera' tutti i controlli con il token reale."
