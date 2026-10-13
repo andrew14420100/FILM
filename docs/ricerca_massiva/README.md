@@ -2,7 +2,7 @@
 
 **Stato complessivo:** DA VERIFICARE · BOZZA DI RICERCA · nessuna approvazione implicita.
 **Data:** 2026-10-13 · **Ordine:** issue #12 + documenti della PR #13 (`docs/claude/ORDINE_OPERATIVO_MASSIVO_PROLOGO_FOTOREALISTICO.md`, `SORGENTI_E_STRUMENTI_DA_VERIFICARE.md`, `ACCETTAZIONE_ANTEPRIMA_E_VOCI.md`).
-**Perimetro rispettato:** solo Markdown e uno script PowerShell originale in sola lettura. Nessun asset, audio, mesh, texture, filmato o testo di dialogo del gioco nel repository. Nessun servizio a pagamento. Nessun download o esecuzione di tool sul PC dell'utente da parte di Claude.
+**Perimetro rispettato:** solo Markdown e script PowerShell originali di staging, inventario e launcher. Sono non testati su Windows e non hanno eseguito alcuna operazione sul PC dell'utente. Nessun asset, audio, mesh, texture, filmato o testo di dialogo del gioco nel repository. Nessun servizio a pagamento. Nessun download o esecuzione di tool sul PC dell'utente da parte di Claude.
 
 ## Legenda degli stati delle fonti (usata in tutti i file)
 | Stato | Significato |
