@@ -57,3 +57,12 @@ La priorità è mantenere **identità riconoscibili** in un film live-action sim
 - Stato: DA VERIFICARE / VERIFICATA / APPROVATA
 
 **Non inventare biografie per riempire i vuoti:** indicare cosa non risulta stabilito nel gioco.
+
+
+## CHR-001 — aggiornamento operativo delle reference (2026-10-13)
+
+Per Ezio, oltre al pacchetto originale, usare il [registro master aggiornato](reference/CHR-001_EZIO_MASTER.md), la [nuova scheda visiva](reference/CHR-001_EZIO_SCHEDA_VISIVA.md) e la [revisione](reference/CHR-001_REVISIONE_VISIVA.md). Gli screenshot A-EXT di terzi documentano già profilo sinistro, frontale approssimata, vista di tre quarti, ferita iniziale e costume, ma **non** certificano versione PC o calibrazione cromatica. Le catture primarie A restano mancanti.
+
+Scelte cinematografiche confermate: **Armatura di Altaïr** nelle Seq. 13–14, cappuccio alzato nelle stesse sequenze, cappa scura con fodera rossa; i sei sigilli devono comparire nella pianificazione prima della Seq. 13. Consentiti screenshot di terzi come riferimento per un **futuro** blockout, non come approvazione del volto.
+
+**Stato di produzione:** SOLE SCHEDE. Nessun `EZIO_MASTER`, blockout, render, immagine generata o video autorizzato. I documenti di Claude originari non sono stati sovrascritti.
