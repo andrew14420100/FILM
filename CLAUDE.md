@@ -27,12 +27,12 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 - Per Ezio leggere obbligatoriamente `docs/reference/CHR-001_EZIO_MASTER.md` e `docs/reference/README.md`.
 - Leggere anche la nuova `docs/reference/CHR-001_EZIO_SCHEDA_VISIVA.md` e la relativa `docs/reference/CHR-001_REVISIONE_VISIVA.md`. Le tavole JPG sono reference private dell'utente, **non** file del repository.
 - **Approvazioni utente 2026-10-13:** D2 = Armatura di Altaïr al Vaticano/Cripta; **D2-bis = Armatura anche in Seq. 13 (Falò delle Vanità)**; **D8 = cappuccio alzato nelle Seq. 13–14**; **D9 = reference A-EXT utilizzabili solo per il futuro blockout provvisorio**; **D3 = cappa scura con fodera rossa quando indossa l'Armatura di Altaïr**. L'acquisizione dei sei sigilli deve precedere la Seq. 13 nella pianificazione.
-- **Restare esclusivamente in pre-produzione.** Nessun modello 3D, neppure provvisorio, render, immagine generata o video autorizzato. D1/D4/D5/D6/D7 sono ancora aperte.
+- **Restare esclusivamente in pre-produzione.** Nessun modello 3D, neppure provvisorio, render, immagine generata o video autorizzato. **D1 APPROVATA: AC II originale PC Windows posseduto su Ubisoft Connect**; build/patch, risoluzione e disponibilità Seq. 12–13 ancora da verificare. D4/D5/D6/D7 ancora aperte.
 - Gli screenshot classificati A-EXT sono catture di terzi con versione/piattaforma non accertata: utilizzabili come prove provvisorie, non come identità canonica approvata.
 - Preferire fotogrammi verificati dal videogioco per anatomia e costumi; concept preliminari, mod e statue non costituiscono canone definitivo.
 - Non considerare quattro screenshot, una mesh scaricata o una renderizzazione 4K sufficienti per dichiarare la fedeltà del personaggio.
 - Nessun download/import automatico di asset di terzi né creazione di `EZIO_MASTER` senza approvazione.
-- Consultare `docs/reference/CHR-001_PIANO_LACUNE_E_DECISIONI.md` **come proposta, non come decisioni approvate**, e `docs/reference/CHR-001_VERIFICHE_R1_R4.md` prima di chiedere all'utente di acquisire nuove immagini.
+- Consultare `docs/reference/CHR-001_PIANO_LACUNE_E_DECISIONI.md` **come proposta storica** (la D1 è ora approvata), `docs/reference/CHR-001_VERIFICHE_R1_R4.md` e il nuovo **`docs/reference/CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md`** prima di chiedere all'utente le immagini. **Non chiedere nuovamente quale copia del gioco possiede**.
 - Verifica R2: manuale ufficiale PC Steam, sezione Ezio, 6 piedi e 165 libbre (circa 1,83 m / 75 kg). Verifica R3: in AC II non si possono rigiocare normalmente le memorie **principali** già completate, secondo Ubisoft Support; predisporre quindi una nuova partita o salvataggi per le catture. Non inventare replay o timestamp.
 - R1 conferma Thibault come team lead e Collings nel team, non necessariamente la singola paternità della mesh del volto. R4 segnala missioni candidate per le viste: alcune prospettive restano mancanti.
 
