@@ -1,6 +1,6 @@
 # Piano di pre-produzione — Sequenze 1–14 e intermezzi del 2012
 
-**Stato:** PIANO DI LAVORO · DA APPROVARE · **Data:** 2026-10-13
+**Stato:** PIANO DI PRE-PRODUZIONE · **S-01–S-04 APPROVATE** (restano verifiche e redazione dei trattamenti) · **Data:** 2026-10-13
 **Base:** elenco ufficiale delle memorie di AC II con date e luoghi ([Template:AC2Memories](https://assassinscreed.fandom.com/wiki/Template:AC2Memories) e pagine delle singole memorie, V-C), [cronologia](../01_CRONOLOGIA.md), [registro personaggi](../02_PERSONAGGI.md), [ambientazioni](../03_AMBIENTAZIONI.md), decisioni D1–D9 ([05_DECISIONI.md](../05_DECISIONI.md)), [dossier Ezio](../reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md).
 **Solo pre-produzione:** nessun modello, immagine, audio, animazione o video. Nessuna nuova cattura.
 
@@ -73,7 +73,7 @@
 
 ---
 
-## 5. Decisioni di struttura da prendere
+## 5. Decisioni di struttura APPROVATE (2026-10-13)
 
 | ID | Domanda | Proposta |
 | --- | --- | --- |
@@ -83,6 +83,8 @@
 | **S-04** | Formato del film (un film unico o più parti) e durata | Da decidere dopo i trattamenti delle Seq. 1–3 (la voce «Durata finale» è già DA DEFINIRE) |
 
 ---
+
+**Conferma esplicita:** S-01 (ordine filmico delle Seq. 11→12→13→14), S-02 («La Verità» prima di Seq. 14), S-03 (prima tomba per intero e altre cinque in montaggio), S-04 (durata e formato da scegliere dopo i trattamenti delle Seq. 1–3) sono **APPROVATE**. Le parole «PROPOSTA» nella tabella documentano il testo nella forma in cui fu sottoposto a decisione, non lo stato corrente; prevale [05_DECISIONI.md](../05_DECISIONI.md). La cornice delle memorie corrotte rimane una questione di verifica del gioco, non una decisione sul film. Per S-04 **non** sono stati fissati né minuti né numero di parti. Nessun modello/immagine/audio/video autorizzato.
 
 ## 6. Ordine di lavoro proposto (PR successive)
 
