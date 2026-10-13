@@ -32,6 +32,9 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 - Preferire fotogrammi verificati dal videogioco per anatomia e costumi; concept preliminari, mod e statue non costituiscono canone definitivo.
 - Non considerare quattro screenshot, una mesh scaricata o una renderizzazione 4K sufficienti per dichiarare la fedeltà del personaggio.
 - Nessun download/import automatico di asset di terzi né creazione di `EZIO_MASTER` senza approvazione.
+- Consultare `docs/reference/CHR-001_PIANO_LACUNE_E_DECISIONI.md` **come proposta, non come decisioni approvate**, e `docs/reference/CHR-001_VERIFICHE_R1_R4.md` prima di chiedere all'utente di acquisire nuove immagini.
+- Verifica R2: manuale ufficiale PC Steam, sezione Ezio, 6 piedi e 165 libbre (circa 1,83 m / 75 kg). Verifica R3: in AC II non si possono rigiocare normalmente le memorie **principali** già completate, secondo Ubisoft Support; predisporre quindi una nuova partita o salvataggi per le catture. Non inventare replay o timestamp.
+- R1 conferma Thibault come team lead e Collings nel team, non necessariamente la singola paternità della mesh del volto. R4 segnala missioni candidate per le viste: alcune prospettive restano mancanti.
 
 ## Flusso iniziale
 Leggi README e docs, quindi:
