@@ -10,6 +10,13 @@
 
 **Limiti reali:** i generatori video possono cambiare volto fra clip, deformare mani e oggetti, sbagliare costumi e movimenti. Testare a risoluzione moderata **non equivale a garantire fotorealismo 4K nativo**. Un file 3840×2160 ottenuto per interpolazione da un video più piccolo *non* possiede i dettagli di un film realmente renderizzato in 4K.
 
+## Archivio esteso del prologo (ambienti, personaggi, oggetti)
+- [Catalogo completo delle fonti e delle lacune](CATALOGO_COMPLETO_PROLOGO_ACII_2009_2010.md): **14 ambienti**, cast del 2012/1459/1476, props e matrice dei master non ancora costruiti.
+- [Indice immagini nominate e shot list completa](INDICE_IMMAGINI_ACII_E_SHOTLIST_PROLOGO.md): nomi file verificabili nelle gallerie, **14 gruppi di scene da documentare** con reference e limiti di visibilità.
+- [Primo dossier Abstergo/Desmond/Lucy](REFERENCE_ONLINE_AC2_ABSTERGO_DESMOND_LUCY.md): ricerca iniziale, ora integrata dai due indici sopra.
+
+**Status:** non esiste ancora un \`ABSTERGO_ENV_MASTER\` né un character lock 3D; la raccolta link **non equivale alla configurazione di set/render**. Prima del test definitivo del prologo servono reference multiprospetto o ambiente di riferimento bloccato. Non iniziare l'intero film in automatico.
+
 ## Reference originali di AC II recuperate online
 Prima di iniziare a rendere definitivo il volto o la scenografia, consultare il [catalogo ABSTERGO / DESMOND / LUCY](REFERENCE_ONLINE_AC2_ABSTERGO_DESMOND_LUCY.md) con screenshot AC II, gallerie dei personaggi e fonti C. **Non sono ancora master 3D**, e nessun fotogramma in GitHub è stato copiato. Sono esclusi da verifica i mod, gli artwork di AC III o i set più recenti di Abstergo Entertainment.
 
