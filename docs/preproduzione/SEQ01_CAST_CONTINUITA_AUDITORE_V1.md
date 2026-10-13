@@ -79,7 +79,7 @@ Fonti V-C: [Paperboy](https://assassinscreed.fandom.com/wiki/Paperboy), [Uberto 
 1. Schede reference URL per i sei Auditore e Uberto, basate su immagini già reperibili online.
 2. Verifica dell'ordine variabile delle commissioni di famiglia e raccordo esatto col prologo.
 3. Redazione della **sceneggiatura originale** della Sequenza 1 dopo la revisione del trattamento.
-4. L'utente approva o modifica `SEQ1-A/B/C/D` e gli identificativi aggiuntivi; **non assumere approvazione dal «sì» a proseguire il lavoro**.
+4. **Aggiornamento 2026-10-13:** SEQ1-A/B/C/D approvate per la continuità documentale. **I nuovi identificativi CHR-039–042 NON sono approvati** e restano proposti. Nessun Character Master autorizzato.
 5. Predisporre la Sequenza 2 solo dopo aver registrato la decisione sulla condensazione.
 
 **Divieti persistenti:** nessuna generazione visiva, 3D, audio o video; nessuna cattura dal PC necessaria in questa fase; nessun acquisto.
