@@ -18,6 +18,14 @@
 | D5 — Età e varianti del volto | **APPROVATA · 2026-10-13** | `EZIO_MASTER` di riferimento = **Ezio a 18 anni (Seq. 4, aprile 1478)**. Varianti sulla stessa struttura facciale: 17 / 22–28 / 29 con barba / 37–40 con barba (dossier §2.2); cicatrice a 4 stati (assente, fresca, crosta, guarita). Barba in Seq. 11 e forma della cicatrice guarita DA VERIFICARE. |
 | D6 — Materiali e specifiche tecniche future | **APPROVATA · 2026-10-13** | **D6-a:** tabella materiali del dossier §6.2 come bozza di lookdev. **D6-b:** risoluzioni texture rinviate a un benchmark futuro (livelli A/B). **D6-c:** Armatura di Altaïr in acciaio scurito con bordi e rivetti dorati, bracciali in ottone inciso. Nessun codice colore canonico: i colori restano bersagli relativi. |
 | D7 — Collana e accessori | **APPROVATA · 2026-10-13** | **D7:** collana presente in tutte le epoche, anche con l'Armatura (resa: argento opaco su cuoio; numero e materiale delle perline DA VERIFICARE). **D7-b:** cappa semplice fino al dono di Lorenzo (fine Seq. 5), poi cappa Medici fino alla Seq. 12; cappa veneziana non usata. Con l'Armatura vale D3. |
+| P-01 — Luogo della nascita di Ezio | **APPROVATA · 2026-10-13** | Nel prologo usare **l'interno mostrato dalla memoria della nascita** in AC II. Non affermare che l'edificio nel 1459 coincida con Palazzo Auditore del 1476: la contraddizione tra memoria e data di completamento riportata dal Database resta **DA VERIFICARE** e documentata nel trattamento V2. |
+| P-02 — Nuovi identificativi del prologo | **APPROVATA · 2026-10-13** | Registrare **CHR-038 Soggetto 16** e i gruppi **CMP-ABS** (guardie Abstergo), **CMP-NAS** (domestiche), **CMP-FIR** (bande a Firenze). Non anticipare il vero nome del Soggetto 16 nella narrazione di AC II. |
+| P-03 — Linguaggio visivo del prologo | **APPROVATA · 2026-10-13** | Adottare il linguaggio cinematografico proposto in `docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md` (revisione V2): Abstergo fredda, rifugio caldo, Animus con dissolvenze/frammentazioni, Occhio dell'aquila mediante variazioni cromatiche/profondità, Firenze senza filtro da flashback. **Solo progetto testuale**; resa finale da verificare in una fase futura autorizzata. |
+| P-04 — Monologo iniziale | **APPROVATA · 2026-10-13** | Pianificare **un testo originale** che preservi il significato introduttivo della voce di Desmond, senza riprodurre battute integrali del gioco e senza anticipare rivelazioni successive. Il monologo specifico resta DA SCRIVERE/APPROVARE. |
+| S-01 — Montaggio delle Seq. 12–13 | **APPROVATA · 2026-10-13** | Nel **film**, ordine cronologico **11 → 12 → 13 → 14**, senza la cornice delle sequenze corrotte. È una **scelta di adattamento**, non una prova che la versione PC non contenga dialoghi sul recupero delle memorie. |
+| S-02 — Collocazione «La Verità» | **APPROVATA · 2026-10-13** | Porre il video/nodo narrativo del **Soggetto 16** prima della Seq. 14, come climax dei glifi. Contenuto e integrazione scenica da verificare; nessun filmato protetto nel repository. |
+| S-03 — Tombe e sigilli | **APPROVATA · 2026-10-13** | Mostrare **Novella's Secret / Santa Maria Novella integralmente** nella struttura narrativa; sintetizzare le altre **cinque tombe in montaggio** e poi l'apertura del Santuario, **prima della Seq. 13**, rispettando D2-bis e i sei sigilli. |
+| S-04 — Durata e formato | **APPROVATA · 2026-10-13** | **Rinviare la scelta** fra film unico o più parti e la durata definitiva fino ai trattamenti delle **Seq. 1–3**. L'approvazione riguarda il metodo decisionale; formato e durata restano **DA DEFINIRE**. |
 | Personaggi dall'aspetto umano e ambienti reali | APPROVATA | Live-action fotorealistico digitale |
 | Qualità obiettivo 4K UHD | APPROVATA | Pianificare per 3840 × 2160, testare effettivamente |
 | Tutto il workflow di produzione sul PC Windows | APPROVATA | RTX 5070 Ti 16 GB, niente rendering cloud richiesto |
@@ -44,6 +52,11 @@ Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. No
 **Correzione di età verificabile:** Ezio, nato il 24 giugno 1459, ha **18 anni nell'aprile 1478**, non 19. Questa rettifica non approva automaticamente il design di D5.
 
 ~~D4-a/b/c, D5, D6-a/b/c, D7 e D7-b restano in attesa di approvazione.~~ **Aggiornamento 2026-10-13: l'utente ha approvato D4 (a/b/c), D5, D6 (a/b/c) e D7 (+ D7-b) esattamente come proposte nel dossier integrale.** La sintesi storica resta solo traccia. Non generare modelli, immagini, render o video.
+
+## Decisioni del prologo e della struttura — approvazioni del 2026-10-13
+Le scelte **P-01/P-02/P-03/P-04** e **S-01/S-02/S-03/S-04** sono state confermate esplicitamente dall'utente e applicate alla PR #7. Prevale il trattamento **V2** nel file `docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md` e il piano `docs/preproduzione/PIANO_SEQUENZE_01_14.md`. L'approvazione riguarda struttura narrativa, codici e regia **soltanto sulla carta**. Restano DA VERIFICARE la data esatta dell'arrivo al rifugio, il luogo della visione di Ezio adulto, gli elementi scenografici non confermati e l'incongruenza sulla nascita; la durata e il formato sono ancora DA DEFINIRE per S-04.
+
+**NESSUN MODELLO 3D, BLOCKOUT, IMMAGINE, AUDIO, ANIMAZIONE, RENDER O VIDEO AUTORIZZATO.** Nessuna nuova cattura dal gioco richiesta ora.
 
 ## Prossimi passi
 1. Rendere privato il repository nelle impostazioni GitHub.
