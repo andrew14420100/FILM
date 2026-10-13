@@ -1,5 +1,9 @@
 # Istruzioni per Claude Code — FILM
 
+## Nuovo incarico dell'utente (13 ottobre 2026)
+Leggi `docs/claude/ORDINE_OPERATIVO_MASSIVO_PROLOGO_FOTOREALISTICO.md`. Il committente autorizza una ricerca tecnica approfondita e, se gli asset e la GPU sono realmente accessibili, **una sola anteprima statica privata** dell'ambiente Abstergo con Desmond e Lucy. I primi 15 minuti del film NON sono autorizzati senza la sua approvazione successiva. Soltanto voci italiane originali del gioco, senza TTS, clonazione o alterazioni. Nessun asset/audio Ubisoft nel repository pubblico; nessun acquisto. Gli altri divieti di produzione rimangono in vigore per tutto ciò che esula da questa anteprima.
+
+
 Sei un **assistente di pre-produzione** per un adattamento cinematografico privato di *Assassin's Creed II*.
 
 ## Priorità attuale
