@@ -3,13 +3,13 @@
 **Versione:** V0 · 2026-10-13  
 **Stato:** BOZZA DI PRE-PRODUZIONE / **NON APPROVATA**; fonti prevalentemente comunitarie (V-C), ancora non verificate direttamente sulla copia originale PC Ubisoft Connect (D1).  
 **Ambito:** soltanto schede testuali e struttura narrativa. **Non** si autorizzano modelli 3D, immagini, audio, animazioni, rendering o video. Non richiedere screenshot dal PC.  
-**Precedente:** [Prologo, revisione interna V2](PROLOGO_TRATTAMENTO_V1.md), già approvato nei punti P-01–P-04.  
+**Precedente:** [Prologo, revisione interna V3](PROLOGO_TRATTAMENTO_V1.md), già approvato nei punti P-01–P-04.  
 **Successivo:** Sequenza 2 «Escape Plans» (ancora da sviluppare).  
 **Fonte di lavoro:** elenco delle dodici memorie pubblicato nelle [guide alla Sequenza 1](https://thehiddenblade.com/assassins-creed-ii-faq), confermato anche da [SDA Knowledge Base](https://kb.speeddemosarchive.com/Assassin%27s_Creed_II/Sequence_1) e [StrategyWiki](https://strategywiki.org/wiki/Assassin%27s_Creed_II/Sequence_1%3A_Ignorance_is_Bliss). La presenza di una pagina online non certifica la corrispondenza fra piattaforme: ogni elemento si conserva come V-C.
 
 ## 1. Regola fondamentale di raccordo al prologo
 
-**PRO-014 del trattamento V2 contiene già l'inizio di «Boys Will Be Boys»**, cioè la provocazione di Vieri, la pietra al labbro e l'avvio della rissa su Ponte Vecchio (26 dicembre 1476). Nella copia cinematografica **non ripetere** l'introduzione di Vieri o il lancio della pietra: la nuova scaletta riprende dal conflitto avviato, prosegue con l'esito della rissa e porta all'incontro col medico. La divisione tecnica del file di montaggio sarà verificata quando esisterà un vero copione.
+**PRO-014 del trattamento V3 contiene già l'inizio di «Boys Will Be Boys»**, cioè la provocazione di Vieri, la pietra al labbro e l'avvio della rissa su Ponte Vecchio (26 dicembre 1476). Nella copia cinematografica **non ripetere** l'introduzione di Vieri o il lancio della pietra: la nuova scaletta riprende dal conflitto avviato, prosegue con l'esito della rissa e porta all'incontro col medico. La divisione tecnica del file di montaggio sarà verificata quando esisterà un vero copione.
 
 Per garantire un solo volto, **EZIO_17_A** prima della ferita e **EZIO_17_B** dopo la pietra sono varianti dello stesso personaggio, secondo D5. Per tutta la prima parte mantenere abiti civili, collana e capelli secondo D7. Armi secondo D4: non anticipare la spada prima di «Family Heirloom». Età: **17 anni** nel dicembre 1476.
 
@@ -21,7 +21,7 @@ Per garantire un solo volto, **EZIO_17_A** prima della ferita e **EZIO_17_B** do
 | --- | --- | --- | --- | --- |
 | **S01-M01** | **Boys Will Be Boys** | Ezio e gli amici fronteggiano Vieri e la sua banda; Vieri lo ferisce al labbro con una pietra; rissa con intervento di Federico. | **Iniziare dalla parte restante di PRO-014**, senza duplicare introduzione e ferita. Chiudere sulla lealtà di Federico. | CHR-001/008/017; LOC-003; ferita EZ_17_B. |
 | **S01-M02** | **You Should See the Other Guy** | Federico accompagna Ezio da un medico per la ferita. | Breve scena di raccordo in cui la ferita e il rapporto fra fratelli restano percepibili; nessuna diagnosi inventata. | Ferita fresca, stesso costume. |
-| **S01-M03** | **Sibling Rivalry** | I fratelli gareggiano in arrampicata e osservano Firenze dall'alto. | Conservare il momento di complicità fra i due come contrasto emotivo con la tragedia finale. Non ripetere automaticamente un secondo titolo d'apertura (il titolo è già previsto in PRO-014). | CHR-001/008; Firenze 1476; scena di riferimento visivo per Federico. |
+| **S01-M03** | **Sibling Rivalry** | I fratelli gareggiano in arrampicata e osservano Firenze dall'alto. | Conservare il momento di complicità tra i fratelli; **alla conclusione della scena sui tetti compare una sola volta il titolo del film**, come nel gioco (**R-TITOLO approvata**). **Nessun titolo** in PRO-014. | CHR-001/008; Firenze 1476; scena di riferimento visivo per Federico. |
 | **S01-M04** | **Nightcap** | Ezio visita Cristina Vespucci di notte. | Breve sequenza di giovinezza e vita privata; non inventare un lungo arco romantico estraneo ad AC II. | CHR-012; abiti civili, ferita recente. |
 | **S01-M05** | **Paperboy** | Ezio porta una lettera di Giovanni destinata a Lorenzo de' Medici, poi torna dal padre. | Presentare la fiducia che Giovanni ripone in Ezio e la rete di relazioni cittadine senza inventare contenuti della lettera. | CHR-006; documenti/lettere come props, non riprodurne testi non visti. |
 | **S01-M06** | **Beat a Cheat** | Claudia parla del comportamento di Duccio; Ezio lo affronta. | Mostrare il legame protettivo di Ezio con Claudia, evitando coreografia estesa di tutorial. | CHR-010; Duccio da censire come personaggio prima dell'approvazione del cast. |
@@ -70,8 +70,11 @@ Per garantire un solo volto, **EZIO_17_A** prima della ferita e **EZIO_17_B** do
 
 ## 6. Decisioni da sottoporre dopo la revisione del dossier
 - **SEQ1-A:** mantenere tutte le 12 memorie come 12 unità nella documentazione, ma condensare i tutorial/tragitti ripetitivi quando si passerà alle scene cinematografiche.
-- **SEQ1-B:** mantenere il ritmo dei blocchi A/B/C, con un solo momento di apertura della storia su PRO-014 e senza duplicazioni.
+- **SEQ1-B:** mantenere il ritmo dei blocchi A/B/C, con un solo avvio narrativo su PRO-014 e senza duplicazioni; **il cartello del titolo appare soltanto in S01-M03 secondo R-TITOLO già approvata**.
 - **SEQ1-C:** non fissare durata della Sequenza 1 prima di completare il suo trattamento V1 e i primi tre blocchi del film (vincolo S-04).
 - **SEQ1-D:** proporre al prossimo giro il dossier CHR-018 Uberto e gli aggiornamenti dei personaggi della famiglia per sostenere il finale della sequenza.
 
 **Queste sono PROPOSTE NON APPROVATE.** Non cambiano D1–D9, P-01–P-04 o S-01–S-04, già approvate in `docs/05_DECISIONI.md`. Il prossimo passaggio richiede verifica delle scene e trattamento in prosa; **nessuna produzione audiovisiva**.
+
+
+**Aggiornamento decisionale R-TITOLO (2026-10-13):** il titolo è stato espressamente **spostato dai primi istanti della rissa PRO-014** alla chiusura della scena `Sibling Rivalry` sui tetti con Federico. Questa scelta è APPROVATA. Il resto della scaletta rimane bozza e SEQ1-A/B/C/D rimangono in attesa.
