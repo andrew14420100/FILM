@@ -1,47 +1,24 @@
 <#
 .SYNOPSIS
-  Launcher PROPOSTO per delegare a Claude Code locale il lavoro dell'incarico #12 (progetto FILM),
-  con accesso limitato. Vedi docs/ricerca_massiva/CLAUDE_CODE_LOCALE_DELEGA.md.
-
+  FILM: avvia Claude Code lavorando solo sugli archivi COPIATI, non sulla directory originale di AC II.
 .DESCRIPTION
-  Principio: FAIL-CLOSED. Ogni controllo che non si puo' completare blocca il launcher.
-
-  Fase 1 - controlli in SOLA LETTURA (nessuna scrittura):
-    a. GameDir esiste; WorkDir non coincide con GameDir, non lo contiene e non ne e' contenuto;
-       nessun componente esistente dei due percorsi e' una junction/symlink.
-    b. Account: token non elevato E utente NON membro di Administrators (nemmeno come gruppo
-       "deny-only" di un amministratore non elevato), letto da 'whoami /groups'.
-       Il launcher NON puo' accertare che l'account sia "dedicato": e' un requisito documentale.
-    c. Accesso EFFETTIVO di Windows: per la cartella del gioco e per OGNI file e sottocartella
-       al suo interno, AccessCheck (advapi32) con il token di questo processo e MAXIMUM_ALLOWED.
-       Se risulta anche un solo diritto di scrittura, aggiunta, cancellazione, cancellazione
-       figli, modifica attributi, modifica DACL o cambio proprietario -> STOP.
-       Qualsiasi reparse point dentro la cartella del gioco -> STOP.
-       E' lo stesso token con cui verra' avviato Claude (il launcher lo avvia direttamente).
-    d. Configurazione Claude: rifiuta configurazioni preesistenti non verificate:
-       WorkDir\.claude, WorkDir\CLAUDE.md, CLAUDE.local.md, .mcp.json, capitolato;
-       CLAUDE.md/CLAUDE.local.md/.claude nelle cartelle superiori di WorkDir;
-       %USERPROFILE%\.claude\settings.json con regole 'allow', 'hooks', 'mcpServers'
-       o defaultMode diverso da default/plan.
-    e. Capitolato: la copia locale di FILM deve essere un clone Git con HEAD uguale a
-       -ExpectedCommit e senza modifiche locali (git status vuoto); README.md, CLAUDE.md e docs/
-       devono esistere.
-    f. Informativi: GPU (nvidia-smi), CLI 'claude', file chiave del gioco.
-  Fase 2 - SOLO con conferma digitata: crea WorkDir (ricontrollando dopo la creazione), copia il
-    capitolato con manifest SHA256, crea .claude\settings.json e CLAUDE.md.
-  Fase 3 - SOLO con conferma: avvia 'claude --permission-mode plan' in WorkDir.
-  Non avvia il gioco, non scarica nulla, non modifica ACL ne' la cartella del gioco.
-  Script NON ancora eseguito ne' testato: rileggerlo prima dell'uso.
-
-.PARAMETER ExpectedCommit
-  Hash Git completo (40 caratteri) della revisione di FILM che l'utente ha controllato.
-
+  Opzione 2 approvata dall'utente: il gioco Ubisoft Connect NON e' aperto dal launcher.
+  Un diverso account Windows standard legge D:\FILM_ARCHIVI_RO (ACL SOLA LETTURA) e
+  scrive solo i propri risultati in D:\FILM_PRIVATO. La copia e' preparata PRIMA,
+  da un altro account, con prepara_copia_privata_acii.ps1. Questo launcher NON
+  modifica le ACL: se la copia e' ancora modificabile dall'account Claude, STOP.
+  Valida il manifest SHA256 e controlla i diritti effettivi sulla copia via
+  Windows AccessCheck, i reparse point e le configurazioni preesistenti.
+  Non garantisce isolamento completo del sistema operativo su Windows nativo:
+  l'account Claude va dedicato, senza privilegi sulla copia e, preferibilmente,
+  senza alcun accesso alla cartella originale. Non pubblicare asset/audio.
+  Script NON TESTATO su Windows nella presente sessione.
 .EXAMPLE
-  .\avvia_claude_locale.ps1 -GameDir "C:\...\Assassin's Creed II" -WorkDir "D:\FILM_PRIVATO" -ExpectedCommit <hash>
+  .\avvia_claude_locale.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -WorkDir "D:\FILM_PRIVATO" -ExpectedCommit <SHA40>
 #>
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory = $true)][string]$GameDir,
+    [Parameter(Mandatory = $true)][string]$ArchiveDir,
     [Parameter(Mandatory = $true)][string]$WorkDir,
     [Parameter(Mandatory = $true)][ValidatePattern('^[0-9a-fA-F]{40}$')][string]$ExpectedCommit
 )
@@ -138,69 +115,107 @@ function Confirm-Step([string]$question) {
     return ($answer -ceq 'SI')
 }
 
-$game = Get-AbsolutePath $GameDir
+$archive = Get-AbsolutePath $ArchiveDir
 $work = Get-AbsolutePath $WorkDir
-
-Write-Host "== Fase 1a: percorsi =="
-if (-not (Test-Path -LiteralPath $game -PathType Container)) { throw "Cartella del gioco non trovata: $game" }
-if ((Test-Path -LiteralPath $work) -and -not (Test-Path -LiteralPath $work -PathType Container)) { throw "WorkDir esiste ma non e' una cartella: $work" }
-Assert-NoReparsePoint $game 'GameDir'
+Write-Host "== 1a: archivi COPIATI e cartelle separate =="
+if (-not (Test-Path -LiteralPath $archive -PathType Container)) {
+    throw "Archivio privato assente: $archive. Prima eseguire lo staging fuori da Claude."
+}
+if ((Test-Path -LiteralPath $work) -and -not (Test-Path -LiteralPath $work -PathType Container)) {
+    throw "WorkDir esiste ma non e' una cartella: $work"
+}
+Assert-NoReparsePoint $archive 'ArchiveDir'
 Assert-NoReparsePoint $work 'WorkDir'
-Assert-Separated $game $work
-Write-Host "Cartella gioco (sola lettura): $game"
-Write-Host "Cartella privata di lavoro   : $work"
+Assert-Separated $archive $work
+Write-Host "Copia privata AC II: $archive"
+Write-Host "Cartella lavoro:      $work"
+Write-Host "Il launcher NON apre né verifica la cartella del gioco originale."
 
-Write-Host "== Fase 1b: account =="
+Write-Host "== 1b: account Windows dedicato =="
 $principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
 if ($principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    throw "Token elevato (amministratore). Usare un account Windows standard, non elevato."
+    throw "Token elevato: Claude va avviato da account STANDARD dedicato."
 }
 $groupsCsv = & "$env:SystemRoot\System32\whoami.exe" /groups /fo csv /nh
-if ($LASTEXITCODE -ne 0 -or -not $groupsCsv) { throw "Impossibile leggere i gruppi con whoami: controllo dell'account non completabile." }
+if ($LASTEXITCODE -ne 0 -or -not $groupsCsv) { throw "Impossibile verificare i gruppi dell'account." }
 $groups = $groupsCsv | ConvertFrom-Csv -Header 'Name', 'Type', 'SID', 'Attributes'
 if ($groups | Where-Object { $_.SID -eq 'S-1-5-32-544' }) {
-    throw "L'account corrente appartiene ad Administrators (anche se non elevato). Usare un account Windows STANDARD dedicato (CLAUDE_CODE_LOCALE_DELEGA.md par. 2)."
+    throw "Account membro di Administrators: usare un account standard separato per Claude."
 }
-Write-Host "Account: token non elevato e non membro di Administrators. (Che sia 'dedicato' resta un requisito da rispettare a cura dell'utente.)"
+Write-Host "Token standard. Verificare a cura dell'utente che l'account sia dedicato."
 
-Write-Host "== Fase 1c: accesso effettivo di Windows alla cartella del gioco =="
-$items = @(Get-Item -LiteralPath $game -Force)
-$scanErrors = @()
-$items += Get-ChildItem -LiteralPath $game -Recurse -Force -ErrorAction SilentlyContinue -ErrorVariable scanErrors
-if ($scanErrors.Count -gt 0) {
-    $scanErrors | Select-Object -First 5 | ForEach-Object { Write-Warning $_.ToString() }
-    throw "Scansione della cartella del gioco incompleta ($($scanErrors.Count) errori): controllo dell'accesso non completabile."
-}
-$violations = @()
-$n = 0
-foreach ($it in $items) {
-    $n++
-    if ($n % 200 -eq 0) { Write-Host "  controllati $n / $($items.Count)" }
-    if ($it.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
-        $violations += "REPARSE POINT dentro il gioco: $($it.FullName)"; continue
+Write-Host "== 1c: integrita' e permessi EFFETTIVI della copia =="
+$manifestFile = Join-Path $archive 'MANIFEST_ARCHIVI.json'
+Assert-NoReparsePoint $manifestFile 'Manifest'
+if (-not (Test-Path -LiteralPath $manifestFile -PathType Leaf)) { throw "Manifest copia mancante: $manifestFile" }
+try { $m = Get-Content -LiteralPath $manifestFile -Raw -ErrorAction Stop | ConvertFrom-Json -ErrorAction Stop }
+catch { throw "Manifest illeggibile/non valido: $($_.Exception.Message)" }
+if ($m.Format -ne 'FILM_PRIVATE_ACII_COPY_V1') { throw "Formato manifest sconosciuto." }
+$entries = @($m.Copies)
+if ($entries.Count -lt 1) { throw "Manifest vuoto." }
+$allowedNames = @('DataPC_Abstergo.forge', 'DataPC_Hideout.forge', 'SoundData\pc\sounds_ita.pck')
+$seen = @{}
+foreach ($entry in $entries) {
+    $name = [string]$entry.RelativePath
+    if ($allowedNames -cnotcontains $name -or $seen.ContainsKey($name)) {
+        throw "Elemento non previsto/ripetuto nel manifest: $name"
     }
-    $granted = [FilmAccess]::MaximumAllowed($it.FullName)
+    $seen[$name] = $true
+}
+if (-not $seen.ContainsKey('DataPC_Abstergo.forge')) { throw "L'archivio Abstergo non e' tra le copie." }
+$readErrors = @()
+$items = @(Get-Item -LiteralPath $archive -Force)
+$items += Get-ChildItem -LiteralPath $archive -Recurse -Force -ErrorAction SilentlyContinue -ErrorVariable readErrors
+if ($readErrors.Count -gt 0) { throw "Lettura incompleta della copia: stop." }
+$fileCount = 0
+foreach ($item in $items) {
+    if ($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
+        throw "Link/junction all'interno della copia: $($item.FullName)"
+    }
+    $granted = [FilmAccess]::MaximumAllowed($item.FullName)
     $w = $granted -band $WriteMask
-    if ($w -ne 0) { $violations += ('{0} : diritti di modifica 0x{1:X}' -f $it.FullName, $w) }
+    if ($w -ne 0) {
+        throw ("L'account di Claude ha diritti di scrittura/eliminazione sulla COPIA: {0} (0x{1:X}). Bloccare con ACL di Windows, senza cambiare il gioco." -f $item.FullName, $w)
+    }
+    if (-not $item.PSIsContainer) { $fileCount++ }
 }
-if ($violations.Count -gt 0) {
-    $violations | Select-Object -First 20 | ForEach-Object { Write-Warning $_ }
-    throw "Windows CONSENTE a questo account di modificare $($violations.Count) elementi del gioco. Avvio rifiutato: rendere la cartella di sola lettura per l'account dedicato (par. 2) e ripetere."
+# Un DELETE_CHILD sul parent consentirebbe di cancellare/renominare l'intera cartella della copia.
+$parent = Split-Path -Path $archive -Parent
+if ($parent) {
+    $rightsParent = [FilmAccess]::MaximumAllowed($parent)
+    if (($rightsParent -band [uint32]0x40) -ne 0) {
+        throw "L'account Claude possiede DELETE_CHILD sul parent della copia ($parent). Usare un contenitore protetto."
+    }
 }
-Write-Host "Accesso effettivo: nessun diritto di modifica su $($items.Count) elementi (cartella, sottocartelle e file)."
-Write-Host "Conferma manuale consigliata: Esplora risorse -> Proprieta' -> Sicurezza -> Avanzate -> Accesso effettivo, per questo stesso account."
+if ($fileCount -ne ($entries.Count + 1)) {
+    throw "Nella copia esistono file inattesi o ne mancano ($fileCount vs $($entries.Count + 1))."
+}
+foreach ($entry in $entries) {
+    $pathToCheck = Join-Path $archive ([string]$entry.RelativePath)
+    Assert-NoReparsePoint $pathToCheck 'Archivio'
+    if (-not (Test-Path -LiteralPath $pathToCheck -PathType Leaf)) { throw "Archivio assente: $pathToCheck" }
+    $it = Get-Item -LiteralPath $pathToCheck -Force
+    if ([long]$it.Length -ne [long]$entry.Bytes) { throw "Dimensione diversa nel file $($entry.RelativePath)" }
+    $hash = (Get-FileHash -LiteralPath $pathToCheck -Algorithm SHA256).Hash
+    if ($hash -ne [string]$entry.SHA256) { throw "SHA256 difforme: $($entry.RelativePath)" }
+    Write-Host "Archivio copiato verificato: $($entry.RelativePath)"
+}
+Write-Host "Copia protetta per l'account corrente e manifest SHA256 validato."
+Write-Host "ATTENZIONE: il controllo della copia non certifica da solo l'inaccessibilita' del gioco originale da Windows."
 
-Write-Host "== Fase 1d: configurazioni preesistenti =="
+Write-Host "== 1d: configurazioni Claude preesistenti =="
 foreach ($n2 in @('.claude', 'CLAUDE.md', 'CLAUDE.local.md', '.mcp.json', 'capitolato')) {
     $p = Join-Path $work $n2
     if (Test-Path -LiteralPath $p) {
-        throw "Trovato '$p' preesistente e non verificato. Usare una WorkDir nuova o vuota (il launcher non riusa configurazioni esistenti)."
+        throw "Configurazione preesistente non verificata: $p. Usare cartella privata nuova/vuota."
     }
 }
 $anc = Split-Path -Path $work -Parent
 while ($anc) {
     foreach ($n2 in @('CLAUDE.md', 'CLAUDE.local.md', '.claude')) {
-        if (Test-Path -LiteralPath (Join-Path $anc $n2)) { throw "Trovato '$(Join-Path $anc $n2)' in una cartella superiore: Claude lo caricherebbe. Spostare WorkDir altrove." }
+        if (Test-Path -LiteralPath (Join-Path $anc $n2)) {
+            throw "Istruzioni Claude potenzialmente ereditate dalla cartella parent: $(Join-Path $anc $n2)"
+        }
     }
     $next = Split-Path -Path $anc -Parent
     if (-not $next -or $next -eq $anc) { break }
@@ -209,115 +224,98 @@ while ($anc) {
 $userSettings = Join-Path $env:USERPROFILE '.claude\settings.json'
 if (Test-Path -LiteralPath $userSettings) {
     try { $us = Get-Content -LiteralPath $userSettings -Raw | ConvertFrom-Json }
-    catch { throw "Impossibile leggere $userSettings: configurazione utente non verificabile." }
+    catch { throw "Impossibile verificare le configurazioni utente Claude." }
     $problems = @()
     if ($us.permissions -and $us.permissions.allow -and @($us.permissions.allow).Count -gt 0) { $problems += 'regole allow' }
-    if ($us.permissions -and $us.permissions.defaultMode -and @('default', 'plan') -notcontains $us.permissions.defaultMode) { $problems += "defaultMode=$($us.permissions.defaultMode)" }
+    if ($us.permissions -and $us.permissions.defaultMode -and @('default','plan') -notcontains $us.permissions.defaultMode) { $problems += 'modalita permissiva' }
     if ($us.hooks) { $problems += 'hooks' }
     if ($us.mcpServers) { $problems += 'mcpServers' }
-    if ($problems.Count -gt 0) { throw "La configurazione utente $userSettings contiene: $($problems -join ', '). Usare l'account dedicato senza configurazioni permissive." }
+    if ($problems.Count -gt 0) { throw "Configurazione utente permissiva: $($problems -join ', ')" }
 }
-Write-Host "Nessuna configurazione preesistente in WorkDir, nelle cartelle superiori o nell'utente. (Eventuali impostazioni 'managed' di sistema non sono verificate.)"
 
-Write-Host "== Fase 1e: capitolato (copia locale di FILM) =="
-$docsDir = Split-Path -Parent $PSScriptRoot                 # ...\docs\ricerca_massiva
-$repoRoot = Split-Path -Parent (Split-Path -Parent $docsDir) # radice del repository FILM
-$required = @('README.md', 'CLAUDE.md', 'docs', 'docs\ricerca_massiva\CLAUDE_CODE_LOCALE_DELEGA.md')
+Write-Host "== 1e: revisione esatta delle istruzioni FILM =="
+$docsDir = Split-Path -Parent $PSScriptRoot
+$repoRoot = Split-Path -Parent (Split-Path -Parent $docsDir)
+$required = @('README.md','CLAUDE.md','docs','docs\ricerca_massiva\CLAUDE_CODE_LOCALE_DELEGA.md')
 foreach ($r in $required) {
-    if (-not (Test-Path -LiteralPath (Join-Path $repoRoot $r))) { throw "Capitolato incompleto: manca $r in $repoRoot." }
+    if (-not (Test-Path -LiteralPath (Join-Path $repoRoot $r))) { throw "Capitolato incompleto: $r" }
 }
 $git = Get-Command git -ErrorAction SilentlyContinue
-if (-not $git) { throw "git non disponibile: impossibile certificare la revisione del capitolato." }
+if (-not $git) { throw "Git non disponibile per verificare la revisione." }
 $head = (& $git.Source -C $repoRoot rev-parse HEAD 2>$null)
-if ($LASTEXITCODE -ne 0 -or -not $head) { throw "$repoRoot non e' un clone Git valido." }
+if ($LASTEXITCODE -ne 0 -or -not $head) { throw "Repository FILM non valido." }
 $head = $head.Trim().ToLowerInvariant()
-if ($head -ne $ExpectedCommit.ToLowerInvariant()) { throw "HEAD locale $head diverso dal commit atteso $ExpectedCommit." }
+if ($head -ne $ExpectedCommit.ToLowerInvariant()) { throw "Commit FILM inatteso: $head (atteso $ExpectedCommit)" }
 $dirty = & $git.Source -C $repoRoot status --porcelain --untracked-files=all
-if ($LASTEXITCODE -ne 0) { throw "git status non riuscito." }
-if ($dirty) { throw "La copia locale di FILM ha modifiche non committate: il capitolato non corrisponde al commit $head." }
-Write-Host "Capitolato: $repoRoot al commit $head, nessuna modifica locale."
+if ($LASTEXITCODE -ne 0 -or $dirty) { throw "Clone FILM non pulito o git status fallito." }
+Write-Host "FILM commit verificato: $head"
 
-Write-Host "== Fase 1f: informazioni =="
+Write-Host "== 1f: tool disponibili (solo informazione) =="
 $smi = Get-Command nvidia-smi -ErrorAction SilentlyContinue
 if ($smi) { & $smi.Source --query-gpu=name,memory.total,driver_version --format=csv,noheader }
-else { Write-Warning "nvidia-smi non trovato: GPU NVIDIA non verificabile." }
+else { Write-Warning "NVIDIA non rilevabile." }
 $claude = Get-Command claude -ErrorAction SilentlyContinue
-if ($claude) { Write-Host "CLI claude trovata: $($claude.Source)"; & $claude.Source --version }
-else { Write-Warning "CLI 'claude' non trovata. Installare Claude Code seguendo la documentazione ufficiale." }
-foreach ($k in @('DataPC_Abstergo.forge', 'SoundData\pc\sounds_ita.pck')) {
-    if (Test-Path -LiteralPath (Join-Path $game $k)) { Write-Host "TROVATO  $k" } else { Write-Host "MANCANTE $k" }
-}
+if ($claude) { Write-Host "Claude CLI: $($claude.Source)"; & $claude.Source --version }
+else { Write-Warning "CLI claude assente." }
 
-Write-Host "== Fase 2: configurazione della cartella privata =="
-if (-not (Confirm-Step "Creare $work, copiarvi il capitolato e creare .claude\settings.json e CLAUDE.md?")) {
-    Write-Host "Interrotto dall'utente. Nessun file creato."; return
+Write-Host "== 2: copia SOLO delle istruzioni nel WorkDir =="
+if (-not (Confirm-Step "Creare $work, copiare il capitolato e predisporre Claude in plan mode?")) {
+    Write-Host "Annullato prima della scrittura."; return
 }
-New-Item -ItemType Directory -Force -Path $work | Out-Null
+New-Item -ItemType Directory -Path $work -Force | Out-Null
 Assert-NoReparsePoint $work 'WorkDir'
-Assert-Separated $game ((Get-Item -LiteralPath $work -Force).FullName.TrimEnd('\'))
-
+Assert-Separated $archive ((Get-Item -LiteralPath $work -Force).FullName.TrimEnd('\'))
 $cap = Join-Path $work 'capitolato'
 $claudeDir = Join-Path $work '.claude'
-foreach ($d in @($cap, $claudeDir)) {
-    New-Item -ItemType Directory -Path $d | Out-Null    # senza -Force: fallisce se esiste gia'
-    if (Test-IsReparse $d) { throw "$d e' un reparse point: interrotto." }
+foreach ($d in @($cap,$claudeDir)) {
+    New-Item -ItemType Directory -Path $d -ErrorAction Stop | Out-Null
+    Assert-NoReparsePoint $d 'Nuova directory privata'
 }
-Copy-Item -LiteralPath (Join-Path $repoRoot 'docs') -Destination (Join-Path $cap 'docs') -Recurse
-Copy-Item -LiteralPath (Join-Path $repoRoot 'README.md') -Destination (Join-Path $cap 'README.md')
-Copy-Item -LiteralPath (Join-Path $repoRoot 'CLAUDE.md') -Destination (Join-Path $cap 'CLAUDE_REPOSITORY_FILM.md')
-$manifest = Get-ChildItem -LiteralPath $cap -Recurse -File -Force | ForEach-Object {
-    '{0}  {1}' -f (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash, $_.FullName.Substring($cap.Length + 1)
+Copy-Item -LiteralPath (Join-Path $repoRoot 'docs') -Destination (Join-Path $cap 'docs') -Recurse -ErrorAction Stop
+Copy-Item -LiteralPath (Join-Path $repoRoot 'README.md') -Destination (Join-Path $cap 'README.md') -ErrorAction Stop
+Copy-Item -LiteralPath (Join-Path $repoRoot 'CLAUDE.md') -Destination (Join-Path $cap 'CLAUDE_REPOSITORY_FILM.md') -ErrorAction Stop
+$docHashes = Get-ChildItem -LiteralPath $cap -Recurse -File -Force | ForEach-Object {
+    '{0}  {1}' -f (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash,$_.FullName.Substring($cap.Length+1)
 }
-@("Revisione Git del capitolato: $head (working tree pulito)", "Copiato il: $(Get-Date -Format s)", '') + $manifest |
+@("Revisione Git FILM: $head (clean)","Copia istruzioni: $(Get-Date -Format s)",'') + $docHashes |
     Set-Content -LiteralPath (Join-Path $cap 'MANIFEST_SHA256.txt') -Encoding UTF8
-Write-Host "Capitolato copiato in $cap (manifest: MANIFEST_SHA256.txt)"
-
-# Percorso del gioco in forma POSIX per le regole (C:\A B -> /c/A B; nella regola: //c/A B/**).
-$posix = ($game.Substring(0, 1).ToLowerInvariant() + $game.Substring(2)).Replace('\', '/')
+$posix = ($archive.Substring(0,1).ToLowerInvariant() + $archive.Substring(2)).Replace('\','/')
 $settings = [ordered]@{
     permissions = [ordered]@{
         defaultMode                  = 'plan'
         disableBypassPermissionsMode = 'disable'
         disableAutoMode              = 'disable'
-        # Solo Edit(path) e Read(path) sono consultate per i file: Edit copre anche Write.
-        deny                         = @(
+        deny = @(
             "Edit(//$posix/**)",
             'Bash(git push *)', 'Bash(curl *)', 'Bash(wget *)',
-            'PowerShell(git push *)', 'PowerShell(Invoke-WebRequest *)', 'PowerShell(Invoke-RestMethod *)',
-            'PowerShell(Start-BitsTransfer *)', 'PowerShell(Remove-Item *)',
-            'WebFetch'
+            'PowerShell(git push *)', 'PowerShell(Invoke-WebRequest *)',
+            'PowerShell(Invoke-RestMethod *)', 'PowerShell(Start-BitsTransfer *)',
+            'PowerShell(Remove-Item *)', 'WebFetch'
         )
-        ask                          = @('Bash', 'PowerShell', 'Edit')
+        ask = @('Bash','PowerShell','Edit')
     }
 }
-$settingsPath = Join-Path $claudeDir 'settings.json'
-$settings | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $settingsPath -Encoding UTF8
-Write-Host "Creato $settingsPath"
+$settings | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $claudeDir 'settings.json') -Encoding UTF8
 
-$rulesPath = Join-Path $work 'CLAUDE.md'
 @"
-# FILM - Claude Code locale (accesso limitato)
-PRIMA DI L0: leggere capitolato\CLAUDE_REPOSITORY_FILM.md (istruzioni vincolanti del progetto), capitolato\README.md,
-capitolato\docs\05_DECISIONI.md, capitolato\docs\preproduzione\REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md e
-integralmente capitolato\docs\ricerca_massiva\ (in particolare CLAUDE_CODE_LOCALE_DELEGA.md, LIMITI_E_DIRITTI.md,
-PIPELINE_E_STATO_ANTEPRIMA.md, BENCHMARK_TOOLCHAIN.md, VOCE_ITALIANA_ORIGINALE_CATALOGO.md); il resto di capitolato\docs
-e' consultabile quando serve. Poi dichiarare all'utente la revisione $head indicata in capitolato\MANIFEST_SHA256.txt
-e attendere conferma. Le istruzioni del capitolato prevalgono su questo file in caso di dubbio.
-Documenti presenti solo in altre PR (es. PR #11, pilota_prologo) NON sono nel capitolato: non presumerne il contenuto.
-- Cartella del gioco: $game -> SOLA LETTURA. Mai scrivere, patchare, avviare il gioco o il launcher.
-- Lavorare solo in: $work. Nessuna rete, nessun download, nessun push su GitHub di file del gioco.
-- Restare in modalita' plan: nessun file scritto finche' l'utente non approva un piano e un cambio di modalita'.
-  Mai bypassPermissions o auto mode.
-- Fasi L0-L6 con STOP e consenso esplicito; prima dry-run. Non dichiarare risultati senza prova.
-- Voci: solo registrazioni originali italiane, mai sintesi/clonazione/modifica.
-- Nessun 4K della stanza vuota. Un solo frame finale FILM_PREVIEW_01_ABSTERGO.png con Desmond e Lucy, privato.
-  Niente primi 15 minuti.
-"@ | Set-Content -LiteralPath $rulesPath -Encoding UTF8
-Write-Host "Creato $rulesPath"
+# FILM - CLAUDE locale, SOLTANTO DA COPIA PRIVATA
+Leggi integralmente capitolato\CLAUDE_REPOSITORY_FILM.md, capitolato\README.md,
+capitolato\docs\05_DECISIONI.md, capitolato\docs\ricerca_massiva\CLAUDE_CODE_LOCALE_DELEGA.md,
+capitolato\docs\ricerca_massiva\PIPELINE_E_STATO_ANTEPRIMA.md e gli altri file in capitolato\docs.
+Prima di L0 dichiara il commit $head presente in capitolato\MANIFEST_SHA256.txt; attendi conferma.
+ARCHIVI COPIATI: $archive (SOLO LETTURA; mai scrivere, spostare, cancellare, rinominare o patchare).
+LAVORO PRIVATO: $work (qui soltanto nuovi file, mesh lavorate e documentazione).
+**Non aprire mai la cartella originale del videogioco, anche se e' accessibile sul PC.**
+Nessuna rete, nessun download, nessuna pubblicazione di file Ubisoft su GitHub.
+Modalita' PLAN all'avvio; ogni fase L0-L6 richiede consenso e stop.
+Solo una immagine finale fotorealistica con Desmond e Lucy; nessun video di 15 minuti.
+Voci esclusivamente originali italiane, senza TTS, clonazione o alterazioni.
+"@ | Set-Content -LiteralPath (Join-Path $work 'CLAUDE.md') -Encoding UTF8
+Write-Host "Preparazione eseguita senza aprire il gioco originale."
 
-Write-Host "== Fase 3: avvio =="
-if (-not $claude) { Write-Host "CLI claude assente: avvio saltato."; return }
-if (Confirm-Step "Avviare Claude Code in modalita' plan in $work? Controllare subito /permissions.") {
+Write-Host "== 3: Claude PLAN (solo su richiesta) =="
+if (-not $claude) { Write-Host "CLI Claude mancante: non viene avviata."; return }
+if (Confirm-Step "Avviare Claude in $work, modalita' PLAN, usando SOLO gli archivi copiati?") {
     Push-Location -LiteralPath $work
     try { & $claude.Source --permission-mode plan } finally { Pop-Location }
 } else { Write-Host "Avvio annullato." }
