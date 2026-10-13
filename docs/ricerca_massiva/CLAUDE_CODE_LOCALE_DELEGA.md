@@ -12,11 +12,11 @@
 | `D:\FILM_PRIVATO` | Risultati e capitolato Claude | Scrittura con account Claude, fuori dalla copia |
 
 ### Protezione reale e limiti
-1. **Due account distinti:** il primo account prepara la copia; il secondo è un account standard dedicato a Claude. La copia viene resa non scrivibile per il secondo account **automaticamente** da `prepara_copia_privata_acii.ps1`, dopo riepilogo e conferma `PROTEGGI`; c'è un ripristino `-RipristinaAcl` limitato alla sola copia. Non modificare i permessi dell'installazione originale.
+1. **Due account distinti:** il primo account prepara la copia; il secondo è un account standard dedicato a Claude. La copia viene resa non scrivibile per il secondo account **automaticamente** da `prepara_copia_privata_acii.ps1`, solo con `-ProtectCopyForUser` e dopo la conferma separata `PROTEGGI`, successiva alla verifica delle impronte; c'è un ripristino `-RipristinaAcl` limitato alla sola copia. Non modificare i permessi dell'installazione originale.
 2. Claude Code su Windows nativo **non è automaticamente isolato dal resto del filesystem**. Il launcher valida i permessi della **copia** con AccessCheck Windows e ne verifica l'hash, ma non può garantire che Claude non tocchi altre cartelle accessibili al suo account. Evitare diritti superflui all'account dedicato; il principio «non aprire mai il gioco originale» resta una regola comportamentale se le sue ACL permettono comunque l'accesso. Non dichiarare protezione totale senza un confine OS indipendente.
 3. Vietati bypass di permessi, patching, accesso in scrittura all'archivio, uso di software dubbi/DRM bypass, network upload e pubblicazione di asset proprietari. Ogni fase ha uno **STOP**.
 4. I tre script sono in `docs/ricerca_massiva/scripts/` e vanno **letti prima dell'esecuzione**:
-   - `prepara_copia_privata_acii.ps1`: **separato, da eseguire PRIMA di Claude** con l'account preparatore. Legge il gioco, copia soltanto Abstergo con verifica SHA256, applica i permessi NTFS **della sola copia** per l'account Claude (`-ClaudeAccount`) dopo conferma, li verifica con AuthZ e, in caso di errore, li ripristina. Supporta `-DryRun` e `-RipristinaAcl`.
+   - `prepara_copia_privata_acii.ps1`: **separato, da eseguire PRIMA di Claude** con l'account preparatore. Legge il gioco, copia soltanto Abstergo con verifica SHA256, applica i permessi NTFS **della sola copia** per l'account Claude (`-ProtectCopyForUser`) dopo conferma, li verifica con AuthZ e, in caso di errore, li ripristina. Supporta `-DryRun` e `-RipristinaAcl`.
    - `avvia_claude_locale.ps1`: opera **esclusivamente con `-ArchiveDir`**, verifica manifest SHA256 e ACL sola lettura, copia istruzioni, chiede conferma, avvia `plan`.
    - `inventario_acii_readonly.ps1`: inventaria **esclusivamente gli archivi copiati**, scrive CSV nella WorkDir.
 
@@ -25,10 +25,10 @@
 **A. Preparazione con l'account del proprietario del gioco**
 
 ```powershell
-.\docs\ricerca_massiva\scripts\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ClaudeAccount "film_claude" -DryRun
+.\docs\ricerca_massiva\scripts\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude" -DryRun
 ```
 
-Controllare il riepilogo; poi eseguire **senza** `-DryRun`, digitando `PROTEGGI`. Lo script copia solo `DataPC_Abstergo.forge`, crea `MANIFEST_ARCHIVI.json` (V2) e protegge la copia. Non sovrascrive una cartella di staging esistente e non avvia Claude. Non copiare ancora voci e rifugio senza una successiva decisione.
+Controllare il riepilogo; poi eseguire **senza** `-DryRun`. Prima conferma `COPIA`: copia solo `DataPC_Abstergo.forge` con verifica SHA256 e crea `MANIFEST_ARCHIVI.json` (V2), **senza toccare ACL**. Seconda conferma separata `PROTEGGI`, solo con `-ProtectCopyForUser`: mostra permessi attuali e proposti, poi protegge la sola copia. Non sovrascrive una cartella di staging esistente e non avvia Claude. Non copiare ancora voci e rifugio senza una successiva decisione.
 
 **B. Proteggere la copia, non il gioco**
 

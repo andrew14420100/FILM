@@ -16,21 +16,30 @@
 ## Prima fase — staging, eseguito dall'account che possiede una copia valida del gioco
 
 1. Ottenere sul PC una copia del branch della PR #14 e **leggere prima gli script**; non usarli dal cloud come se fossero stati provati.
-2. **Creare prima**, con un account amministratore, un **account Windows locale standard dedicato a Claude** (es. `film_claude`). Lo script lo rifiuta se è amministratore, disabilitato, non locale o uguale al preparatore.
-3. **Dry-run.** Si esegue con l'account preparatore in PowerShell **non elevato**, dal clone FILM. Mostra controlli e riepilogo **senza creare, copiare o modificare nulla**:
+2. **Creare prima**, con un account amministratore (nessuna modifica ai permessi del PC finché l'utente non esegue e conferma lo script in locale), un **account Windows locale standard dedicato a Claude** (es. `film_claude`). Lo script lo rifiuta se è amministratore, disabilitato, non locale o uguale al preparatore.
+3. **Dry-run.** Si esegue con l'account preparatore in PowerShell **non elevato**, dal clone FILM. Mostra controlli e riepilogo **senza creare, copiare o cambiare ACL**:
 
    ```powershell
-   .\docs\ricerca_massiva\scripts\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ClaudeAccount "film_claude" -DryRun
+   .\docs\ricerca_massiva\scripts\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude" -DryRun
    ```
 
    L'unica scrittura possibile è la compilazione temporanea del codice di controllo permessi (`Add-Type`) che PowerShell fa nella cartella temporanea dell'utente. La lettura dell'originale per le verifiche può aggiornare la data di ultimo accesso dei file, se Windows la registra.
-4. **Esecuzione reale.** Stesso comando **senza `-DryRun`**. Lo script mostra lo stesso riepilogo (file, byte, account Claude con SID, permessi da applicare) e procede **solo se si digita `PROTEGGI`**. Poi, in ordine:
-   1. crea `D:\FILM_ARCHIVI_RO` (si ferma se esiste già);
-   2. salva il descrittore iniziale della copia in `%LOCALAPPDATA%\FILM\acl_backup\`, cioè nel profilo del preparatore, non accessibile all'account Claude;
-   3. applica alla **sola copia** una DACL **senza ereditarietà**: SYSTEM, Administrators e preparatore con controllo completo; account Claude con **sola lettura ed esecuzione**;
-   4. copia **solo** `DataPC_Abstergo.forge` e verifica SHA256 e byte tra originale e copia;
-   5. scrive `MANIFEST_ARCHIVI.json` in formato **V2**, con il SID dell'account Claude;
-   6. verifica con **AuthZ** l'accesso **effettivo** dell'account Claude su cartella, file e **cartella genitore**. Basta un solo diritto di scrittura, cancellazione, rinomina, modifica dei permessi o proprietà, oppure DELETE_CHILD / DELETE / WRITE_DAC / WRITE_OWNER sul genitore, per far scattare il ripristino automatico delle ACL iniziali **della sola copia** e lo STOP.
+4. **Esecuzione reale.** Stesso comando **senza `-DryRun`**. Ci sono **due conferme separate**:
+   1. Al riepilogo si digita **`COPIA`**. Lo script crea `D:\FILM_ARCHIVI_RO` (si ferma se esiste già), copia **solo** `DataPC_Abstergo.forge`, verifica SHA256 e byte tra originale e copia, e scrive `MANIFEST_ARCHIVI.json` (**V2**). A questo punto **nessuna ACL è cambiata**.
+   2. Solo se è stato passato `-ProtectCopyForUser`, lo script mostra:
+      - i **permessi attuali** della copia;
+      - quelli **proposti**;
+      - il SID dell'account e la posizione del backup.
+
+      Chiede poi una conferma **separata**, **`PROTEGGI`**. Senza questo parametro (default conservativo) la copia resta non protetta e il launcher rifiuterà l'avvio.
+   3. Dopo `PROTEGGI`:
+      - salva il descrittore attuale della **sola copia** in `%LOCALAPPDATA%\FILM\acl_backup\`, nel profilo del preparatore, **fuori** dalla copia e non accessibile all'account Claude;
+      - applica una DACL **senza ereditarietà**: SYSTEM, Administrators e preparatore con controllo completo; account Claude con **sola lettura ed esecuzione**. Nessuna ACE *Deny*, nessuna modifica a `Users`/`Everyone` altrove, proprietario invariato;
+      - verifica con **AuthZ** l'accesso **effettivo** dell'account Claude su cartella, manifest, file e **cartella genitore** (nessun DELETE_CHILD / DELETE / WRITE_DAC / WRITE_OWNER);
+      - fa un **test finale di sola lettura**, riverificando le impronte rispetto al manifest.
+
+      Qualsiasi errore fa scattare il **ripristino automatico** delle ACL salvate della sola copia, con le istruzioni a schermo, e lo STOP.
+   4. **Protezione in un secondo momento** di una copia già preparata, che riverifica manifest, impronte e contenuto esatto: `prepara_copia_privata_acii.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude"`, anche con `-DryRun`.
 5. **Ripristino manuale**, se serve: `prepara_copia_privata_acii.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -RipristinaAcl`, con conferma `RIPRISTINA`. Rimette solo i permessi salvati della copia, mai quelli del genitore o del gioco. Dopo il ripristino il launcher rifiuta l'avvio.
 6. **Mai** cartelle, file o permessi dell'installazione `D:\Games\Assassin's Creed II` vengono modificati. Lo script **non** modifica la cartella genitore: se questa concede diritti critici all'account Claude, si ferma prima di creare qualsiasi cosa.
 7. Facoltativo: **Proprietà → Sicurezza → Avanzate → Accesso effettivo** su cartella e file, selezionando `film_claude`. Il launcher ripete comunque il controllo con il **token reale** dell'account. L'attributo «Sola lettura» viene impostato solo come segnale visivo: non sostituisce l'ACL.
@@ -73,6 +82,7 @@ L6. **Solo dopo approvazione separata dei personaggi**, una immagine finale 4K c
 ## Criticità non ancora dimostrate
 
 - Script, AuthZ e AccessCheck **non sono stati eseguiti su Windows**. I controlli statici superati sono elencati in [TEST_WINDOWS_OPZIONE2.md](TEST_WINDOWS_OPZIONE2.md): sintassi, PSScriptAnalyzer, compilazione C# e solo ASCII. Non equivalgono a un test delle ACL reali.
+- **La copia in sola lettura non isola da sola l'installazione originale:** se l'account Claude può scrivere in `D:\Games\Assassin's Creed II`, quella cartella resta esposta. Gli script non ne modificano mai i permessi; l'utente può verificarne l'accesso effettivo per `film_claude` ed eventualmente decidere in autonomia.
 - AuthZ da SID, usato nella preparazione, non include i gruppi legati alla sessione (es. INTERACTIVE). Per questo la DACL della copia contiene solo voci esplicite e la verifica definitiva è quella del launcher con il token reale.
 - Non è stata verificata l'esistenza di `DataPC_Abstergo.forge` sulla copia installata dell'utente.
 - Il manifesto con SHA256 protegge da variazioni **rispetto al momento dello staging**, ma non verifica automaticamente la provenienza canonica di ogni mesh contenuta nel file.

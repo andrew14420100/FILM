@@ -38,13 +38,15 @@ Esito atteso → da annotare in privato e riassumere nella PR (solo testo, nessu
 | ID | Account | Azione | Esito atteso | Stato |
 |---|---|---|---|---|
 | TW-01 | preparatore | Controllo sintassi del §1 | 0 errori per tutti gli script | NON ESEGUITO |
-| TW-02 | preparatore | `prepara… -ClaudeAccount film_claude -DryRun` | Riepilogo con SID; messaggio «DRY RUN»; **`D:\FILM_ARCHIVI_RO` non esiste** dopo l'esecuzione | NON ESEGUITO |
+| TW-02 | preparatore | `prepara… -ProtectCopyForUser film_claude -DryRun` | Riepilogo con SID; messaggio «DRY RUN»; **`D:\FILM_ARCHIVI_RO` non esiste** dopo l'esecuzione | NON ESEGUITO |
 | TW-03 | preparatore (sessione **elevata**) | Stesso comando | Rifiuto «Sessione elevata», nessuna creazione | NON ESEGUITO |
-| TW-04 | preparatore | `-ClaudeAccount` = account preparatore | Rifiuto «deve essere DIVERSO» | NON ESEGUITO |
-| TW-05 | preparatore | `-ClaudeAccount` di un amministratore o inesistente | Rifiuto, nessuna creazione | NON ESEGUITO |
+| TW-04 | preparatore | `-ProtectCopyForUser` = account preparatore | Rifiuto «deve essere DIVERSO» | NON ESEGUITO |
+| TW-05 | preparatore | `-ProtectCopyForUser` di un amministratore o inesistente | Rifiuto, nessuna creazione | NON ESEGUITO |
 | TW-06 | preparatore | `-ArchiveDir` dentro `D:\Games\Assassin's Creed II` o uguale a `-WorkDir` | Rifiuto «Percorsi non separati» | NON ESEGUITO |
-| TW-07 | preparatore | Esecuzione reale, risposta diversa da `PROTEGGI` | «Annullato. Nessuna modifica», cartella assente | NON ESEGUITO |
-| TW-08 | preparatore | Esecuzione reale con `PROTEGGI` | Copia creata, «Copiato e verificato SHA256», backup ACL creato in `%LOCALAPPDATA%\FILM\acl_backup\…`, verifica AuthZ «OK», «Claude NON e' stato avviato» | NON ESEGUITO |
+| TW-07 | preparatore | Esecuzione reale, risposta diversa da `COPIA` | «Annullato. Nessuna modifica», cartella assente | NON ESEGUITO |
+| TW-07b | preparatore | Esecuzione **senza** `-ProtectCopyForUser`, `COPIA` | Copia e manifest creati, avviso «copia NON protetta», ACL della copia **ereditate** e invariate; il launcher di `film_claude` va in STOP | NON ESEGUITO |
+| TW-07c | preparatore | Con `-ProtectCopyForUser`: `COPIA`, poi risposta diversa da `PROTEGGI` | Mostrati permessi attuali e proposti; «Permessi NON modificati» | NON ESEGUITO |
+| TW-08 | preparatore | Esecuzione reale con `COPIA` e poi `PROTEGGI` (oppure modalità `-ArchiveDir … -ProtectCopyForUser film_claude` su copia esistente) | Copia creata, «Copiato e verificato SHA256», backup ACL creato in `%LOCALAPPDATA%\FILM\acl_backup\…`, verifica AuthZ e impronte «OK», «Claude NON e' stato avviato» | NON ESEGUITO |
 | TW-09 | preparatore | `icacls D:\FILM_ARCHIVI_RO` e `icacls D:\FILM_ARCHIVI_RO\DataPC_Abstergo.forge` | Nessuna voce ereditata dal genitore; `film_claude:(RX)` (sulla cartella `(OI)(CI)(RX)`); SYSTEM, Administrators e preparatore `(F)` | NON ESEGUITO |
 | TW-10 | preparatore | Confronto con il riferimento del §2 | `Length`, `LastWriteTime` e SDDL della cartella del gioco **identici** a prima | NON ESEGUITO |
 | TW-11 | preparatore | Esplora risorse → Accesso effettivo per `film_claude` su cartella e file | Solo lettura, esecuzione ed elenco | NON ESEGUITO |

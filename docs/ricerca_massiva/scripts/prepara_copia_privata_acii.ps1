@@ -1,54 +1,65 @@
 <#
 .SYNOPSIS
-  FILM - Opzione 2: copia privata degli archivi AC II e protezione NTFS automatica della SOLA copia.
+  FILM - Opzione 2: copia privata degli archivi AC II e (solo su richiesta esplicita) protezione NTFS
+  automatica della SOLA copia per l'account Windows standard dedicato a Claude.
 
 .DESCRIPTION
   Eseguire PRIMA di Claude, dall'account Windows dell'utente che legge l'installazione Ubisoft Connect
-  (account "preparatore"), in PowerShell NON elevato. Claude NON viene avviato da questo script.
+  (account "preparatore"), in PowerShell NON elevato. Claude NON viene mai avviato da questo script.
 
-  Garanzie di progetto (da confermare con i test reali su Windows: vedi TEST_WINDOWS_OPZIONE2.md):
-    - L'installazione originale (-GameDir) viene SOLO letta: nessuna scrittura, nessuna modifica
-      di file, cartelle, attributi o permessi. Lo script rifiuta qualsiasi destinazione dentro il gioco.
-    - -DryRun non crea, copia, scrive o modifica NULLA: mostra soltanto il piano e i controlli.
-    - Le ACL vengono modificate SOLO su -ArchiveDir (cartella nuova, creata da questo script) e sui
-      file che contiene. Mai sulla cartella genitore, mai su altre cartelle.
-    - Prima di modificare i permessi viene mostrato un riepilogo e serve una conferma esplicita.
-    - In caso di errore dopo la modifica dei permessi: ripristino AUTOMATICO del descrittore salvato
-      della sola copia. Ripristino manuale successivo: -RipristinaAcl.
+  Default conservativo: senza -ProtectCopyForUser lo script copia e verifica soltanto; NESSUNA ACL viene
+  cambiata (e il launcher rifiutera' l'avvio finche' la copia non e' protetta).
 
-  Fasi:
-    1. Controlli in sola lettura: sessione non elevata; account Claude esistente, locale, abilitato,
-       standard (non Administrators), diverso dal preparatore; percorsi locali, separati, senza
-       junction/symlink; file sorgente presenti; spazio; diritti dell'account Claude sulla cartella
-       genitore (nessun DELETE_CHILD / WRITE_DAC / WRITE_OWNER / DELETE), calcolati con AuthZ.
-    2. Riepilogo (file, byte, account con SID, ACL che verranno applicate) e conferma: digitare PROTEGGI.
-    3. Crea ArchiveDir, salva il suo descrittore iniziale in %LOCALAPPDATA%\FILM\acl_backup (fuori dalla
-       portata dell'account Claude), applica la DACL protetta (senza ereditarieta'):
-         SYSTEM, Administrators, preparatore = Controllo completo; account Claude = Lettura ed esecuzione.
-    4. Copia i file (che ereditano la DACL protetta), verifica SHA256 e byte sorgente = copia,
-       scrive MANIFEST_ARCHIVI.json (formato V2, con SID dell'account Claude).
-    5. Verifica finale con AuthZ dell'accesso EFFETTIVO dell'account Claude su ArchiveDir, ogni file
-       e la cartella genitore. Qualsiasi diritto di modifica -> ripristino ACL e STOP.
-  La verifica definitiva con il token reale dell'account Claude la ripete avvia_claude_locale.ps1.
+  Modalita' (parameter set):
+    Prepara   : -GameDir -ArchiveDir [-ProtectCopyForUser <account>] [-DryRun]
+                1) controlli in sola lettura; 2) riepilogo; 3) conferma digitata COPIA; copia di SOLO
+                DataPC_Abstergo.forge (default) con verifica SHA256 e byte; manifest V2;
+                4) se -ProtectCopyForUser: mostra ACL attuali e proposte, conferma SEPARATA digitata
+                PROTEGGI, poi protezione (vedi sotto).
+    Proteggi  : -ArchiveDir -ProtectCopyForUser [-DryRun]
+                protegge in un secondo momento una copia gia' preparata, dopo aver riverificato
+                manifest, impronte e contenuto esatto della cartella.
+    Ripristina: -ArchiveDir -RipristinaAcl
+                ripristina le ACL salvate della SOLA copia (conferma RIPRISTINA).
 
-  Limite dichiarato: AuthZ da SID non include i gruppi legati alla sessione di logon (es. INTERACTIVE);
-  per questo la DACL della copia contiene SOLO voci esplicite e il launcher ripete il controllo con il
-  token reale. Script NON eseguito ne' testato su Windows.
+  Protezione (solo su ArchiveDir e sul suo contenuto, mai sul genitore, mai sul gioco):
+    - salvataggio del descrittore attuale della copia in %LOCALAPPDATA%\FILM\acl_backup del preparatore
+      (fuori dalla copia e nel profilo del preparatore, non accessibile all'account Claude);
+    - DACL protetta (senza ereditarieta'): SYSTEM, Administrators, preparatore = Controllo completo;
+      account Claude = Lettura ed esecuzione (attraversamento/lettura). Nessuna ACE Deny, nessuna
+      modifica a Users/Everyone altrove, proprietario invariato (preparatore);
+    - verifica AuthZ dell'accesso EFFETTIVO dell'account Claude su cartella, manifest, file e cartella
+      genitore (nessun DELETE_CHILD / DELETE / WRITE_DAC / WRITE_OWNER sul genitore);
+    - test finale di sola lettura: riverifica SHA256 di ogni copia contro il manifest;
+    - qualsiasi errore -> ripristino automatico del descrittore salvato della sola copia e STOP.
+
+  -DryRun: non crea cartelle, non copia, non scrive file, non cambia ACL. (PowerShell compila in memoria
+  /cartella temporanea dell'utente il codice C# di controllo permessi: e' l'unico effetto collaterale.)
+
+  Limiti dichiarati: AuthZ da SID non include i gruppi legati alla sessione di logon (es. INTERACTIVE),
+  per questo la DACL della copia contiene SOLO voci esplicite e il launcher ripete tutti i controlli con
+  il token reale dell'account Claude. La copia in sola lettura NON isola l'installazione originale se
+  l'account Claude puo' scrivere in D:\Games\Assassin's Creed II (permessi del gioco mai modificati qui).
+  Script NON TESTATO SU WINDOWS: vedi TEST_WINDOWS_OPZIONE2.md.
 
 .EXAMPLE
-  .\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ClaudeAccount "film_claude" -DryRun
-  .\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ClaudeAccount "film_claude"
+  .\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude" -DryRun
+  .\prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude"
+  .\prepara_copia_privata_acii.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -ProtectCopyForUser "film_claude"
   .\prepara_copia_privata_acii.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -RipristinaAcl
 #>
 [CmdletBinding(DefaultParameterSetName = 'Prepara')]
 param(
     [Parameter(Mandatory = $true, ParameterSetName = 'Prepara')][string]$GameDir,
     [Parameter(Mandatory = $true)][string]$ArchiveDir,
-    [Parameter(Mandatory = $true, ParameterSetName = 'Prepara')][string]$ClaudeAccount,
+    [Parameter(ParameterSetName = 'Prepara')]
+    [Parameter(Mandatory = $true, ParameterSetName = 'Proteggi')]
+    [Alias('ClaudeAccount')][string]$ProtectCopyForUser,
     [Parameter(ParameterSetName = 'Prepara')][string]$WorkDir = 'D:\FILM_PRIVATO',
     [Parameter(ParameterSetName = 'Prepara')][switch]$IncludeHideout,
     [Parameter(ParameterSetName = 'Prepara')][switch]$IncludeItalianVoices,
-    [Parameter(ParameterSetName = 'Prepara')][switch]$DryRun,
+    [Parameter(ParameterSetName = 'Prepara')]
+    [Parameter(ParameterSetName = 'Proteggi')][switch]$DryRun,
     [Parameter(Mandatory = $true, ParameterSetName = 'Ripristina')][switch]$RipristinaAcl
 )
 $ErrorActionPreference = 'Stop'
@@ -239,10 +250,129 @@ function Get-ClaudeViolations([string]$archive, [byte[]]$claudeSidBytes) {
     return , $out
 }
 
+
+function Resolve-ClaudeAccount([string]$name, [Security.Principal.SecurityIdentifier]$meSid) {
+    try { $sid = (New-Object Security.Principal.NTAccount($name)).Translate([Security.Principal.SecurityIdentifier]) }
+    catch { throw "Account '$name' non trovato. Creare prima un account Windows locale STANDARD dedicato a Claude." }
+    $full = $sid.Translate([Security.Principal.NTAccount]).Value
+    if ($sid.Value -eq $meSid.Value) { throw "L'account Claude deve essere DIVERSO dal preparatore/proprietario della copia ($full)." }
+    if ($null -eq $sid.AccountDomainSid -or $sid.Value -match '^S-1-5-(18|19|20)$' -or $sid.Value -match '^S-1-5-32-') {
+        throw "'$full' non e' un account utente valido (SID $($sid.Value))."
+    }
+    if (-not (Get-Command Get-LocalUser -ErrorAction SilentlyContinue)) { throw "Get-LocalUser non disponibile: impossibile verificare l'account." }
+    $lu = Get-LocalUser -SID $sid -ErrorAction SilentlyContinue
+    if (-not $lu) { throw "'$full' non e' un account LOCALE di questo PC (account di dominio/Microsoft non supportati)." }
+    if (-not $lu.Enabled) { throw "L'account '$full' e' disabilitato." }
+    $admins = @(Get-LocalGroupMember -SID 'S-1-5-32-544' -ErrorAction Stop)
+    if ($admins | Where-Object { $_.SID -and $_.SID.Value -eq $sid.Value }) { throw "L'account '$full' appartiene ad Administrators: deve essere STANDARD." }
+    return [pscustomobject]@{ Sid = $sid; Name = $full }
+}
+function Show-CurrentAcl([string]$path) {
+    $acl = Get-Acl -LiteralPath $path
+    Write-Host "  Proprietario: $($acl.Owner)   Ereditarieta' protetta: $($acl.AreAccessRulesProtected)"
+    foreach ($r in $acl.Access) {
+        Write-Host ("  {0,-40} {1,-6} {2,-30} ereditata={3}" -f $r.IdentityReference, $r.AccessControlType, $r.FileSystemRights, $r.IsInherited)
+    }
+}
+function Assert-CopyMatchesManifest([string]$archive) {
+    # Contenuto ESATTO: solo i file del manifest + il manifest, impronte e byte identici, nessun reparse point.
+    $mf = Join-Path $archive $ManifestName
+    if (-not (Test-Path -LiteralPath $mf -PathType Leaf)) { throw "Manifest assente: $mf" }
+    $m = Get-Content -LiteralPath $mf -Raw | ConvertFrom-Json
+    if ($m.Format -ne 'FILM_PRIVATE_ACII_COPY_V2') { throw "Manifest non V2: $mf" }
+    $expected = @{}
+    foreach ($c in @($m.Copies)) { $expected[[string]$c.RelativePath] = $c }
+    $expected[$ManifestName] = $null
+    foreach ($it in @(Get-ChildItem -LiteralPath $archive -Recurse -Force)) {
+        if ($it.Attributes -band [System.IO.FileAttributes]::ReparsePoint) { throw "Reparse point nella copia: $($it.FullName)" }
+        if ($it.PSIsContainer) { continue }
+        $rel = $it.FullName.Substring($archive.Length + 1)
+        if (-not $expected.ContainsKey($rel)) { throw "File inatteso nella copia: $rel" }
+    }
+    foreach ($c in @($m.Copies)) {
+        $f = Join-Path $archive ([string]$c.RelativePath)
+        if (-not (Test-Path -LiteralPath $f -PathType Leaf)) { throw "File mancante nella copia: $($c.RelativePath)" }
+        if ((Get-Item -LiteralPath $f -Force).Length -ne [long]$c.Bytes) { throw "Dimensione diversa: $($c.RelativePath)" }
+        if ((Get-FileHash -LiteralPath $f -Algorithm SHA256).Hash -ne [string]$c.SHA256) { throw "SHA256 diverso: $($c.RelativePath)" }
+    }
+    return $m
+}
+function Write-Manifest([string]$archive, $copies, [string]$claudeName, [string]$claudeSidValue, [string]$preparerSid, [string]$aclProfile, [string]$backupFile, [string]$prepared) {
+    $mf = Join-Path $archive $ManifestName
+    if (Test-Path -LiteralPath $mf) { Set-ItemProperty -LiteralPath $mf -Name IsReadOnly -Value $false }
+    [ordered]@{
+        Format           = 'FILM_PRIVATE_ACII_COPY_V2'
+        GameEdition      = 'Assassins Creed II PC Ubisoft Connect (dichiarazione utente)'
+        Copies           = @($copies)
+        ClaudeAccount    = $claudeName
+        ClaudeAccountSid = $claudeSidValue
+        PreparerSid      = $preparerSid
+        AclProfile       = $aclProfile
+        AclBackup        = $backupFile
+        OriginalChanged  = "Nessuna operazione di scrittura o modifica permessi su GameDir"
+        Prepared         = $prepared
+    } | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $mf -Encoding UTF8
+}
+function Invoke-ProtectCopy([string]$archive, [Security.Principal.SecurityIdentifier]$meSid, $claude, [switch]$Preview) {
+    $parent = Split-Path -Path $archive -Parent
+    $claudeSidBytes = Get-SidBytes $claude.Sid
+    $gp = [FilmAuthz]::MaximumAllowedForSid($parent, $claudeSidBytes)
+    if (($gp -band $ParentMask) -ne 0) {
+        throw ("La cartella genitore {0} concede all'account Claude 0x{1:X} (cancellazione/rinomina della copia o cambio permessi). Lo script NON modifica il genitore: scegliere un'altra posizione. STOP." -f $parent, ($gp -band $ParentMask))
+    }
+    $m = Assert-CopyMatchesManifest $archive
+    Write-Host ""
+    Write-Host "== PROTEZIONE NTFS DELLA SOLA COPIA =="
+    Write-Host "Cartella bersaglio: $archive  (e i suoi $(@(Get-ChildItem -LiteralPath $archive -Recurse -Force).Count) elementi)"
+    Write-Host "Account Claude:     $($claude.Name)  SID $($claude.Sid.Value)"
+    Write-Host "Permessi ATTUALI della cartella:"
+    Show-CurrentAcl $archive
+    Write-Host "Permessi PROPOSTI (cartella e contenuto; nessuna modifica fuori da $archive):"
+    Write-Host "  - ereditarieta' dal genitore DISATTIVATA; nessuna ACE Deny"
+    Write-Host "  - NT AUTHORITY\SYSTEM, BUILTIN\Administrators, $([Security.Principal.WindowsIdentity]::GetCurrent().Name): Controllo completo"
+    Write-Host "  - $($claude.Name): Lettura ed esecuzione (nessuna scrittura, cancellazione, rinomina, modifica permessi)"
+    Write-Host "  - proprietario invariato: $((Get-Acl -LiteralPath $archive).Owner)"
+    Write-Host "Backup del descrittore attuale in: $(Get-BackupDir $archive)"
+    Write-Host "Cartella genitore ${parent}: nessun diritto critico per l'account Claude (AuthZ)."
+    if ($Preview) { Write-Host "DRY RUN: nessun permesso modificato."; return }
+    if ((Read-Host "Digitare PROTEGGI per applicare questi permessi alla SOLA copia") -cne 'PROTEGGI') {
+        Write-Host "Permessi NON modificati. Il launcher rifiutera' l'avvio finche' la copia non e' protetta."; return
+    }
+    $backupFile = Save-AclBackup $archive
+    Write-Host "Backup ACL: $backupFile"
+    try {
+        Write-Manifest $archive @($m.Copies) $claude.Name $claude.Sid.Value $meSid.Value 'PROTECTED: SYSTEM/Administrators/Preparer FullControl; ClaudeAccount ReadAndExecute; no inheritance' $backupFile ([string]$m.Prepared)
+        Set-ProtectedAcl $archive $meSid $claude.Sid
+        foreach ($it in @(Get-ChildItem -LiteralPath $archive -Recurse -Force)) {
+            $a = Get-Acl -LiteralPath $it.FullName
+            $a.SetAccessRuleProtection($false, $false)
+            foreach ($r in @($a.Access | Where-Object { -not $_.IsInherited })) { [void]$a.RemoveAccessRuleSpecific($r) }
+            Set-Acl -LiteralPath $it.FullName -AclObject $a
+        }
+        foreach ($it in @(Get-ChildItem -LiteralPath $archive -Recurse -File -Force)) { $it.IsReadOnly = $true }
+        $viol = Get-ClaudeViolations $archive $claudeSidBytes
+        if ($viol.Count -gt 0) { $viol | ForEach-Object { Write-Warning $_ }; throw "Verifica dell'accesso effettivo NON superata ($($viol.Count) problemi)." }
+        [void](Assert-CopyMatchesManifest $archive)   # test finale di sola lettura: impronte invariate
+        Write-Host "OK: $($claude.Name) puo' solo leggere la copia; impronte riverificate; nessun diritto critico sul genitore."
+    } catch {
+        Write-Warning "ERRORE: $($_.Exception.Message)"
+        Write-Warning "Ripristino automatico delle ACL salvate della SOLA copia ($archive)..."
+        try { Restore-AclBackup $archive $backupFile; Write-Warning "ACL della copia ripristinate: la copia NON e' protetta, non avviare Claude." }
+        catch { Write-Warning "Ripristino non riuscito: $($_.Exception.Message). Usare: prepara_copia_privata_acii.ps1 -ArchiveDir `"$archive`" -RipristinaAcl, oppure eliminare la copia dall'account preparatore." }
+        Write-Warning "Il gioco originale e la cartella genitore non sono stati modificati."
+        throw
+    }
+}
+
 $archive = Get-AbsolutePath $ArchiveDir
 Assert-LocalPath $archive 'ArchiveDir'
+$principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
+if ($principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    throw "Sessione elevata: eseguire da PowerShell NON elevato con l'account preparatore."
+}
+$meSid = [Security.Principal.WindowsIdentity]::GetCurrent().User
 
-# ---------------- Modalita' ripristino manuale ----------------
+# ---------------- Ripristino manuale ----------------
 if ($PSCmdlet.ParameterSetName -eq 'Ripristina') {
     if (-not (Test-Path -LiteralPath $archive -PathType Container)) { throw "ArchiveDir non trovata: $archive" }
     Assert-NoReparsePoint $archive 'ArchiveDir'
@@ -251,28 +381,31 @@ if ($PSCmdlet.ParameterSetName -eq 'Ripristina') {
     if (-not $last) { throw "Nessun backup ACL trovato in $bdir." }
     Write-Host "Backup da ripristinare: $($last.FullName)"
     Write-Host "Saranno ripristinate SOLO le ACL di $archive e del suo contenuto (non la cartella genitore, non il gioco)."
-    Write-Warning "Dopo il ripristino la copia torna ai permessi iniziali: il launcher rifiutera' l'avvio finche' non la si protegge di nuovo."
+    Write-Warning "Dopo il ripristino la copia torna ai permessi precedenti: il launcher rifiutera' l'avvio."
     if ((Read-Host "Digitare RIPRISTINA per procedere") -cne 'RIPRISTINA') { Write-Host "Annullato. Nessuna modifica."; return }
     Restore-AclBackup $archive $last.FullName
     Write-Host "Ripristino completato."
     return
 }
 
-# ---------------- Fase 1: controlli in sola lettura ----------------
+# ---------------- Protezione di una copia gia' preparata ----------------
+if ($PSCmdlet.ParameterSetName -eq 'Proteggi') {
+    if (-not (Test-Path -LiteralPath $archive -PathType Container)) { throw "ArchiveDir non trovata: $archive" }
+    Assert-NoReparsePoint $archive 'ArchiveDir'
+    $claude = Resolve-ClaudeAccount $ProtectCopyForUser $meSid
+    Invoke-ProtectCopy $archive $meSid $claude -Preview:$DryRun
+    Write-Host "Claude NON e' stato avviato."
+    return
+}
+
+# ---------------- Prepara: Fase 1, controlli in sola lettura ----------------
 Write-Host "== Fase 1: controlli in sola lettura =="
 $game = Get-AbsolutePath $GameDir
 $work = Get-AbsolutePath $WorkDir
 Assert-LocalPath $game 'GameDir'
 Assert-LocalPath $work 'WorkDir'
-
-$principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
-if ($principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    throw "Sessione elevata: eseguire da PowerShell NON elevato con l'account preparatore."
-}
-$meSid = [Security.Principal.WindowsIdentity]::GetCurrent().User
-
 if (-not (Test-Path -LiteralPath $game -PathType Container)) { throw "GameDir non trovato: $game" }
-if (Test-Path -LiteralPath $archive) { throw "Destinazione gia' esistente: $archive. Lo script non riusa ne' sovrascrive copie o permessi precedenti." }
+if (Test-Path -LiteralPath $archive) { throw "Destinazione gia' esistente: $archive. Lo script non riusa ne' sovrascrive copie precedenti (per proteggere una copia esistente usare -ArchiveDir con -ProtectCopyForUser, senza -GameDir)." }
 Assert-NoReparsePoint $game 'GameDir'
 Assert-NoReparsePoint $archive 'ArchiveDir'
 Assert-NoReparsePoint $work 'WorkDir'
@@ -281,27 +414,14 @@ Assert-Separated $game $work 'gioco/area Claude'
 Assert-Separated $archive $work 'copia/area Claude'
 $parent = Split-Path -Path $archive -Parent
 if (-not (Test-Path -LiteralPath $parent -PathType Container)) { throw "La cartella genitore della copia non esiste: $parent" }
-
-# Account Claude: identificazione precisa.
-try { $claudeSid = (New-Object Security.Principal.NTAccount($ClaudeAccount)).Translate([Security.Principal.SecurityIdentifier]) }
-catch { throw "Account '$ClaudeAccount' non trovato. Creare prima un account Windows STANDARD dedicato a Claude." }
-$claudeName = $claudeSid.Translate([Security.Principal.NTAccount]).Value
-if ($claudeSid.Value -eq $meSid.Value) { throw "L'account Claude deve essere DIVERSO dall'account preparatore ($claudeName)." }
-if ($null -eq $claudeSid.AccountDomainSid -or $claudeSid.Value -match '^S-1-5-(18|19|20)$' -or $claudeSid.Value -match '^S-1-5-32-') {
-    throw "'$claudeName' non e' un account utente valido (SID $($claudeSid.Value))."
+$claude = $null
+if ($ProtectCopyForUser) {
+    $claude = Resolve-ClaudeAccount $ProtectCopyForUser $meSid
+    $gp = [FilmAuthz]::MaximumAllowedForSid($parent, (Get-SidBytes $claude.Sid))
+    if (($gp -band $ParentMask) -ne 0) {
+        throw ("La cartella genitore {0} concede all'account Claude 0x{1:X}: scegliere un'altra posizione per -ArchiveDir (il genitore non viene modificato). STOP." -f $parent, ($gp -band $ParentMask))
+    }
 }
-$localUser = $null
-if (Get-Command Get-LocalUser -ErrorAction SilentlyContinue) {
-    $localUser = Get-LocalUser -SID $claudeSid -ErrorAction SilentlyContinue
-}
-if (-not $localUser) { throw "'$claudeName' non e' un account LOCALE di questo PC (account di dominio/Microsoft non supportati da questa procedura)." }
-if (-not $localUser.Enabled) { throw "L'account '$claudeName' e' disabilitato." }
-$admins = @(Get-LocalGroupMember -SID 'S-1-5-32-544' -ErrorAction Stop)
-if ($admins | Where-Object { $_.SID -and $_.SID.Value -eq $claudeSid.Value }) {
-    throw "L'account '$claudeName' appartiene ad Administrators: deve essere STANDARD."
-}
-
-# File sorgente (solo lettura).
 $relative = @('DataPC_Abstergo.forge')
 if ($IncludeHideout) { $relative += 'DataPC_Hideout.forge' }
 if ($IncludeItalianVoices) { $relative += 'SoundData\pc\sounds_ita.pck' }
@@ -316,106 +436,50 @@ $needed = [long](($files | Measure-Object -Property Bytes -Sum).Sum)
 $drive = New-Object System.IO.DriveInfo([System.IO.Path]::GetPathRoot($archive))
 if (-not $drive.IsReady -or $drive.AvailableFreeSpace -lt ($needed + 100MB)) { throw "Spazio insufficiente su $($drive.Name)." }
 
-# Diritti dell'account Claude sulla cartella genitore (non modificabili da questo script).
-$claudeSidBytes = Get-SidBytes $claudeSid
-$gp = [FilmAuthz]::MaximumAllowedForSid($parent, $claudeSidBytes)
-$parentIssue = $gp -band $ParentMask
-
-# ---------------- Fase 2: riepilogo e conferma ----------------
+# ---------------- Fase 2: riepilogo ----------------
 Write-Host ""
 Write-Host "== Fase 2: RIEPILOGO =="
-Write-Host "Installazione originale (SOLO LETTURA, nessuna modifica): $game"
-Write-Host "Copia privata da creare:                                  $archive"
-Write-Host "Area di lavoro di Claude (non toccata qui):               $work"
-Write-Host "Preparatore (questo account):  $([Security.Principal.WindowsIdentity]::GetCurrent().Name)  SID $($meSid.Value)"
-Write-Host "Account Claude (standard):     $claudeName  SID $($claudeSid.Value)"
+Write-Host "Installazione originale (SOLO LETTURA, nessuna modifica di file o permessi): $game"
+Write-Host "Copia privata da creare: $archive"
+Write-Host "Area di lavoro di Claude (non toccata qui): $work"
+Write-Host "Preparatore: $([Security.Principal.WindowsIdentity]::GetCurrent().Name)  SID $($meSid.Value)"
 foreach ($f in $files) { Write-Host ("Copia prevista: {0}  ({1:N0} byte)" -f $f.Name, $f.Bytes) }
-Write-Host "Permessi che verranno applicati SOLO a $archive e al suo contenuto:"
-Write-Host "  - ereditarieta' dal genitore DISATTIVATA (nessuna voce ereditata)"
-Write-Host "  - SYSTEM, Administrators, $([Security.Principal.WindowsIdentity]::GetCurrent().Name): Controllo completo"
-Write-Host "  - $claudeName : Lettura ed esecuzione (nessuna scrittura, cancellazione, rinomina o modifica permessi)"
-Write-Host "Backup del descrittore della copia in: $(Get-BackupDir $archive)"
-if ($parentIssue -ne 0) {
-    Write-Warning ("La cartella genitore {0} concede all'account Claude 0x{1:X} (puo' cancellare/rinominare la copia o cambiarne i permessi)." -f $parent, $parentIssue)
-    Write-Warning "Lo script NON modifica la cartella genitore. Scegliere un'altra posizione per -ArchiveDir. STOP."
-    throw "Cartella genitore non sicura per l'account Claude."
+if ($claude) {
+    Write-Host "Protezione richiesta per: $($claude.Name)  SID $($claude.Sid.Value) (conferma SEPARATA dopo la verifica delle impronte)"
+} else {
+    Write-Warning "Nessun -ProtectCopyForUser: la copia NON verra' protetta e il launcher rifiutera' l'avvio finche' non lo sara'."
 }
-Write-Host "Cartella genitore ${parent}: nessun diritto critico per l'account Claude (AuthZ)."
 if ($DryRun) { Write-Host ""; Write-Host "DRY RUN: nessuna cartella creata, nessun file copiato, nessun permesso modificato."; return }
 
-if ((Read-Host "Digitare PROTEGGI per creare la copia e applicare i permessi descritti") -cne 'PROTEGGI') {
+# ---------------- Fase 3: copia con verifica ----------------
+if ((Read-Host "Digitare COPIA per creare la cartella privata e copiare soltanto questi archivi") -cne 'COPIA') {
     Write-Host "Annullato. Nessuna modifica."; return
 }
-
-# ---------------- Fasi 3-5: creazione, protezione, copia, verifica ----------------
 if (Test-Path -LiteralPath $archive) { throw "Destinazione creata da un altro processo: STOP." }
 New-Item -ItemType Directory -Path $archive -ErrorAction Stop | Out-Null
 Assert-NoReparsePoint $archive 'ArchiveDir'
-$backupFile = Save-AclBackup $archive
-Write-Host "Backup ACL iniziale della copia: $backupFile"
-$aclApplied = $false
-try {
-    Set-ProtectedAcl $archive $meSid $claudeSid
-    $aclApplied = $true
-    Write-Host "Permessi protetti applicati a $archive."
-
-    $manifestFiles = @()
-    foreach ($f in $files) {
-        Assert-NoReparsePoint $f.Path 'Sorgente'
-        $target = Join-Path $archive $f.Name
-        $tparent = Split-Path -Path $target -Parent
-        if (-not (Test-Path -LiteralPath $tparent)) { New-Item -ItemType Directory -Path $tparent -Force -ErrorAction Stop | Out-Null }
-        Assert-NoReparsePoint $tparent 'Destinazione'
-        if (Test-Path -LiteralPath $target) { throw "File gia' presente: $target" }
-        $before = (Get-FileHash -LiteralPath $f.Path -Algorithm SHA256).Hash
-        Copy-Item -LiteralPath $f.Path -Destination $target -ErrorAction Stop
-        $copy = Get-Item -LiteralPath $target -Force
-        $after = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash
-        if ($before -ne $after -or $copy.Length -ne $f.Bytes) { throw "HASH/DIMENSIONE NON CORRISPONDENTE: $($f.Name)." }
-        $manifestFiles += [pscustomobject]@{ RelativePath = $f.Name; Bytes = [long]$f.Bytes; SHA256 = $after }
-        Write-Host "Copiato e verificato SHA256: $($f.Name)"
+$copies = @()
+foreach ($f in $files) {
+    Assert-NoReparsePoint $f.Path 'Sorgente'
+    $target = Join-Path $archive $f.Name
+    $tparent = Split-Path -Path $target -Parent
+    if (-not (Test-Path -LiteralPath $tparent)) { New-Item -ItemType Directory -Path $tparent -Force -ErrorAction Stop | Out-Null }
+    Assert-NoReparsePoint $tparent 'Destinazione'
+    if (Test-Path -LiteralPath $target) { throw "File gia' presente: $target" }
+    $before = (Get-FileHash -LiteralPath $f.Path -Algorithm SHA256).Hash
+    Copy-Item -LiteralPath $f.Path -Destination $target -ErrorAction Stop
+    $after = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash
+    if ($before -ne $after -or (Get-Item -LiteralPath $target -Force).Length -ne $f.Bytes) {
+        throw "HASH/DIMENSIONE NON CORRISPONDENTE: $($f.Name). Non usare la copia; eliminarla dall'account preparatore."
     }
-    # Le copie devono ereditare SOLO la DACL protetta: rimuove eventuali voci esplicite portate dalla copia.
-    foreach ($it in @(Get-ChildItem -LiteralPath $archive -Recurse -Force)) {
-        $a = Get-Acl -LiteralPath $it.FullName
-        $a.SetAccessRuleProtection($false, $false)
-        foreach ($r in @($a.Access | Where-Object { -not $_.IsInherited })) { [void]$a.RemoveAccessRuleSpecific($r) }
-        Set-Acl -LiteralPath $it.FullName -AclObject $a
-    }
-    $manifest = [ordered]@{
-        Format              = 'FILM_PRIVATE_ACII_COPY_V2'
-        GameEdition         = 'Assassins Creed II PC Ubisoft Connect (dichiarazione utente)'
-        Copies              = @($manifestFiles)
-        ClaudeAccount       = $claudeName
-        ClaudeAccountSid    = $claudeSid.Value
-        PreparerSid         = $meSid.Value
-        AclProfile          = 'PROTECTED: SYSTEM/Administrators/Preparer FullControl; ClaudeAccount ReadAndExecute; no inheritance'
-        AclBackup           = $backupFile
-        OriginalChanged     = "Nessuna operazione di scrittura o modifica permessi su GameDir"
-        Prepared            = (Get-Date -Format s)
-    }
-    $manifest | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $archive $ManifestName) -Encoding UTF8
-    foreach ($it in @(Get-ChildItem -LiteralPath $archive -Recurse -File -Force)) { $it.IsReadOnly = $true }
-
-    Write-Host "== Fase 5: verifica dell'accesso EFFETTIVO dell'account Claude (AuthZ) =="
-    $viol = Get-ClaudeViolations $archive $claudeSidBytes
-    if ($viol.Count -gt 0) {
-        $viol | ForEach-Object { Write-Warning $_ }
-        throw "Verifica dei permessi NON superata ($($viol.Count) problemi)."
-    }
-    Write-Host "OK: l'account $claudeName puo' solo leggere la copia; nessun diritto critico sulla cartella genitore."
-} catch {
-    Write-Warning "ERRORE: $($_.Exception.Message)"
-    if ($aclApplied) {
-        Write-Warning "Ripristino automatico delle ACL iniziali della SOLA copia ($archive)..."
-        try { Restore-AclBackup $archive $backupFile; Write-Warning "ACL della copia ripristinate. La copia NON e' protetta: non avviare Claude." }
-        catch { Write-Warning "Ripristino non riuscito: $($_.Exception.Message). Usare -RipristinaAcl oppure eliminare manualmente $archive." }
-    }
-    Write-Warning "La cartella del gioco non e' stata modificata. Controllare ed eventualmente eliminare $archive prima di riprovare."
-    throw
+    $copies += [pscustomobject]@{ RelativePath = $f.Name; Bytes = [long]$f.Bytes; SHA256 = $after }
+    Write-Host "Copiato e verificato SHA256: $($f.Name)"
 }
+Write-Manifest $archive $copies '' '' $meSid.Value 'NON CONFIGURATA: copia non protetta' '' (Get-Date -Format s)
+Write-Host "Copia e manifest V2 creati in $archive."
 
+# ---------------- Fase 4: protezione (solo se richiesta) ----------------
+if ($claude) { Invoke-ProtectCopy $archive $meSid $claude }
+else { Write-Warning "Copia NON protetta. Per proteggerla: prepara_copia_privata_acii.ps1 -ArchiveDir `"$archive`" -ProtectCopyForUser <account Claude>" }
 Write-Host ""
-Write-Host "PREPARAZIONE COMPLETATA (Claude NON e' stato avviato)."
-Write-Host "Prossimi passi: verifica manuale facoltativa Proprieta' -> Sicurezza -> Avanzate -> Accesso effettivo -> $claudeName;"
-Write-Host "poi accedere a Windows come $claudeName ed eseguire avvia_claude_locale.ps1, che ripete tutti i controlli con il token reale."
+Write-Host "FINE. Claude NON e' stato avviato. Il launcher, eseguito dall'account Claude, ripetera' tutti i controlli con il token reale."
