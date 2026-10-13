@@ -73,3 +73,45 @@
 - [ ] Revisione finale per fedeltà, non solo per resa 4K
 
 **Diritti:** l'accessibilità dei link non autorizza a caricare immagini, filmati, modelli o voci Ubisoft su GitHub né a redistribuirli. Lo scopo personale dichiarato non equivale automaticamente a licenza di adattamento.
+
+
+---
+
+## ADDENDUM 2026-10-13 — Integrazione reference senza modificare la bozza originale
+
+**Stato:** RIFERIMENTI ESTERNI CATALOGATI; `EZIO_MASTER` NON APPROVATO. Questo aggiornamento conserva le tabelle storiche e i GAP A sopra: si riferiscono a **catture dirette del gioco**, ancora da acquisire. La base aggiornata è la [scheda visiva di Claude](CHR-001_EZIO_SCHEDA_VISIVA.md); l'[analisi di revisione](CHR-001_REVISIONE_VISIVA.md) distingue prove, inferenze e decisioni.
+
+### Volto e corpo — riferimenti aggiunti
+| ID | Riferimento | Osservazione ammessa | Stato |
+| --- | --- | --- | --- |
+| EZ-F01/F02 | [Quasi-frontale](https://assassinscreed.fandom.com/wiki/File:Petruccio%27s_Secret_1.png) e [ritratto Database](https://assassinscreed.fandom.com/wiki/File:AC2_DB_Ezio_Auditore.png) | Forma viso giovane, NON colore esatto | A-EXT; piattaforma/versione non verificata |
+| EZ-F04/F05/F06 | [3/4 sinistro 1478](https://assassinscreed.fandom.com/wiki/File:PWYP_3_v.png) e [3/4 destro 1476](https://assassinscreed.fandom.com/wiki/File:Jailbird_1.png) / [altro 3/4 destro](https://assassinscreed.fandom.com/wiki/File:JJE_1_v.png) | Lineamenti, barba iniziale, posa | A-EXT, luce variabile |
+| EZ-F07/F10 | [Profilo sinistro](https://assassinscreed.fandom.com/wiki/File:BWBB_1.png) e [capelli posteriori](https://assassinscreed.fandom.com/wiki/File:Paperboy_2.png) | Profilo e coda bassa con nastro rosso | A-EXT |
+| EZ-F08/F09 | [Ferita durante la rissa](https://assassinscreed.fandom.com/wiki/File:BWBB_4.png) e [seconda vista](https://assassinscreed.fandom.com/wiki/File:You_Should_See_The_Other_Guy_4.png) | Ferita sul lato destro del labbro di Ezio; cicatrice guarita non verificata | A-EXT |
+| EZ-F11 | [Fotogramma con barba (Forlì)](https://assassinscreed.fandom.com/wiki/File:Checcomate_7.png) | Barba del 1488 solo indicativa | A-EXT, bassa qualità |
+| EZ-B11/B12 | [Modello attribuito agli artisti](https://assassinscreed.fandom.com/wiki/File:Ezio_models_by_Nicolas_Collings.jpg) e [altro foglio modello](https://assassinscreed.fandom.com/wiki/File:AC2_Ezio_Auditore_Model.jpg) | Il giovane in farsetto nero è identificato come Ezio nella scheda più recente, rettificando la precedente ipotesi NPC | B, attribuzione artista da verificare nella fonte originale |
+
+### Armatura di Altaïr — riferimenti aggiunti
+| ID | Riferimento | Uso | Stato |
+| --- | --- | --- | --- |
+| AR-F01 | [Vista fronte/retro in-game](https://assassinscreed.fandom.com/wiki/File:Armor-altair-ac2.png) | Proporzioni e silhouette complete | A-EXT |
+| AR-B01 | [Modello attribuito a Michel Thibault](https://assassinscreed.fandom.com/wiki/File:Ezio_armor_texture_model_by_Michel_Thibault.png) | Volumi sculpt dell'armatura | B, portfolio attribuito |
+| AR-F02 | [Armatura nel Santuario](https://assassinscreed.fandom.com/wiki/File:Armor_of_Alta%C3%AFr_ACII.png) | Modalità d'esposizione, parti | A-EXT |
+| AR-F04/F05 | [Vaticano](https://assassinscreed.fandom.com/wiki/File:IBAL_4.png) e [Falò](https://assassinscreed.fandom.com/wiki/File:Mob_Justice_7.png) | Continuità di equipaggiamento e costume | A-EXT, qualità variabile |
+| AR-C01–C04 | [Pettorale](https://assassinscreed.fandom.com/wiki/File:AC2_Armor_of_Altair_Chest_Guard.png), [spallacci](https://assassinscreed.fandom.com/wiki/File:AC2_Armor_of_Altair_Pauldrons.png), [bracciali](https://assassinscreed.fandom.com/wiki/File:AC2_Armor_of_Altair_Vambraces.png), [schinieri](https://assassinscreed.fandom.com/wiki/File:AC2_Armor_of_Altair_Greaves.png) | Dettagli secondari, non prove canoniche | C: elaborazioni da asset di terzi |
+
+### Decisioni creative APPROVATE (non equivalgono a nuovi fatti del gioco)
+- **D2:** Armatura di Altaïr al Vaticano e nella Cripta.
+- **D2-bis:** la stessa armatura già nella sequenza 13; **pianificare** l'acquisizione dei sei sigilli prima del Falò.
+- **D8:** cappuccio alzato nelle sequenze 13–14.
+- **D9:** reference A-EXT ammesse **soltanto per il futuro blockout provvisorio**; NON per approvazione Master.
+- **D3:** cappa scura esternamente, con fodera rossa, nelle scene con quest'armatura.
+
+### GAP residui (conservare lo stato DA ACQUISIRE su fonte primaria A)
+- Frontale neutra e profilo destro; colore occhi in luce neutra; cicatrice guarita.
+- Barba 1488 in buona luce; primo piano armatura (fianco destro, cappuccio visto dall'alto, interno cappa), colori e dettagli.
+- Per le catture A registrare **versione, sequenza, memoria, momento reale**: data di caricamento di screenshot di terzi non prova la piattaforma.
+- La presenza di un volto anziano senza cappuccio non è né provata né esclusa. Il cappuccio alzato è una **scelta cinematografica D8**.
+- **Nessuna generazione** di blockout, modelli, immagini sintetiche o video: pre-produzione soltanto.
+
+**Nota di tracciabilità:** il testo dei report originari `CHR-001_EZIO_SCHEDA_TECNICA.md` e `CHR-001_EZIO_SCHEDA_VISIVA.md` resta intatto. Questo addendum aggiorna soltanto il documento operativo.
