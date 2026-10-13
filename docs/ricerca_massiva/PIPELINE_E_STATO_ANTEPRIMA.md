@@ -34,7 +34,7 @@ Solo allora si fa **un solo** render finale fotorealistico con Desmond e Lucy.
 ## 3. Unico percorso — delegabile a Claude Code locale
 Su richiesta del committente (revisione della PR #14) il percorso è pensato per essere **eseguito da Claude Code locale con accesso limitato** sul PC dell'utente, non come procedura manuale in molti passi. Dettagli, permessi e launcher sono in [CLAUDE_CODE_LOCALE_DELEGA.md](CLAUDE_CODE_LOCALE_DELEGA.md). I passi seguono la documentazione degli autori e **non sono stati testati**.
 
-**Avvio (unico intervento manuale dell'utente):** installare Claude Code e lanciare `scripts/avvia_claude_locale.ps1 -GameDir "<cartella AC II>" -WorkDir "D:\FILM_PRIVATO"`. Il launcher fa solo controlli in lettura, poi chiede conferma per creare la configurazione privata e avviare Claude in modalità `plan`.
+**Avvio (unico intervento manuale dell'utente):** installare Claude Code e lanciare `scripts/avvia_claude_locale.ps1 -GameDir "<cartella AC II>" -WorkDir "D:\FILM_PRIVATO" -ExpectedCommit <hash controllato>` da un **account Windows standard dedicato**. Il launcher fa solo controlli in lettura, poi chiede conferma per creare la configurazione privata e avviare Claude in modalità `plan`.
 
 **Fasi eseguite da Claude locale (stop e consenso a ogni fase):**
 1. **L0 Ricognizione** in sola lettura: GPU, disco, cartella del gioco, tool presenti.

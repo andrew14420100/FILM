@@ -13,22 +13,27 @@
 | Costi | Usa il piano Claude esistente dell'utente; **nessun** servizio o API aggiuntivo a pagamento (CLAUDE.md, vincolo 7) |
 | Istruzioni per il Claude locale | Un `CLAUDE.md` nella cartella privata e una **copia di tutte le istruzioni di FILM** in `D:\FILM_PRIVATO\capitolato\`: `README.md`, `CLAUDE.md` del repository e **l'intera cartella `docs/`** (solo Markdown e script originali, nessun asset), con `MANIFEST_SHA256.txt` e la revisione Git. **Prima di L0** Claude locale legge il capitolato e dichiara quale revisione ha letto; l'utente conferma. |
 
-Il **launcher** [scripts/avvia_claude_locale.ps1](scripts/avvia_claude_locale.ps1) va eseguito dalla copia locale del branch. Nell'ordine:
-1. Esegue solo controlli in lettura, **prima di creare qualsiasi file**:
-   - `WorkDir` separata dal gioco (non uguale, non contenuta, non contenitore);
-   - **nessuna junction o symlink** in alcun componente di `GameDir` o `WorkDir`;
-   - PowerShell **non elevato**;
-   - **analisi delle ACL NTFS** (sola lettura) della cartella del gioco e dei file principali (`AssassinsCreedIIGame.exe`, `DataPC.forge`, `DataPC_Abstergo.forge`, `sounds_ita.pck`): se Windows consente all'utente corrente di **scrivere, cancellare, cambiare permessi** o se l'utente ne è **proprietario**, il launcher **si rifiuta di proseguire**;
-   - GPU, CLI `claude` e file chiave del gioco.
-2. Solo con conferma:
-   - crea `WorkDir` e **ricontrolla** che sia un percorso reale fuori dal gioco;
-   - copia il capitolato senza sovrascrivere;
-   - crea `.claude\settings.json` e `CLAUDE.md` se assenti.
-3. Solo con conferma, avvia Claude Code in modalità `plan`.
+Il **launcher** [scripts/avvia_claude_locale.ps1](scripts/avvia_claude_locale.ps1) va eseguito dalla copia locale del branch con `-ExpectedCommit <hash di 40 caratteri della revisione controllata>`. Funziona in modalità **fail-closed**: ogni controllo che non si riesce a completare blocca l'avvio.
+
+1. **Controlli in sola lettura, prima di creare qualsiasi file:**
+   - **Percorsi:** `WorkDir` separata dal gioco (non uguale, non contenuta, non contenitore), senza junction o symlink in alcun componente di `GameDir` o `WorkDir`.
+   - **Account:** token non elevato **e** account **non membro di Administrators**, nemmeno come gruppo «solo negazione» di un amministratore avviato senza elevazione; si legge con `whoami /groups`. Il launcher **non può** accertare che l'account sia *dedicato*: è un requisito che resta a cura dell'utente.
+   - **Accesso effettivo di Windows:** per la cartella del gioco e **per ogni sottocartella e file** al suo interno, `AccessCheck` (advapi32) con il token del processo, cioè lo stesso con cui verrà avviato Claude. Windows valuta in proprio l'ordine degli ACE, l'ereditarietà, i gruppi abilitati o «solo negazione», il proprietario e il livello di integrità. Il launcher si ferma per un solo diritto di scrittura, aggiunta, cancellazione (anche dei figli), modifica di attributi, DACL o proprietario, o per un reparse point dentro il gioco. Sostituisce la precedente stima basata sulla lettura delle ACL (revisione del 4cbdd2e).
+   - **Configurazioni preesistenti:** rifiuta qualsiasi file o cartella preesistente in `WorkDir` tra `.claude`, `CLAUDE.md`, `CLAUDE.local.md`, `.mcp.json` e `capitolato`. Rifiuta anche `CLAUDE.md`, `CLAUDE.local.md` o `.claude` nelle cartelle superiori, e un `%USERPROFILE%\.claude\settings.json` con regole `allow`, `hooks`, `mcpServers` o `defaultMode` permissivo. Le impostazioni *managed* di sistema non vengono verificate.
+   - **Capitolato:** il clone locale di FILM deve avere `README.md`, `CLAUDE.md` e `docs/`, un HEAD **uguale** a `-ExpectedCommit` e `git status` **vuoto**, perché il solo HEAD non certifica i file.
+   - **Solo informativi:** GPU, CLI `claude`, file chiave del gioco.
+2. **Solo con conferma:**
+   - crea `WorkDir` e la ricontrolla dopo la creazione;
+   - crea `capitolato` e `.claude` **senza `-Force`**, quindi fallisce se esistono già, e verifica che non siano reparse point;
+   - copia `docs/`, `README.md` e `CLAUDE.md` con manifest SHA256;
+   - scrive `settings.json` e `CLAUDE.md`.
+3. **Solo con conferma:** avvia Claude Code in modalità `plan`.
 
 In modalità `plan` Claude **non scrive file** finché l'utente non approva un piano e un cambio di modalità. `bypassPermissions` e auto mode sono disattivati nelle impostazioni.
 
-Anche il launcher è **non eseguito né testato**: nessuno di questi punti si considera risolto finché non è provato in locale.
+**Limite dichiarato:** i documenti presenti solo in altre PR (es. PR #11, `pilota_prologo/`) **non** sono in `main` né nella PR #14 e quindi **non** vengono copiati.
+
+Il launcher è **non eseguito né testato**: nessuno di questi punti si considera risolto finché non è provato in locale.
 
 ## 2. Permessi Claude ≠ protezione del filesystem
 Fonte: documentazione ufficiale di Claude Code, consultata il 2026-10-13: https://code.claude.com/docs/en/permissions e https://code.claude.com/docs/en/sandboxing. Ne derivano tre punti:
@@ -40,8 +45,8 @@ Fonte: documentazione ufficiale di Claude Code, consultata il 2026-10-13: https:
 
 | Livello | Misura | Stato |
 |---|---|---|
-| 1 (obbligatorio, **imposto dal launcher**) | Eseguire launcher e Claude **da utente standard non elevato**. Il launcher rifiuta una sessione da amministratore e **si ferma se le ACL NTFS consentono all'utente corrente scrittura, cancellazione o cambio dei permessi** sul gioco. Sotto `Program Files` i permessi predefiniti di Windows di norma lo negano. | Controllo implementato ma **non testato**. L'analisi statica delle ACL va confermata dall'utente, per esempio con la scheda *Sicurezza → Accesso effettivo* di Esplora risorse |
-| 2 (necessario se il launcher rifiuta l'avvio per le ACL) | **Utente Windows dedicato** e standard (es. `film_claude`) che ha solo lettura sulla cartella del gioco e scrittura solo su `D:\FILM_PRIVATO`. Le ACL si impostano a mano dall'utente; il launcher **non** modifica i permessi della cartella del gioco. | **DA DECIDERE** dall'utente |
+| 1 (obbligatorio, **controllato dal launcher**) | Account Windows **standard** (non membro di Administrators), non elevato, senza alcun diritto **effettivo** di modifica su nessun elemento della cartella del gioco, valutato con `AccessCheck` sul token reale. Se il controllo fallisce, l'avvio viene rifiutato. | Implementato, **non testato** |
+| 2 (requisito operativo, **non verificabile dal launcher**) | Account standard **dedicato** (es. `film_claude`), usato solo per questo lavoro, con sola lettura sulla cartella del gioco e scrittura solo su `D:\FILM_PRIVATO`. Le ACL si impostano a mano dall'utente; il launcher **non** le modifica. Conferma manuale con **Proprietà → Sicurezza → Avanzate → Accesso effettivo**, scegliendo lo stesso account che eseguirà Claude. Fonti: [How DACLs control access](https://learn.microsoft.com/en-us/windows/win32/secauthz/how-dacls-control-access-to-an-object), [Order of ACEs](https://learn.microsoft.com/en-us/windows/win32/secauthz/order-of-aces-in-a-dacl). | **DA FARE** a cura dell'utente |
 | 3 (facoltativo) | Claude Code dentro **WSL2** con sandbox attivo, con la cartella del gioco in sola lettura. Da valutare: AnvilToolkit è un programma Windows. | IPOTESI |
 
 Le impostazioni generate dal launcher (`D:\FILM_PRIVATO\.claude\settings.json`):
