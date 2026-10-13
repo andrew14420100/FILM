@@ -31,6 +31,8 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/05_DECISIONI.md](docs/05_DECISIONI.md): log decisioni e questioni aperte
 - [docs/reference/README.md](docs/reference/README.md): criteri per le fonti visive
 - [docs/reference/CHR-001_EZIO_MASTER.md](docs/reference/CHR-001_EZIO_MASTER.md): reference Ezio, link verificati, lacune e Character Lock
+- [docs/reference/CHR-001_EZIO_SCHEDA_TECNICA.md](docs/reference/CHR-001_EZIO_SCHEDA_TECNICA.md): scheda tecnica ricevuta da Claude, ancora in bozza
+- [docs/reference/CHR-001_REVISIONE_SCHEDA.md](docs/reference/CHR-001_REVISIONE_SCHEDA.md): revisione, correzioni e proposte D1–D7
 
 ## GitHub e media
 Git non è il posto giusto per grandi file video, scene renderizzate, pesi dei modelli IA o asset protetti. Conservare i file pesanti sul PC e archiviare solo metadati e riferimenti leciti. **Verificare la visibilità del repository: risulta pubblico; per un progetto privato impostarlo manualmente su Private.**
