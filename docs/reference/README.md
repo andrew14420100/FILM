@@ -12,7 +12,8 @@
 - [Verifiche R1–R4: artisti, manuale, replay, catture](CHR-001_VERIFICHE_R1_R4.md)
 - [D1 confermata: protocollo di cattura per AC II PC Ubisoft Connect](CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md)
 - [Workflow da browser senza nuovi screenshot (attivo)](CHR-001_PREPRODUZIONE_DA_BROWSER.md)
-- [Sintesi del nuovo dossier Claude — manca ancora file integrale](CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md)
+- [Dossier INTEGRALE di progettazione Ezio (ricevuto; D4–D7 da approvare)](CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md)
+- [Sintesi storica precedente al dossier integrale (superata per la consultazione)](CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md)
 
 ## Criteri di classificazione
 1. **A — Canon visivo primario:** fotogrammi acquisiti legittimamente da *Assassin's Creed II* (versione, anno e sequenza registrati). L'acquisizione e il controllo visivo devono avvenire sul PC dell'utente.
