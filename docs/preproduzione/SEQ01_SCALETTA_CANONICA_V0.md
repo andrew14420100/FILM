@@ -74,7 +74,7 @@ Per garantire un solo volto, **EZIO_17_A** prima della ferita e **EZIO_17_B** do
 - **SEQ1-C:** non fissare durata della Sequenza 1 prima di completare il suo trattamento V1 e i primi tre blocchi del film (vincolo S-04).
 - **SEQ1-D:** proporre al prossimo giro il dossier CHR-018 Uberto e gli aggiornamenti dei personaggi della famiglia per sostenere il finale della sequenza.
 
-**Queste sono PROPOSTE NON APPROVATE.** Non cambiano D1–D9, P-01–P-04 o S-01–S-04, già approvate in `docs/05_DECISIONI.md`. Il prossimo passaggio richiede verifica delle scene e trattamento in prosa; **nessuna produzione audiovisiva**.
+**Aggiornamento 2026-10-13:** SEQ1-A/B/C/D sono **APPROVATE**. Le denominazioni delle proposte elencate sopra rimangono nel testo per tracciabilità. Non cambiano D1–D9, P-01–P-04 o S-01–S-04, già approvate in `docs/05_DECISIONI.md`. Il prossimo passaggio richiede verifica delle scene e trattamento in prosa; **nessuna produzione audiovisiva**.
 
 
 **Aggiornamento decisionale R-TITOLO (2026-10-13):** il titolo è stato espressamente **spostato dai primi istanti della rissa PRO-014** alla chiusura della scena `Sibling Rivalry` sui tetti con Federico. Questa scelta è APPROVATA. Il resto della scaletta rimane bozza e SEQ1-A/B/C/D rimangono in attesa.
