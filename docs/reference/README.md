@@ -4,6 +4,8 @@
 
 ## Personaggi
 - [CHR-001 — Ezio Auditore: fonti, lacune, protocollo di acquisizione](CHR-001_EZIO_MASTER.md)
+- [Scheda tecnica di Claude (bozza originale)](CHR-001_EZIO_SCHEDA_TECNICA.md)
+- [Revisione e decisioni D1–D7](CHR-001_REVISIONE_SCHEDA.md)
 
 ## Criteri di classificazione
 1. **A — Canon visivo primario:** fotogrammi acquisiti legittimamente da *Assassin's Creed II* (versione, anno e sequenza registrati). L'acquisizione e il controllo visivo devono avvenire sul PC dell'utente.
