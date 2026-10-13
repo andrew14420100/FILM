@@ -57,6 +57,9 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [Fuga da Firenze — cast e ambientazioni V1](docs/preproduzione/SEQ02_CAST_LOCATION_CONTINUITA_V1.md)
 - [Fuga da Firenze — verifica delle fonti e decisioni](docs/preproduzione/SEQ02_VERIFICHE_E_DECISIONI_V0.md)
 
+- [Fuga da Firenze — sceneggiatura italiana V0](docs/preproduzione/SEQ02_SCENEGGIATURA_ORIGINALE_V0.md)
+- [Fuga da Firenze — audit di fedeltà della sceneggiatura](docs/preproduzione/SEQ02_AUDIT_SCENEGGIATURA_V0.md)
+
 ## GitHub e media
 Git non è il posto giusto per grandi file video, scene renderizzate, pesi dei modelli IA o asset protetti. Conservare i file pesanti sul PC e archiviare solo metadati e riferimenti leciti. **Verificare la visibilità del repository: risulta pubblico; per un progetto privato impostarlo manualmente su Private.**
 
