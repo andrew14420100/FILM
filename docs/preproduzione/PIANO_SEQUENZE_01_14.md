@@ -6,6 +6,8 @@
 
 ---
 
+**Regola del film approvata:** le sequenze sono soltanto un indice di ricerca, non episodi di gameplay. Le scene saranno costruite dai fatti narrativi, eliminando tutorial e comandi e fondendo le memorie quando utile. Leggere [REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md](REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md).
+
 ## 1. Metodo di lavoro (uguale per ogni sequenza)
 
 | Fase | Prodotto (solo testo) | Criterio di uscita |
