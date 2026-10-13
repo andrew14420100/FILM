@@ -16,6 +16,9 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 
 **Regola approvata di adattamento:** FILM non contiene gameplay, tutorial, comandi né interfacce ludiche. Le sequenze di AC II sono riferimenti interni per ricostruire la storia, non capitoli mostrati allo spettatore. Consultare [regola cinematografica](docs/preproduzione/REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md).
 
+### Nuovo incarico di ricerca per Claude — prologo fotorealistico
+**Leggere:** [ordine completo](docs/claude/ORDINE_OPERATIVO_MASSIVO_PROLOGO_FOTOREALISTICO.md), [fonti e strumenti](docs/claude/SORGENTI_E_STRUMENTI_DA_VERIFICARE.md), [anteprima unica e voci originali](docs/claude/ACCETTAZIONE_ANTEPRIMA_E_VOCI.md). Ricerca e progettazione prima di **UNA sola anteprima fotografica**. I primi 15 minuti del film richiederanno una nuova approvazione. Non pubblicare asset e registrazioni del gioco.
+
 ## Percorso di lavoro
 1. Ricostruire una cronologia **verificata** sulle fonti di gioco.
 2. Catalogare sequenze, scene, personaggi, costumi e ambientazioni.
