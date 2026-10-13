@@ -34,14 +34,14 @@ Solo allora si fa **un solo** render finale fotorealistico con Desmond e Lucy.
 ## 3. Unico percorso — delegabile a Claude Code locale
 Su richiesta del committente (revisione della PR #14) il percorso è pensato per essere **eseguito da Claude Code locale con accesso limitato** sul PC dell'utente, non come procedura manuale in molti passi. Dettagli, permessi e launcher sono in [CLAUDE_CODE_LOCALE_DELEGA.md](CLAUDE_CODE_LOCALE_DELEGA.md). I passi seguono la documentazione degli autori e **non sono stati testati**.
 
-**Avvio (unico intervento manuale dell'utente):** installare Claude Code e lanciare `scripts/avvia_claude_locale.ps1 -GameDir "<cartella AC II>" -WorkDir "D:\FILM_PRIVATO" -ExpectedCommit <hash controllato>` da un **account Windows standard dedicato**. Il launcher fa solo controlli in lettura, poi chiede conferma per creare la configurazione privata e avviare Claude in modalità `plan`.
+**OPZIONE 2 APPROVATA (13/10/2026):** prima un account con accesso al gioco prepara **solo** una copia privata di `DataPC_Abstergo.forge` tramite `scripts/prepara_copia_privata_acii.ps1 -GameDir "D:\Games\Assassin's Creed II" -ArchiveDir "D:\FILM_ARCHIVI_RO"` (prima `-DryRun`, poi consenso `COPIA`); verifica SHA256 e protegge **la copia** con ACL sola lettura per un **secondo account Windows standard dedicato**. Non modifica le ACL del gioco. Dal secondo account, nel clone FILM pulito, si avvia `scripts/avvia_claude_locale.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -WorkDir "D:\FILM_PRIVATO" -ExpectedCommit <hash controllato>`. Il launcher legge **solo la copia**, ne verifica manifest/ACL/hash e avvia Claude in modalità `plan` dopo conferme. **I comandi non sono stati eseguiti su Windows e non garantiscono un isolamento completo dai percorsi esterni.** Vedi [OPZIONE2_ARCHIVI_COPIATI.md](OPZIONE2_ARCHIVI_COPIATI.md).
 
 **Fasi eseguite da Claude locale (stop e consenso a ogni fase):**
-1. **L0 Ricognizione** in sola lettura: GPU, disco, cartella del gioco, tool presenti.
-2. **L1 Inventario** (T1): prima un dry-run dei percorsi, poi il CSV privato. *Controllo:* `DataPC_Abstergo.forge` presente, inventario completo.
-3. **L2 Copia privata** soltanto di `DataPC_Abstergo.forge`, con consenso esplicito. *Controllo:* la data di modifica dell'originale non cambia.
+1. **L0 Ricognizione** in sola lettura: GPU, disco, **archivi copiati**, tool presenti. Non aprire la directory del gioco.
+2. **L1 Inventario della copia** (T1): `inventario_acii_readonly.ps1 -ArchiveDir "D:\FILM_ARCHIVI_RO" -OutDir "D:\FILM_PRIVATO\inventario"`; confermare file copiati e inventario completo.
+3. **L2 Validazione** della copia già preparata separatamente dallo script di staging, del manifest SHA256 e della protezione NTFS; **Claude non copia mai dall'originale**.
 4. **L3 Tool di terzi:** AnvilToolkit e Blender 5.2, installati dall'utente dalle pagine ufficiali. Claude registra versione e SHA256 e chiede consenso prima del primo avvio.
-5. **L4 Estrazione (T2/T3):** prova della provenienza di un mesh e verifica delle istanze della stanza.
+5. **L4 Estrazione (T2/T3) dalla copia:** prova della provenienza di un mesh e verifica delle istanze della stanza; output modificabili soltanto nella WorkDir.
 6. **L5 Test 720p/1080p (T4a)** di `ABSTERGO_ENV_MASTER`, **solo ambiente**. Poi **stop e decisione**.
 7. Dopo l'approvazione: lavoro su `DESMOND_MASTER_ACII` e `LUCY_MASTER_ACII` (es. MetaHuman, previa lettura della licenza). Infine **L6**: **un solo** render 4K (T4b, nessun 4K precedente della stanza vuota) `FILM_PREVIEW_01_ABSTERGO.png` con Desmond e Lucy, in `D:\FILM_PRIVATO\render\`, **mai su GitHub**.
 
@@ -55,7 +55,7 @@ Le alternative (ac2-rtx e RTX Remix come planimetria USD) restano **facoltative*
 
 ## 4. Richiesta di decisione all'utente
 Per l'anteprima rispondere **APPROVO / MODIFICA / NON VA BENE**. Poiché l'immagine non esiste, la decisione riguarda il percorso del §3:
-- **APPROVO:** l'utente avvia Claude Code locale con il launcher; Claude esegue L0–L5 fermandosi a ogni fase per il consenso, poi si decide sui master Desmond e Lucy.
+- **APPROVO percorso opzione 2:** dopo staging e ACL, l'utente avvia Claude Code locale con il launcher; Claude esegue L0–L5 fermandosi a ogni fase per il consenso, poi si decide sui master Desmond e Lucy.
 - **MODIFICA:** indicare cosa cambiare (es. RTX Remix come via principale, oppure nessuna estrazione e blockout soltanto dalle reference A-EXT secondo D9).
 - **NON VA BENE:** si resta nella pre-produzione documentale.
 
