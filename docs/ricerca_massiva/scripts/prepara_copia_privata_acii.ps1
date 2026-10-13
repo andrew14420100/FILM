@@ -109,7 +109,7 @@ $manifest = [ordered]@{
     GameEdition = 'Assassins Creed II PC Ubisoft Connect - attribuzione utente, file verificati da script'
     Copies = @($manifestFiles)
     WindowsAclReadOnly = 'NON VERIFICATO: configurare ACL della copia per account Claude dedicato'
-    OriginalChanged = 'Non e' stata invocata alcuna operazione di scrittura sul percorso GameDir'
+    OriginalChanged = "Non e' stata invocata alcuna operazione di scrittura sul percorso GameDir"
 }
 $manifest | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath (Join-Path $dest 'MANIFEST_ARCHIVI.json') -Encoding UTF8
 Write-Host "COPIA CONCLUSa: $dest"
