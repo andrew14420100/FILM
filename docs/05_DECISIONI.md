@@ -39,7 +39,7 @@ Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. No
 **Il piano catture è facoltativo e differito; non serve eseguirlo ora.** Vedi [Piano catture AC II PC / Ubisoft Connect](reference/CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md) soltanto per eventuali verifiche successive. Le catture A sono locali e gli screenshot di terzi A-EXT restano riferimenti preliminari, non prova di piattaforma PC. Non salvare né immagini né video del gioco in questo repository (al momento pubblico).
 
 ## Nuovo dossier di Claude (resoconto ricevuto 2026-10-13)
-**File integrale ricevuto e archiviato il 2026-10-13:** [CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md](reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md). È **una proposta in attesa di approvazione**, non una decisione. La [precedente sintesi](reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md) resta solo a fini di tracciabilità, superata per la consultazione dal dossier originale.
+**File integrale ricevuto e archiviato il 2026-10-13:** [CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md](reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md). Conteneva **proposte alla data di stesura**, poi esplicitamente **approvate per D4/D5/D6/D7 il 2026-10-13** e integrate su `main` tramite [PR #6](https://github.com/andrew14420100/FILM/pull/6). Il dossier storico resta intatto e i suoi punti DA VERIFICARE non diventano approvati. La [precedente sintesi](reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md) resta solo a fini di tracciabilità, superata per la consultazione dal dossier originale.
 
 **Correzione di età verificabile:** Ezio, nato il 24 giugno 1459, ha **18 anni nell'aprile 1478**, non 19. Questa rettifica non approva automaticamente il design di D5.
 
