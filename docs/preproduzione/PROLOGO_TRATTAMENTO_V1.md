@@ -315,8 +315,6 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 | --- | --- | --- |
 | V1 | 2026-10-13 | Prima stesura: ordine verificato, 14 scene card, trattamento, continuità |
 | **V2** | 2026-10-13 | Correzioni della revisione dell'utente su PR #7: (1) data del rifugio «settembre 2012 — DA VERIFICARE», con le varianti 8/9 e 9/9 e le fonti; (2) nascita di Ezio come contraddizione fra fonti (memoria → Palazzo Auditore; Database → completato nel 1473), interno della memoria in scena, identificazione in P-01; (3) «Soggetto 16» senza anticiparne l'identità; (4) S-01 come scelta di montaggio (nel piano); (5) titolo della Seq. 12 allineato in `01_CRONOLOGIA.md`; (6) luogo e data della visione di Ezio adulto DA VERIFICARE |
-
-
 | **V2 — approvazione** | 2026-10-13 | P-01–P-04 e S-01–S-04 approvate esplicitamente; fonti e incongruenze ancora da verificare. |
 
 **Aggiornamento approvazioni (2026-10-13):** l'utente ha **APPROVATO P-01, P-02, P-03 e P-04** come formulate in questa revisione V2; e **S-01, S-02, S-03, S-04** come formulate nel piano. Vedi [registro decisioni](../05_DECISIONI.md). I dettagli che questo documento segnala come DA VERIFICARE rimangono tali. Il monologo specifico e le battute restano da scrivere e approvare. Nessuna generazione di asset autorizzata.
