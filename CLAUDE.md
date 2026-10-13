@@ -38,6 +38,12 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 - Verifica R2: manuale ufficiale PC Steam, sezione Ezio, 6 piedi e 165 libbre (circa 1,83 m / 75 kg). Verifica R3: in AC II non si possono rigiocare normalmente le memorie **principali** già completate, secondo Ubisoft Support; predisporre quindi una nuova partita o salvataggi per le catture. Non inventare replay o timestamp.
 - R1 conferma Thibault come team lead e Collings nel team, non necessariamente la singola paternità della mesh del volto. R4 segnala missioni candidate per le viste: alcune prospettive restano mancanti.
 
+## Correzione età e dossier da browser (2026-10-13)
+- **Età corretta:** Ezio è nato il 24 giugno 1459; **nell'aprile 1478 ha 18 anni, non 19**. Prima di associare un'età a una scena, considerare giorno e mese.
+- Il resoconto del nuovo dossier di Claude è raccolto in `docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md`, che **NON è il file integrale del dossier**. Non presentarlo come tale.
+- D4-a/b/c, D5, D6-a/b/c e D7/D7-b rimangono **PROPOSTE NON APPROVATE** finché l'utente non decide.
+- Restare in pre-produzione esclusivamente documentale e da browser; nessuna cattura personale obbligatoria, nessun modello, immagine o video.
+
 ## Flusso iniziale
 Leggi README e docs, quindi:
 1. Convalida l'apertura del gioco sulle fonti;
