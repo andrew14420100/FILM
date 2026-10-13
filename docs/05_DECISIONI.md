@@ -19,6 +19,7 @@
 | Tutto il workflow di produzione sul PC Windows | APPROVATA | RTX 5070 Ti 16 GB, niente rendering cloud richiesto |
 | Software senza costi aggiuntivi | APPROVATA | Verificare licenze; Claude Code non è intrinsecamente gratuito |
 | Pre-produzione prima della generazione video | APPROVATA | Nessun render o modello definitivo ora |
+| Raccolta reference senza accesso al PC (2026-10-13) | APPROVATA | **Le fonti A-EXT e B già catalogate bastano per continuare da browser** con schede, continuity, copione e preparazione tecnica. **Non richiedere ulteriori screenshot dal gioco in questa fase**: l'utente è fuori casa. Eventuali nuove catture A rimangono facoltative e potranno essere proposte più avanti per sciogliere dettagli incerti, senza bloccare la pre-produzione. Non dichiarare risolte le lacune A e non iniziare blockout/3D/render/video. |
 | Doppiaggio italiano | DA DEFINIRE | Fonte delle voci e diritti ancora da scegliere |
 | Durata finale | DA DEFINIRE | Non imporre arbitrariamente 180–210 minuti |
 | GitHub repository Private | DA FARE | Repository attualmente PUBLIC: utente deve cambiare visibilità nelle impostazioni |
@@ -31,7 +32,7 @@ Ogni cambiamento ad una decisione APPROVATA va annotato con data, motivo e appro
 Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. Non autorizzano la generazione del blockout, di digital doubles, di immagini sintetiche, modelli 3D, animazioni, audio o video. La **D1 è approvata per l'edizione originale PC posseduta su Ubisoft Connect**; build, patch e DLC restano da verificare. D4, D5, D6 e D7 sono ancora da ratificare.
 
 ## Protocollo ufficiale D1
-Vedi [Piano catture AC II PC / Ubisoft Connect](reference/CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md). Le catture A sono locali e gli screenshot di terzi A-EXT restano riferimenti preliminari, non prova di piattaforma PC. Non salvare né immagini né video del gioco in questo repository (al momento pubblico).
+**Il piano catture è facoltativo e differito; non serve eseguirlo ora.** Vedi [Piano catture AC II PC / Ubisoft Connect](reference/CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md) soltanto per eventuali verifiche successive. Le catture A sono locali e gli screenshot di terzi A-EXT restano riferimenti preliminari, non prova di piattaforma PC. Non salvare né immagini né video del gioco in questo repository (al momento pubblico).
 
 ## Prossimi passi
 1. Rendere privato il repository nelle impostazioni GitHub.
