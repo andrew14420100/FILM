@@ -1,5 +1,7 @@
 # CHR-001 — D1 approvata e piano di cattura primaria su AC II PC Ubisoft Connect
 
+> **AGGIORNAMENTO 2026-10-13:** l'utente è fuori casa e ha stabilito che **non servono altri screenshot per proseguire la pre-produzione**. Questo documento è **un protocollo facoltativo differito**, da utilizzare solo se in futuro si vorranno sciogliere questioni rimaste incerte per il Master. **Non richiedere catture ora e non bloccare** analisi, schede, sceneggiatura o continuità. Le fonti A-EXT/B raccolte restano provvisorie e non diventano fonte A.
+
 **Data:** 2026-10-13  
 **Decisione D1:** **APPROVATA** dall'utente: possiede *Assassin's Creed II* originale per Windows tramite **Ubisoft Connect**. Quella copia è il riferimento canonico primario per film e personaggi.  
 **Fase:** esclusivamente **PRE-PRODUZIONE**. Nessuna generazione di blockout, modelli, immagini sintetiche, rendering, audio o video del film.
