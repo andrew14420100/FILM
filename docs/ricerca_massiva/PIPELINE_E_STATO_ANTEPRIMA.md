@@ -1,5 +1,7 @@
 # PIPELINE_E_STATO_ANTEPRIMA — Fasi B e C dell'incarico #12
 
+> **Aggiornamento 2026-10-13 — modalità Windows Sandbox:** dopo la verifica dell'utente (Windows 11 Pro, copia in sola lettura con SHA256, gioco non condiviso) è disponibile una modalità dedicata per eseguire Claude Code **dentro Windows Sandbox**: [SANDBOX_WINDOWS.md](SANDBOX_WINDOWS.md), con prove in [TEST_WINDOWS_SANDBOX.md](TEST_WINDOWS_SANDBOX.md). Il launcher dell'host resta invariato. Script non testati su Windows.
+
 **Stato:** pipeline **PROPOSTA, NON VERIFICATA** · anteprima **BLOCCATA, NON GENERATA**.
 
 ## 1. Esito della Fase C

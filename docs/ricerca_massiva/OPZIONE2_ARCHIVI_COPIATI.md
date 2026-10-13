@@ -47,6 +47,9 @@
 
 **Il primo account prepara la copia e i permessi; il secondo account, standard, esegue Claude.** Non usare lo stesso account proprietario della copia per tutte e due le fasi: in molti casi il proprietario può modificare la DACL o i file.
 
+## Alternativa consigliata dopo la prova dell'utente: Windows Sandbox
+L'utente ha verificato che Windows Sandbox funziona sul suo PC (Windows 11 Pro), con la copia condivisa in sola lettura e la creazione di cartelle negata. La procedura dedicata è in [SANDBOX_WINDOWS.md](SANDBOX_WINDOWS.md): archivio, clone FILM e configurazione condivisi in **sola lettura**, risultati in una sola cartella scrivibile e persistente, gioco **mai condiviso**. Il launcher dell'host qui sotto resta valido e invariato per l'uso fuori dalla Sandbox.
+
 ## Seconda fase — avvio Claude SOLO dagli archivi copiati
 
 Dopo aver controllato le ACL, accedere con il secondo account standard. Il clone FILM deve essere raggiungibile in **sola lettura** per il suo account; la cartella di lavoro dev'essere scrivibile. Il branch deve essere completo e pulito.

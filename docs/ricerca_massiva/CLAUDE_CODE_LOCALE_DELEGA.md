@@ -1,5 +1,7 @@
 # FILM — Claude Code locale, delega con archivi COPIATI
 
+> **Aggiornamento 2026-10-13 — modalità Windows Sandbox:** dopo la verifica dell'utente (Windows 11 Pro, copia in sola lettura con SHA256, gioco non condiviso) è disponibile una modalità dedicata per eseguire Claude Code **dentro Windows Sandbox**: [SANDBOX_WINDOWS.md](SANDBOX_WINDOWS.md), con prove in [TEST_WINDOWS_SANDBOX.md](TEST_WINDOWS_SANDBOX.md). Il launcher dell'host resta invariato. Script non testati su Windows.
+
 **Revisione 2026-10-13 — OPZIONE 2 APPROVATA.** Questo testo sostituisce la precedente impostazione del launcher che controllava direttamente `GameDir`. La versione storica resta nella cronologia Git. **Script non testati su Windows**. Non è stato avviato Claude né è stata modificata l'installazione originale.
 
 ## Prima di tutto: leggere il protocollo vincolante

@@ -19,8 +19,9 @@
 6. **Voci:** soltanto le registrazioni italiane originali estratte dalla copia legittima dell'utente. **Vietati** TTS, clonazione, conversione della voce e alterazione di timbro o tono (#12). Eventuali pulizie (rumore, livelli) sono **rinviate** e da autorizzare. Le voci restano protette anche quando vengono usate in privato: diritti degli interpreti e di Ubisoft.
 7. **Dialoghi:** nessun testo di dialogo copiato nel repository (CLAUDE.md, vincolo 5). Il catalogo voci contiene solo **codici e descrizioni**, non le battute.
 8. **Somiglianza delle persone:** Desmond, Lucy e Ezio hanno modelli e volti basati su attori o modelli reali. Le ricostruzioni fotorealistiche servono soltanto alla visione privata. **Non pubblicare** immagini dei volti ricostruiti.
-9. **Servizi:** niente pagamenti, API a consumo o servizi cloud di generazione senza autorizzazione esplicita (CLAUDE.md, vincolo 7).
-10. **Marchi:** il logo Abstergo e le grafiche dei messaggi non vanno ricreati in file pubblici; nei documenti si descrivono a parole.
+9. **Claude Code e dati:** con Claude Code, locale o in Windows Sandbox, ciò che Claude legge con i suoi strumenti viene inviato ai modelli Anthropic tramite l'account dell'utente. Non far leggere per intero file del gioco dentro la conversazione; lavorare con tool locali e riportare sintesi. Con la rete attiva la Sandbox vede anche la rete locale ([SANDBOX_WINDOWS.md](SANDBOX_WINDOWS.md) §4).
+10. **Servizi:** niente pagamenti, API a consumo o servizi cloud di generazione senza autorizzazione esplicita (CLAUDE.md, vincolo 7).
+11. **Marchi:** il logo Abstergo e le grafiche dei messaggi non vanno ricreati in file pubblici; nei documenti si descrivono a parole.
 
 ## 3. Limiti tecnici che incidono sulla fedeltà
 | Limite | Conseguenza | Fonte | Stato |

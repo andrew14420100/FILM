@@ -205,6 +205,86 @@ for ($i = 0; $i -lt $idxConfirm; $i++) {
 }
 Add-Result 'T07' 'Launcher: tutti i controlli (throw) precedono la prima conferma e qualsiasi scrittura' ($idxConfirm -gt 0 -and $throwsBeforeWrites -and $throwCount -ge 20) ("prima conferma @{0}; throw prima della conferma: {1}" -f $idxConfirm, $throwCount)
 
+# ---------------- T08 modalita' Windows Sandbox ----------------
+$sbDir = Join-Path $scriptsDir 'sandbox'
+$gen = Join-Path $sbDir 'genera_film_sandbox.ps1'
+$sbl = Join-Path $sbDir 'avvia_claude_sandbox.ps1'
+foreach ($p in @($gen, $sbl)) {
+    $r = Get-Ast $p
+    $parsed[$p] = $r
+    Add-Result 'T08' "Sintassi $(Split-Path -Leaf $p)" ($r.Errors.Count -eq 0) ("errori: {0}" -f $r.Errors.Count)
+    $nonAscii = @([System.IO.File]::ReadAllBytes($p) | Where-Object { $_ -gt 127 }).Count
+    Add-Result 'T08' "Solo ASCII $(Split-Path -Leaf $p)" ($nonAscii -eq 0) ("byte non ASCII: {0}" -f $nonAscii)
+}
+$gAst = $parsed[$gen].Ast
+$sAst = $parsed[$sbl].Ast
+
+# T08a: generazione .wsb (funzione pura eseguita con percorsi di esempio).
+$defs = @($gAst.FindAll({ param($n) $n -is [System.Management.Automation.Language.FunctionDefinitionAst] -and @('ConvertTo-XmlText', 'New-FilmWsbXml') -contains $n.Name }, $true) | ForEach-Object { $_.Extent.Text })
+$spDef = $gAst.Find({ param($n) $n -is [System.Management.Automation.Language.AssignmentStatementAst] -and $n.Left.Extent.Text -eq '$SandboxPaths' }, $true).Extent.Text
+$callText = "New-FilmWsbXml 'D:\FILM_ARCHIVI_RO' 'D:\FILM' 'D:\FILM_SANDBOX_CONFIG' 'D:\FILM_RISULTATI_SANDBOX' '0123456789abcdef0123456789abcdef01234567' 8192 'Enable' 'Disable' 'Disable'"
+$wsbText = & ([scriptblock]::Create($spDef + "`n" + ($defs -join "`n") + "`n" + $callText))
+$x = [xml]$wsbText
+$maps = @($x.Configuration.MappedFolders.MappedFolder)
+$roOk = ($maps.Count -eq 4)
+foreach ($mm in $maps) {
+    $expRo = 'true'; if ($mm.SandboxFolder -eq 'C:\FILM\RISULTATI') { $expRo = 'false' }
+    if ($mm.ReadOnly -ne $expRo) { $roOk = $false }
+    if ($mm.HostFolder -match 'Games|Assassin') { $roOk = $false }
+}
+$writable = @($maps | Where-Object { $_.ReadOnly -eq 'false' } | ForEach-Object { $_.SandboxFolder })
+Add-Result 'T08a' '.wsb: 4 cartelle, sola lettura tranne RISULTATI, gioco assente' ($roOk -and $writable.Count -eq 1 -and $writable[0] -eq 'C:\FILM\RISULTATI') ("scrivibili: {0}" -f ($writable -join ','))
+$netOk = ($x.Configuration.Networking -eq 'Enable' -and $x.Configuration.AudioInput -eq 'Disable' -and $x.Configuration.VideoInput -eq 'Disable' -and $x.Configuration.PrinterRedirection -eq 'Disable')
+Add-Result 'T08a' '.wsb: rete attiva (richiesta), audio/video/stampanti disattivati' $netOk ''
+Add-Result 'T08a' '.wsb: il LogonCommand esegue solo la VERIFICA' ([string]$x.Configuration.LogonCommand.Command -match '-SoloVerifica') ([string]$x.Configuration.LogonCommand.Command)
+
+# T08b: generatore - DryRun prima di ogni scrittura; separazione a coppie con il gioco; gioco mai passato al .wsb.
+$gTop = @($gAst.EndBlock.Statements)
+$iDry = -1; $iMut = -1
+for ($i = 0; $i -lt $gTop.Count; $i++) {
+    $st = $gTop[$i]
+    if ($st -is [System.Management.Automation.Language.FunctionDefinitionAst]) { continue }
+    if ($iDry -lt 0 -and $st -is [System.Management.Automation.Language.IfStatementAst] -and $st.Clauses[0].Item1.Extent.Text -eq '$DryRun') { $iDry = $i }
+    if ($iMut -lt 0 -and @(Get-MutatingCalls $st).Count -gt 0) { $iMut = $i }
+}
+Add-Result 'T08b' 'Generatore -DryRun: nessuna scrittura prima del ritorno' ($iDry -ge 0 -and $iDry -lt $iMut) ("DryRun @{0}, prima scrittura @{1}" -f $iDry, $iMut)
+$wsbCall = $gAst.Find({ param($n) $n -is [System.Management.Automation.Language.CommandAst] -and $n.GetCommandName() -eq 'New-FilmWsbXml' }, $true)
+Add-Result 'T08b' "Generatore: il gioco non e' mai passato al file .wsb" (-not ($wsbCall.Extent.Text -match '\$game\b')) $wsbCall.Extent.Text
+$gText = $gAst.Extent.Text
+Add-Result 'T08b' 'Generatore: separazione a coppie di gioco/copia/clone/risultati/config' (($gText -match "'gioco originale' = \`$game") -and ($gText -match 'Assert-Separated \$all\[\$keys\[\$i\]\] \$all\[\$keys\[\$j\]\]')) ''
+$genWrites = @()
+foreach ($cmd in @(Get-MutatingCalls $gAst)) {
+    if ($cmd -is [System.Management.Automation.Language.AssignmentStatementAst]) { continue }
+    $t = [string](Get-NamedArgText $cmd 'LiteralPath'); if (-not $t) { $t = [string](Get-NamedArgText $cmd 'Path') }
+    if ($t -notmatch '^\$cfg$|^\$res$|^\(Join-Path \$cfg ') { $genWrites += $cmd.Extent.Text }
+}
+Add-Result 'T08b' 'Generatore: scrive solo in ConfigDir e crea solo ResultsDir' ($genWrites.Count -eq 0) ($genWrites -join ' | ')
+
+# T08c: launcher Sandbox - rifiuto fuori Sandbox, prove di sola lettura, -SoloVerifica senza scritture, conferme.
+$sTop = @($sAst.EndBlock.Statements | Where-Object { $_ -isnot [System.Management.Automation.Language.FunctionDefinitionAst] })
+$iUser = -1; $iSolo = -1; $iFirstWrite = -1; $iClaude = -1
+for ($i = 0; $i -lt $sTop.Count; $i++) {
+    $t = $sTop[$i].Extent.Text
+    if ($iUser -lt 0 -and $t -match 'WDAGUtilityAccount') { $iUser = $i }
+    if ($iSolo -lt 0 -and $sTop[$i] -is [System.Management.Automation.Language.IfStatementAst] -and $sTop[$i].Clauses[0].Item1.Extent.Text -eq '$SoloVerifica') { $iSolo = $i }
+    if ($iFirstWrite -lt 0 -and @(Get-MutatingCalls $sTop[$i]).Count -gt 0) { $iFirstWrite = $i }
+    if ($iClaude -lt 0 -and $t -match '--permission-mode plan') { $iClaude = $i }
+}
+Add-Result 'T08c' 'Launcher Sandbox: controllo WDAGUtilityAccount tra i primi controlli' ($iUser -ge 0 -and $iUser -le 4) ("@{0}" -f $iUser)
+Add-Result 'T08c' "Launcher Sandbox: -SoloVerifica ritorna prima di ogni scrittura e dell'avvio" ($iSolo -ge 0 -and $iSolo -lt $iFirstWrite -and $iSolo -lt $iClaude) ("SoloVerifica @{0}, prima scrittura @{1}, avvio @{2}" -f $iSolo, $iFirstWrite, $iClaude)
+$sT = $sAst.Extent.Text
+Add-Result 'T08c' 'Launcher Sandbox: prova di scrittura negata su ARCHIVI_RO, REPO, CONFIG' (($sT -match 'foreach \(\$d in @\(\$expectedPaths\.Archive, \$expectedPaths\.Repo, \$expectedPaths\.Config\)\)') -and ($sT -match 'Test-WriteDenied \$d')) ''
+Add-Result 'T08c' 'Launcher Sandbox: conferme PREPARA e AVVIA prima di scrivere e avviare' (($sT -match "-cne 'PREPARA'") -and ($sT -match "-cne 'AVVIA'")) ''
+$iex = @($sAst.FindAll({ param($n) $n -is [System.Management.Automation.Language.CommandAst] -and @('Invoke-Expression', 'iex') -contains $n.GetCommandName() }, $true))
+$dl = @($sAst.FindAll({ param($n) $n -is [System.Management.Automation.Language.CommandAst] -and @('Invoke-WebRequest', 'Invoke-RestMethod', 'Start-BitsTransfer', 'iwr', 'irm') -contains $n.GetCommandName() }, $true))
+$branch = $sAst.Find({ param($n) $n -is [System.Management.Automation.Language.IfStatementAst] -and $n.Extent.Text -match 'elseif \(\$InstallaClaudeCode -and -not \$SoloVerifica\)' }, $true)
+$dlInBranch = $branch -and (@($dl | Where-Object { $branch.Extent.StartOffset -le $_.Extent.StartOffset -and $_.Extent.EndOffset -le $branch.Extent.EndOffset }).Count -eq $dl.Count)
+$iexGuard = ($iex.Count -eq 0) -and ($dl.Count -eq 1) -and $dlInBranch -and ($sT -match "-cne 'INSTALLA'") -and ($sT -match "https://claude\.ai/install\.ps1")
+Add-Result 'T08c' 'Launcher Sandbox: unico download = installer ufficiale, solo con -InstallaClaudeCode e conferma INSTALLA; niente Invoke-Expression' $iexGuard ("Invoke-Expression: {0}; download: {1}" -f $iex.Count, $dl.Count)
+Add-Result 'T08c' 'Launcher Sandbox: Edit negato su archivio, clone e config; WebFetch negato' (($sT -match 'Edit\(//c/FILM/ARCHIVI_RO/\*\*\)') -and ($sT -match 'Edit\(//c/FILM/REPO/\*\*\)') -and ($sT -match 'Edit\(//c/FILM/CONFIG/\*\*\)') -and ($sT -match "'WebFetch'")) ''
+# T08d: il launcher dell'host non contiene eccezioni per la Sandbox (controlli non disattivati).
+Add-Result 'T08d' 'Launcher host invariato: nessuna eccezione Sandbox' (-not ($lt -match 'WDAGUtilityAccount|Sandbox')) ''
+
 # ---------------- Riepilogo ----------------
 $results | Format-Table -AutoSize -Wrap | Out-String -Width 220 | Write-Output
 $fail = @($results | Where-Object { $_.Esito -eq 'FAIL' }).Count
