@@ -30,12 +30,12 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/04_SCENE_TEMPLATE.md](docs/04_SCENE_TEMPLATE.md): modello scheda-scena
 - [docs/preproduzione/CHR-002_014_CAST_BIBLE_INIZIALE.md](docs/preproduzione/CHR-002_014_CAST_BIBLE_INIZIALE.md): primo dossier di continuità per Desmond, famiglia e alleati
 - [docs/preproduzione/PROLOGO_BREAKDOWN_V0.md](docs/preproduzione/PROLOGO_BREAKDOWN_V0.md): nove beat cinematografici del prologo, tutti da verificare
-- [docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md](docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md): **prologo, revisione interna V2** — 14 schede di scena; scelte P-01–P-04 approvate, fatti incerti ancora da verificare; la V0 resta storica
+- [docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md](docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md): **prologo, revisione interna V3** — decisione R-TITOLO approvata: titolo sui tetti dopo `Sibling Rivalry`; resto del prologo approvato invariato
 - [docs/preproduzione/PIANO_SEQUENZE_01_14.md](docs/preproduzione/PIANO_SEQUENZE_01_14.md): piano di pre-produzione delle Sequenze 1–14 e degli intermezzi del 2012
-- [docs/preproduzione/SEQ01_SCALETTA_CANONICA_V0.md](docs/preproduzione/SEQ01_SCALETTA_CANONICA_V0.md): 12 memorie della Sequenza 1, collegamento al prologo V2 e continuità della famiglia (bozza)
+- [docs/preproduzione/SEQ01_SCALETTA_CANONICA_V0.md](docs/preproduzione/SEQ01_SCALETTA_CANONICA_V0.md): 12 memorie della Sequenza 1, collegamento al prologo V3 e continuità della famiglia (bozza)
 - [docs/preproduzione/SEQ01_TRATTAMENTO_NARRATIVO_V1.md](docs/preproduzione/SEQ01_TRATTAMENTO_NARRATIVO_V1.md): trattamento narrativo V1 con 14 scene, raccordi e arco emotivo di Ezio (bozza)
 - [docs/preproduzione/SEQ01_CAST_CONTINUITA_AUDITORE_V1.md](docs/preproduzione/SEQ01_CAST_CONTINUITA_AUDITORE_V1.md): schede di famiglia, Uberto, Annetta e oggetti di scena (bozza)
-- [docs/preproduzione/SEQ01_REVISIONE_FONTI_V1.md](docs/preproduzione/SEQ01_REVISIONE_FONTI_V1.md): verifica delle fonti e conflitto di collocazione del titolo (R-TITOLO; in attesa)
+- [docs/preproduzione/SEQ01_REVISIONE_FONTI_V1.md](docs/preproduzione/SEQ01_REVISIONE_FONTI_V1.md): verifica delle fonti e addendum con scelta R-TITOLO **approvata** (solo la posizione del titolo)
 - [docs/preproduzione/LOC-001_005_SCHEDE_OPERATIVE.md](docs/preproduzione/LOC-001_005_SCHEDE_OPERATIVE.md): schede operative di Abstergo, rifugio, Firenze, casa e Monteriggioni
 - [docs/05_DECISIONI.md](docs/05_DECISIONI.md): log decisioni e questioni aperte
 - [docs/reference/README.md](docs/reference/README.md): criteri per le fonti visive
