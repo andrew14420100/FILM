@@ -26,20 +26,22 @@
 
 ## Decisioni: stato effettivo
 
+**Aggiornamento 2026-10-13:** D2-bis, D8, D9 e D3 approvate esplicitamente dall'utente dopo la stesura originaria della revisione. Le osservazioni storiche sopra restano invariate.
+
 | ID | Stato | Raccomandazione motivata |
 | --- | --- | --- |
 | D2 | **APPROVATA** | Armatura di Altaïr al Vaticano e nella Cripta di Minerva. |
-| D2-bis | IN ATTESA | Consigliato: Armatura anche nella Seq. 13 (*Falò delle Vanità*), con acquisizione narrativa dei sei sigilli prima di quella sequenza. |
-| D8 | IN ATTESA | Consigliato: cappuccio alzato nelle scene della Seq. 13–14 come nel riferimento filmico; volto maturo preparato comunque nel master per animazione/test. |
-| D9 | IN ATTESA | Consigliato: accettare A-EXT **solo per blockout non definitivo**, senza convertire le incertezze cromatiche in dati approvati. |
-| D3 | IN ATTESA | Consigliato: cappa **scura all'esterno e rossa all'interno** con Armatura di Altaïr nel finale; cappe Medici/Veneziana solo dove corrette per epoca e scena. |
+| D2-bis | **APPROVATA · 2026-10-13** | Armatura di Altaïr anche nella Seq. 13 (*Falò delle Vanità*), con introduzione narrativa dei sei sigilli prima di questa sequenza. |
+| D8 | **APPROVATA · 2026-10-13** | Cappuccio alzato nelle Seq. 13–14. Identità facciale permanente anche quando coperta dal cappuccio. |
+| D9 | **APPROVATA · 2026-10-13** | Immagini A-EXT accettate solo come reference per il **futuro** primo blockout, non per il master definitivo; nessun modello viene creato ora. |
+| D3 | **APPROVATA · 2026-10-13** | Cappa scura con fodera rossa quando indossa l'Armatura di Altaïr; catalogare esplicitamente le immagini contrastanti. |
 | D1/D4/D5/D6/D7 | NON APPROVATE (salvo dichiarazioni successive) | Mantenere lo stato precedente delle decisioni; D7 possiede ora evidenza A-EXT della collana. |
 
 ## Prossima operazione raccomandata
 
-1. Far approvare all'utente D2-bis, D8, D9 e D3.
+1. **Completato:** D2-bis, D8, D9 e D3 approvate dall'utente il 2026-10-13.
 2. Chiedere a Claude di integrare, **con tracciamento delle correzioni**, i riferimenti più affidabili nelle schede già archiviate, senza riscrivere la bozza originale ricevuta.
 3. Far acquisire da una copia legittima del gioco 3–5 inquadrature A (fronte neutra, profilo destro, occhi, cicatrice guarita, barba 1488). Se non immediatamente possibili, consentire solo blockout provvisorio da A-EXT.
-4. Non generare modelli, render o video senza nuova autorizzazione.
+4. **Resta in sola pre-produzione.** Non generare nemmeno blockout, modelli, render o video senza nuova autorizzazione.
 
 **NOTA DIRITTI:** le tavole JPEG contengono immagini di opere di terzi. Non caricarle in questo repo (attualmente pubblico); conservare il materiale di riferimento su supporto privato rispettando le licenze applicabili.
