@@ -23,6 +23,12 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 - Prima di modificare una voce APPROVATA, proporre una revisione.
 - Salvare le versioni precedenti tramite Git; non usare force-push o cancellazioni massive.
 
+## Archivio visivo / Character Lock
+- Per Ezio leggere obbligatoriamente `docs/reference/CHR-001_EZIO_MASTER.md` e `docs/reference/README.md`.
+- Preferire fotogrammi verificati dal videogioco per anatomia e costumi; concept preliminari, mod e statue non costituiscono canone definitivo.
+- Non considerare quattro screenshot, una mesh scaricata o una renderizzazione 4K sufficienti per dichiarare la fedeltà del personaggio.
+- Nessun download/import automatico di asset di terzi né creazione di `EZIO_MASTER` senza approvazione.
+
 ## Flusso iniziale
 Leggi README e docs, quindi:
 1. Convalida l'apertura del gioco sulle fonti;
