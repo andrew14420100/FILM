@@ -5,6 +5,9 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 ## Priorità attuale
 **SOLO PRE-PRODUZIONE**: cronologia, catalogo scene, personaggi, ambientazioni, sceneggiatura originale di adattamento e revisioni. NON avviare Blender, LTX, ComfyUI, riprese, generazione video, sintesi vocale o rendering senza un nuovo ordine esplicito.
 
+## Regola definitiva dell'utente — un FILM, non un gameplay (2026-10-13)
+**Leggi obbligatoriamente** `docs/preproduzione/REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md` prima di trattare qualsiasi sequenza. Il videogioco è **riferimento per eventi, personaggi, cronologia e luoghi**, non formato da duplicare. Lo spettatore NON vedrà sequenze/missioni, tutorial, comandi, HUD, minimappe, obiettivi, contatori, indicatori di gioco, animazioni ripetitive da gameplay o scene di navigazione fine a sé stesse. Le sigle delle memorie restano **solo metadati redazionali**. Costruire una sceneggiatura da film, con azioni umane, continuità emotiva e causalità; fondere e condensare le missioni quando serve. Il titolo unico dopo `Sibling Rivalry` è il **titolo del film**, non un'interfaccia. L'Animus e l'Occhio dell'aquila sono elementi narrativi, **non giustificazioni per HUD del giocatore**. Non convertire automaticamente dodici memorie in dodici scene. Sono confermate le decisioni passate su personaggi, storia e finale e il divieto di creare modelli, immagini, audio o video.
+
 ## Vincoli artistici
 1. L'inizio deve seguire l'apertura reale di *Assassin's Creed II*: Desmond/Abstergo, Lucy, breve memoria della nascita di Ezio, fuga, rifugio, Animus 2.0; NON inserire l'apocalisse degli Isu come prologo inventato.
 2. Seguire la cronologia e i destini dei personaggi come nel gioco, incluse le sequenze 12 e 13.
