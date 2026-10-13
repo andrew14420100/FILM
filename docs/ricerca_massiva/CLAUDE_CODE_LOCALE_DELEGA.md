@@ -3,6 +3,14 @@
 **Stato:** PROPOSTA · DA VERIFICARE · **non autorizza alcuna esecuzione.** Risponde al punto 2 della revisione del proprietario sulla PR #14: il committente preferisce che sia Claude a fare il lavoro, non eseguire a mano una procedura in molti passi.
 **Fatto attuale:** la sessione di Claude che ha scritto questo documento gira **nel cloud** e **non ha accesso al PC**. L'accesso esisterà solo quando l'utente avvierà Claude Code **localmente** sul proprio PC con le limitazioni qui descritte. Fino ad allora nessun documento può dichiararlo.
 
+## Percorso effettivo del gioco comunicato dall'utente (2026-10-13)
+
+- **GameDir confermata come informazione dell'utente:** `D:\Games\Assassin's Creed II` (installazione originale PC tramite Ubisoft Connect).
+- **WorkDir separata proposta:** `D:\FILM_PRIVATO`, dove Claude potrà creare l'inventario e i progetti privati, **non** dentro la cartella del gioco.
+- **Non confondere percorso noto con file verificati:** presenza, nome esatto, versione e leggibilità di `DataPC_Abstergo.forge`, `DataPC_Hideout.forge`, `sounds_ita.pck` e tutti gli altri archivi restano **DA VERIFICARE dal PC**, senza presumere che esistano.
+- **Parametro per il launcher:** usare `-GameDir "D:\Games\Assassin's Creed II" -WorkDir "D:\FILM_PRIVATO"` e `-ExpectedCommit` ottenuto dal commit locale effettivamente controllato con `git rev-parse HEAD`. Il launcher deve ancora superare tutti i controlli di permessi e gli stop interattivi: **questo aggiornamento documentale non autorizza ad aggirarli e non costituisce un test locale eseguito**.
+- **Protezione:** non cambiare ACL, non scrivere o eseguire archivi originali, non installare mod o modificare la copia Ubisoft Connect. Prima di avviare Claude serve il controllo dei permessi di sola lettura dal medesimo account Windows.
+
 ## 1. Come funziona la delega
 | Elemento | Proposta |
 |---|---|
