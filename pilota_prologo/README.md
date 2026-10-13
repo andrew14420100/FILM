@@ -10,6 +10,11 @@
 
 **Limiti reali:** i generatori video possono cambiare volto fra clip, deformare mani e oggetti, sbagliare costumi e movimenti. Testare a risoluzione moderata **non equivale a garantire fotorealismo 4K nativo**. Un file 3840×2160 ottenuto per interpolazione da un video più piccolo *non* possiede i dettagli di un film realmente renderizzato in 4K.
 
+## Reference originali di AC II recuperate online
+Prima di iniziare a rendere definitivo il volto o la scenografia, consultare il [catalogo ABSTERGO / DESMOND / LUCY](REFERENCE_ONLINE_AC2_ABSTERGO_DESMOND_LUCY.md) con screenshot AC II, gallerie dei personaggi e fonti C. **Non sono ancora master 3D**, e nessun fotogramma in GitHub è stato copiato. Sono esclusi da verifica i mod, gli artwork di AC III o i set più recenti di Abstergo Entertainment.
+
+**Correzione di montaggio:** il pilota di quattro inquadrature è un **provino visivo** che prova volti/luci/movimenti; NON rappresenta ancora in ordine il prologo canonico. Tra la visita di Lucy e la fuga nel corridoio ci sono il ritorno nell'Animus e la **nascita di Ezio**. Non montare `02_lucy_ingresso → 04_corridoio` come se fosse l'intera scena originale. Il **titolo** va solo alla gara sui tetti con Federico (R-TITOLO), mai nell'incipit Abstergo.
+
 ## Perché Wan 2.2 TI2V 5B
 
 - Modello locale, gratuito, open source (Apache 2.0), senza API a pagamento né crediti per generazione; si usa nel software libero **ComfyUI**.
