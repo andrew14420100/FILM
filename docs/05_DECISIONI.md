@@ -9,6 +9,10 @@
 | Storia fedele ad Assassin's Creed II | APPROVATA | Cronologia, personaggi e finale dal gioco |
 | Prologo fedele all'inizio del gioco | APPROVATA | Nessun prologo apocalittico nuovo |
 | D2 — Costume di Ezio nella Seq. 14 (Vaticano e Cripta) | APPROVATA · 2026-10-13 | **Armatura di Altaïr**, secondo la scelta dell'utente. Pianificare una precedente acquisizione dei sigilli/tombe coerente con il gioco; non presentare questa scelta opzionale come equipaggiamento obbligatorio in ogni partita. |
+| D2-bis — Armatura anche in Seq. 13 (Falò delle Vanità) | APPROVATA · 2026-10-13 | Ezio indossa l'**Armatura di Altaïr** anche nella Sequenza 13; progettare l'acquisizione dei sei sigilli e della tenuta prima di questa sequenza, senza imporla come percorso obbligatorio del gioco. |
+| D8 — Volto maturo nel finale | APPROVATA · 2026-10-13 | **Cappuccio alzato** durante le scene delle Seq. 13–14, inclusi Vaticano e Cripta, per una resa fedele; mantenere comunque uno stesso modello facciale in tutte le età. |
+| D9 — Reference di terzi per modello iniziale | APPROVATA · 2026-10-13 | Autorizzato utilizzare screenshot **A-EXT** come riferimento **solo per il futuro blockout provvisorio**. Non attestano automaticamente la versione PC e non bastano per approvare EZIO_MASTER. **Nessun modello o render deve essere generato in questa fase.** |
+| D3 — Cappa con Armatura di Altaïr | APPROVATA · 2026-10-13 | Configurazione cinematografica: **esterno scuro, fodera interna rossa** nelle scene con Armatura di Altaïr; eventuali differenze rispetto ai fotogrammi del gioco devono restare documentate. |
 | Personaggi dall'aspetto umano e ambienti reali | APPROVATA | Live-action fotorealistico digitale |
 | Qualità obiettivo 4K UHD | APPROVATA | Pianificare per 3840 × 2160, testare effettivamente |
 | Tutto il workflow di produzione sul PC Windows | APPROVATA | RTX 5070 Ti 16 GB, niente rendering cloud richiesto |
@@ -21,6 +25,9 @@
 
 ## Regole di modifica
 Ogni cambiamento ad una decisione APPROVATA va annotato con data, motivo e approvazione esplicita. Non convertire bozze in canon implicitamente.
+
+## Stato creativo confermato
+Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. Non autorizzano la generazione del blockout, di digital doubles, di immagini sintetiche, modelli 3D, animazioni, audio o video. Le decisioni D1, D4, D5, D6, D7 sono ancora da ratificare.
 
 ## Prossimi passi
 1. Rendere privato il repository nelle impostazioni GitHub.
