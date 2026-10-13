@@ -115,3 +115,6 @@
 - **Nessuna generazione** di blockout, modelli, immagini sintetiche o video: pre-produzione soltanto.
 
 **Nota di tracciabilità:** il testo dei report originari `CHR-001_EZIO_SCHEDA_TECNICA.md` e `CHR-001_EZIO_SCHEDA_VISIVA.md` resta intatto. Questo addendum aggiorna soltanto il documento operativo.
+
+### Aggiornamento workflow 2026-10-13 — reference esistenti sufficienti per la pre-produzione
+L'utente conferma che **non intende produrre nuovi screenshot ora**, anche perché lavora fuori casa. Utilizzare subito i riferimenti A-EXT/B già catalogati per descrivere forme, costumi, continuità e preparare D4/D5/D6/D7. La mancanza di fonti A non blocca più **i documenti**. Rimane un limite di accuratezza quando si approverà in futuro il volto/materiale definitivo: annotare tutte le zone non risolte e non inventare colori. Nessuna modellazione, immagine o render autorizzati. Vedi [piano da browser](CHR-001_PREPRODUZIONE_DA_BROWSER.md).
