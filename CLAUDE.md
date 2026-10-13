@@ -50,6 +50,17 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 - Il dossier integrale Ezio mantiene la sua intestazione storica 'D4–D7 NON APPROVATE'; prevalgono però le approvazioni esplicite del 2026-10-13 già unite in `docs/05_DECISIONI.md`. Non riscrivere il dossier originale per correggerne retroattivamente lo stato.
 - Proseguire con schede visive documentali CHR-002–014, validazione prologo e location LOC-001–005, poi trattamento filmico. **Niente generazione di modelli, immagini, audio, video o render.**
 
+## Approvazioni strutturali prologo e sequenze (2026-10-13)
+- **P-01:** riprodurre l'interno della memoria della nascita di Ezio, lasciando **DA VERIFICARE** l'identificazione dell'edificio e la contraddizione col Database sul completamento nel 1473.
+- **P-02:** codici CHR-038 «Soggetto 16», CMP-ABS, CMP-NAS, CMP-FIR. Non anticiparne il nome rivelato in altre opere.
+- **P-03:** linguaggio visivo approvato come concept testuale (Abstergo fredda, rifugio caldo, Animus con dissolvenze, Occhio dell'aquila con luce/profondità).
+- **P-04:** monologo iniziale **originale**, fedele al significato della premessa ma non copiato; testo da scrivere.
+- **S-01:** Seq. 12–13 nel film in ordine cronologico tra 11 e 14, senza cornice delle memorie corrotte; il comportamento esatto della versione PC resta DA VERIFICARE.
+- **S-02:** «La Verità» del Soggetto 16 prima della Seq. 14.
+- **S-03:** prima tomba Santa Maria Novella per intero; altre cinque in montaggio prima di Seq. 13, poi Santuario e Armatura di Altaïr.
+- **S-04:** rinviare scelta di durata/formato ai trattamenti delle Seq. 1–3. Nessuna durata approvata.
+- **Stato canon:** nessuna approvazione trasforma dettagli incerti in fatti. Il documento `docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md` ha **revisione interna V2**; `docs/preproduzione/PIANO_SEQUENZE_01_14.md` integra le scelte S. **Pre-produzione soltanto; niente modelli, blockout, immagini, audio, animazioni, render o video.**
+
 ## Flusso iniziale
 Leggi README e docs, quindi:
 1. Convalida l'apertura del gioco sulle fonti;

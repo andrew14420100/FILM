@@ -30,6 +30,8 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/04_SCENE_TEMPLATE.md](docs/04_SCENE_TEMPLATE.md): modello scheda-scena
 - [docs/preproduzione/CHR-002_014_CAST_BIBLE_INIZIALE.md](docs/preproduzione/CHR-002_014_CAST_BIBLE_INIZIALE.md): primo dossier di continuità per Desmond, famiglia e alleati
 - [docs/preproduzione/PROLOGO_BREAKDOWN_V0.md](docs/preproduzione/PROLOGO_BREAKDOWN_V0.md): nove beat cinematografici del prologo, tutti da verificare
+- [docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md](docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md): **prologo, revisione interna V2** — 14 schede di scena; scelte P-01–P-04 approvate, fatti incerti ancora da verificare; la V0 resta storica
+- [docs/preproduzione/PIANO_SEQUENZE_01_14.md](docs/preproduzione/PIANO_SEQUENZE_01_14.md): piano di pre-produzione delle Sequenze 1–14 e degli intermezzi del 2012
 - [docs/preproduzione/LOC-001_005_SCHEDE_OPERATIVE.md](docs/preproduzione/LOC-001_005_SCHEDE_OPERATIVE.md): schede operative di Abstergo, rifugio, Firenze, casa e Monteriggioni
 - [docs/05_DECISIONI.md](docs/05_DECISIONI.md): log decisioni e questioni aperte
 - [docs/reference/README.md](docs/reference/README.md): criteri per le fonti visive
