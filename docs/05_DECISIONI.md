@@ -8,6 +8,7 @@
 | Progetto privato per visione personale | APPROVATA | Non pubblicare il film né caricare asset originali |
 | Storia fedele ad Assassin's Creed II | APPROVATA | Cronologia, personaggi e finale dal gioco |
 | Prologo fedele all'inizio del gioco | APPROVATA | Nessun prologo apocalittico nuovo |
+| D2 — Costume di Ezio nella Seq. 14 (Vaticano e Cripta) | APPROVATA · 2026-10-13 | **Armatura di Altaïr**, secondo la scelta dell'utente. Pianificare una precedente acquisizione dei sigilli/tombe coerente con il gioco; non presentare questa scelta opzionale come equipaggiamento obbligatorio in ogni partita. |
 | Personaggi dall'aspetto umano e ambienti reali | APPROVATA | Live-action fotorealistico digitale |
 | Qualità obiettivo 4K UHD | APPROVATA | Pianificare per 3840 × 2160, testare effettivamente |
 | Tutto il workflow di produzione sul PC Windows | APPROVATA | RTX 5070 Ti 16 GB, niente rendering cloud richiesto |
