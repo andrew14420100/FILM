@@ -12,6 +12,11 @@
 | **IPOTESI** | Deduzione ragionevole da fonti indirette (altre piattaforme, altri giochi, nomi file); da confermare. |
 | **NON RAGGIUNGIBILE** | Pagina che restituisce 403/timeout dalla sessione cloud (es. Nexus, ModDB, SteamDB, documentazione Omniverse). Non usata come prova. |
 
+## Aggiornamento operativo — opzione 2 approvata dall'utente
+Il nuovo percorso è [OPZIONE2_ARCHIVI_COPIATI.md](OPZIONE2_ARCHIVI_COPIATI.md). La preparazione iniziale **copia solo DataPC_Abstergo.forge** dalla cartella Ubisoft Connect `D:\Games\Assassin's Creed II` verso `D:\FILM_ARCHIVI_RO`, **con controllo SHA256**, prima di avviare Claude. Claude usa una **seconda utenza Windows standard** con accesso **soltanto in lettura** a questi file e lavora in `D:\FILM_PRIVATO`. Le ACL si configurano sulla copia e non sul gioco originale. Nessuna esecuzione su Windows è stata verificata in questa sessione; la protezione delle altre cartelle del PC non è garantita dal solo launcher.
+
+Script nuovi/aggiornati: [staging](scripts/prepara_copia_privata_acii.ps1), [launcher](scripts/avvia_claude_locale.ps1), [inventario su copia](scripts/inventario_acii_readonly.ps1). **Il launcher non accetta più -GameDir.** I testi storici che descrivono l'accesso diretto al gioco sono superati da questo aggiornamento.
+
 ## Documenti
 | File | Contenuto |
 |---|---|
