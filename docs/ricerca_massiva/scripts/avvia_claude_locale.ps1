@@ -8,11 +8,13 @@
     - GameDir esiste; WorkDir non coincide con GameDir, non lo contiene e non ne e' contenuto;
     - nessun componente esistente di GameDir o WorkDir e' una junction/symlink (reparse point),
       cosi' un WorkDir "deviato" verso il gioco viene rifiutato PRIMA di creare qualsiasi file;
-    - il processo NON deve essere elevato (amministratore): la protezione di sistema della
-      cartella del gioco dipende dai permessi NTFS dell'utente standard (vedi documento, par. 2);
+    - il processo NON deve essere elevato (amministratore);
+    - analisi in sola lettura delle ACL NTFS della cartella del gioco e dei file principali:
+      se Windows consente all'utente corrente di scrivere, cancellare o cambiare permessi,
+      il launcher SI FERMA (protezione reale del sistema, non solo regole di Claude);
     - GPU (nvidia-smi), presenza della CLI 'claude', presenza dei file chiave del gioco.
   Fase 2 - SOLO con conferma digitata: crea WorkDir, copia il capitolato (questa cartella
-    docs/ricerca_massiva, CLAUDE.md del repository e la regola di adattamento) in
+    TUTTE le istruzioni di FILM: README.md, CLAUDE.md e l'intera cartella docs) in
     WorkDir\capitolato con manifest SHA256 e revisione Git, poi crea (se assenti)
     WorkDir\.claude\settings.json e WorkDir\CLAUDE.md. Non sovrascrive file esistenti.
     Dopo la creazione ricontrolla che WorkDir sia ancora un percorso reale senza reparse point.
@@ -54,6 +56,35 @@ function Assert-Separated([string]$game, [string]$work) {
         throw "WorkDir non deve coincidere con la cartella del gioco, ne' contenerla o esserne contenuta."
     }
 }
+function Get-WriteAccessFindings([string]$path) {
+    # Analisi in SOLA LETTURA delle ACL NTFS: elenca i motivi per cui l'utente corrente
+    # potrebbe scrivere/cancellare/cambiare permessi su $path. Approccio prudente:
+    # un falso positivo blocca il launcher, un falso negativo e' il rischio da evitare.
+    $findings = @()
+    $id = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $sids = @($id.User.Value) + @($id.Groups | ForEach-Object { $_.Value })
+    # Sessione non elevata (verificata prima): con UAC il gruppo Administrators e' solo "deny-only".
+    $sids = $sids | Where-Object { $_ -ne 'S-1-5-32-544' }
+    $writeMask = [System.Security.AccessControl.FileSystemRights]'WriteData, AppendData, WriteExtendedAttributes, WriteAttributes, Delete, DeleteSubdirectoriesAndFiles, ChangePermissions, TakeOwnership'
+    $acl = Get-Acl -LiteralPath $path
+    try { $owner = (New-Object Security.Principal.NTAccount($acl.Owner)).Translate([Security.Principal.SecurityIdentifier]).Value }
+    catch { $owner = ''; $findings += "$path : proprietario non risolvibile ($($acl.Owner)), verifica manuale necessaria" }
+    if ($owner -eq $id.User.Value) { $findings += "$path : l'utente corrente e' PROPRIETARIO (puo' cambiare i permessi)" }
+    $rules = $acl.GetAccessRules($true, $true, [Security.Principal.SecurityIdentifier])
+    $denied = [System.Security.AccessControl.FileSystemRights]0
+    foreach ($r in $rules) {
+        if ($r.AccessControlType -eq 'Deny' -and $sids -contains $r.IdentityReference.Value) { $denied = $denied -bor $r.FileSystemRights }
+    }
+    foreach ($r in $rules) {
+        if ($r.AccessControlType -ne 'Allow') { continue }
+        $sid = $r.IdentityReference.Value
+        $applies = ($sids -contains $sid) -or ($sid -eq 'S-1-3-0' -and $owner -eq $id.User.Value)
+        if (-not $applies) { continue }
+        $granted = ($r.FileSystemRights -band $writeMask) -band (-bnot $denied)
+        if ($granted -ne 0) { $findings += "$path : consentito '$granted' a $sid" }
+    }
+    return $findings
+}
 function Confirm-Step([string]$question) {
     $answer = Read-Host "$question  Digitare SI per procedere"
     return ($answer -ceq 'SI')
@@ -81,6 +112,18 @@ foreach ($p in $pf) { if (($game + '\').StartsWith(($p.TrimEnd('\') + '\'), [Sys
 if ($underPf) { Write-Host "Il gioco e' sotto Program Files: per un utente standard non elevato Windows nega di norma la scrittura (DA VERIFICARE)." }
 else { Write-Warning "Il gioco NON e' sotto Program Files: la scrittura potrebbe essere permessa dall'utente corrente. Leggere CLAUDE_CODE_LOCALE_DELEGA.md par. 2 (utente Windows dedicato) prima di procedere." }
 
+# Protezione REALE di Windows: il launcher si ferma se le ACL consentono all'utente corrente di
+# scrivere nella cartella del gioco o nei file principali. Nessuna modifica alle ACL.
+$aclTargets = @($game) + (@('AssassinsCreedIIGame.exe', 'DataPC.forge', 'DataPC_Abstergo.forge', 'SoundData\pc\sounds_ita.pck') |
+    ForEach-Object { Join-Path $game $_ } | Where-Object { Test-Path -LiteralPath $_ })
+$aclFindings = @()
+foreach ($t in $aclTargets) { $aclFindings += Get-WriteAccessFindings $t }
+if ($aclFindings.Count -gt 0) {
+    $aclFindings | ForEach-Object { Write-Warning $_ }
+    throw "Windows NON impedisce la scrittura nella cartella del gioco per questo utente. Usare un utente Windows standard dedicato con sola lettura sul gioco (CLAUDE_CODE_LOCALE_DELEGA.md par. 2). Avvio rifiutato."
+}
+Write-Host "ACL: nessun diritto di scrittura/cancellazione/modifica permessi trovato per l'utente corrente sui percorsi controllati (analisi statica, DA VERIFICARE con prova manuale dell'utente)."
+
 $smi = Get-Command nvidia-smi -ErrorAction SilentlyContinue
 if ($smi) { & $smi.Source --query-gpu=name,memory.total,driver_version --format=csv,noheader }
 else { Write-Warning "nvidia-smi non trovato: GPU NVIDIA non verificabile." }
@@ -93,14 +136,14 @@ foreach ($n in @('DataPC_Abstergo.forge', 'SoundData\pc\sounds_ita.pck')) {
     if (Test-Path -LiteralPath (Join-Path $game $n)) { Write-Host "TROVATO  $n" } else { Write-Host "MANCANTE $n" }
 }
 
-# Capitolato da copiare: questa cartella (docs/ricerca_massiva) e alcuni file del repository.
+# Capitolato da copiare: TUTTE le istruzioni di FILM (README.md, CLAUDE.md, intera cartella docs).
 $docsDir = Split-Path -Parent $PSScriptRoot                 # ...\docs\ricerca_massiva
 $repoRoot = Split-Path -Parent (Split-Path -Parent $docsDir) # radice del repository FILM
 $extra = @(
     @{ src = Join-Path $repoRoot 'CLAUDE.md'; dst = 'CLAUDE_REPOSITORY_FILM.md' },
-    @{ src = Join-Path $repoRoot 'docs\preproduzione\REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md'; dst = 'REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md' },
-    @{ src = Join-Path $repoRoot 'docs\05_DECISIONI.md'; dst = '05_DECISIONI.md' }
+    @{ src = Join-Path $repoRoot 'README.md'; dst = 'README.md' }
 )
+$repoDocs = Join-Path $repoRoot 'docs'
 if (-not (Test-Path -LiteralPath (Join-Path $docsDir 'CLAUDE_CODE_LOCALE_DELEGA.md'))) {
     throw "Capitolato non trovato in $docsDir. Eseguire il launcher dalla copia locale del branch con docs/ricerca_massiva."
 }
@@ -126,7 +169,7 @@ if (Test-Path -LiteralPath $cap) {
     throw "$cap esiste gia'. Rinominarlo o rimuoverlo manualmente per copiare una revisione nuova (il launcher non sovrascrive)."
 }
 New-Item -ItemType Directory -Path $cap | Out-Null
-Copy-Item -LiteralPath $docsDir -Destination (Join-Path $cap 'ricerca_massiva') -Recurse
+Copy-Item -LiteralPath $repoDocs -Destination (Join-Path $cap 'docs') -Recurse
 foreach ($e in $extra) {
     if (Test-Path -LiteralPath $e.src) { Copy-Item -LiteralPath $e.src -Destination (Join-Path $cap $e.dst) }
     else { Write-Warning "Non trovato, non copiato: $($e.src)" }
@@ -167,10 +210,12 @@ $rulesPath = Join-Path $work 'CLAUDE.md'
 if (-not (Test-Path -LiteralPath $rulesPath)) {
     @"
 # FILM - Claude Code locale (accesso limitato)
-PRIMA DI L0: leggere integralmente capitolato\ricerca_massiva\CLAUDE_CODE_LOCALE_DELEGA.md,
-capitolato\ricerca_massiva\LIMITI_E_DIRITTI.md, PIPELINE_E_STATO_ANTEPRIMA.md, BENCHMARK_TOOLCHAIN.md,
-capitolato\CLAUDE_REPOSITORY_FILM.md e capitolato\05_DECISIONI.md; poi dichiarare all'utente la revisione
-indicata in capitolato\MANIFEST_SHA256.txt ($revision) e attendere conferma.
+PRIMA DI L0: leggere capitolato\CLAUDE_REPOSITORY_FILM.md (istruzioni vincolanti del progetto), capitolato\README.md,
+capitolato\docs\05_DECISIONI.md, capitolato\docs\preproduzione\REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md e
+integralmente capitolato\docs\ricerca_massiva\ (in particolare CLAUDE_CODE_LOCALE_DELEGA.md, LIMITI_E_DIRITTI.md,
+PIPELINE_E_STATO_ANTEPRIMA.md, BENCHMARK_TOOLCHAIN.md, VOCE_ITALIANA_ORIGINALE_CATALOGO.md); il resto di capitolato\docs
+e' consultabile quando serve. Poi dichiarare all'utente la revisione indicata in capitolato\MANIFEST_SHA256.txt
+($revision) e attendere conferma. Le istruzioni del capitolato prevalgono su questo file in caso di dubbio.
 - Cartella del gioco: $game -> SOLA LETTURA. Mai scrivere, patchare, avviare il gioco o il launcher.
 - Lavorare solo in: $work. Nessuna rete, nessun download, nessun push su GitHub di file del gioco.
 - Restare in modalita' plan: nessun file scritto finche' l'utente non approva un piano e un cambio di modalita'.

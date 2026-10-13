@@ -11,13 +11,14 @@
 | Cartella del gioco | Accesso **in sola lettura**; mai scrittura, mai avvio del gioco o del launcher |
 | Modalità iniziale | `plan` (Claude propone, l'utente approva) e poi `default`, con **richiesta di conferma per ogni comando** |
 | Costi | Usa il piano Claude esistente dell'utente; **nessun** servizio o API aggiuntivo a pagamento (CLAUDE.md, vincolo 7) |
-| Istruzioni per il Claude locale | Un `CLAUDE.md` nella cartella privata e una **copia del capitolato** in `D:\FILM_PRIVATO\capitolato\`, che comprende questa cartella, il `CLAUDE.md` del repository, `05_DECISIONI.md` e la regola di adattamento, con `MANIFEST_SHA256.txt` e la revisione Git. **Prima di L0** Claude locale legge il capitolato e dichiara quale revisione ha letto; l'utente conferma. |
+| Istruzioni per il Claude locale | Un `CLAUDE.md` nella cartella privata e una **copia di tutte le istruzioni di FILM** in `D:\FILM_PRIVATO\capitolato\`: `README.md`, `CLAUDE.md` del repository e **l'intera cartella `docs/`** (solo Markdown e script originali, nessun asset), con `MANIFEST_SHA256.txt` e la revisione Git. **Prima di L0** Claude locale legge il capitolato e dichiara quale revisione ha letto; l'utente conferma. |
 
 Il **launcher** [scripts/avvia_claude_locale.ps1](scripts/avvia_claude_locale.ps1) va eseguito dalla copia locale del branch. Nell'ordine:
 1. Esegue solo controlli in lettura, **prima di creare qualsiasi file**:
    - `WorkDir` separata dal gioco (non uguale, non contenuta, non contenitore);
    - **nessuna junction o symlink** in alcun componente di `GameDir` o `WorkDir`;
    - PowerShell **non elevato**;
+   - **analisi delle ACL NTFS** (sola lettura) della cartella del gioco e dei file principali (`AssassinsCreedIIGame.exe`, `DataPC.forge`, `DataPC_Abstergo.forge`, `sounds_ita.pck`): se Windows consente all'utente corrente di **scrivere, cancellare, cambiare permessi** o se l'utente ne è **proprietario**, il launcher **si rifiuta di proseguire**;
    - GPU, CLI `claude` e file chiave del gioco.
 2. Solo con conferma:
    - crea `WorkDir` e **ricontrolla** che sia un percorso reale fuori dal gioco;
@@ -39,8 +40,8 @@ Fonte: documentazione ufficiale di Claude Code, consultata il 2026-10-13: https:
 
 | Livello | Misura | Stato |
 |---|---|---|
-| 1 (obbligatorio) | Eseguire launcher e Claude **da utente standard non elevato** (il launcher rifiuta una sessione da amministratore). Se il gioco è sotto `Program Files`, i permessi NTFS predefiniti di Windows negano normalmente la scrittura a un utente standard. | Il launcher controlla elevazione e posizione; i permessi effettivi sono **DA VERIFICARE** sul PC |
-| 2 (consigliato se il gioco **non** è sotto Program Files) | **Utente Windows dedicato** e standard (es. `film_claude`) che ha solo lettura sulla cartella del gioco e scrittura solo su `D:\FILM_PRIVATO`. Le ACL si impostano a mano dall'utente; il launcher **non** modifica i permessi della cartella del gioco. | **DA DECIDERE** dall'utente |
+| 1 (obbligatorio, **imposto dal launcher**) | Eseguire launcher e Claude **da utente standard non elevato**. Il launcher rifiuta una sessione da amministratore e **si ferma se le ACL NTFS consentono all'utente corrente scrittura, cancellazione o cambio dei permessi** sul gioco. Sotto `Program Files` i permessi predefiniti di Windows di norma lo negano. | Controllo implementato ma **non testato**. L'analisi statica delle ACL va confermata dall'utente, per esempio con la scheda *Sicurezza → Accesso effettivo* di Esplora risorse |
+| 2 (necessario se il launcher rifiuta l'avvio per le ACL) | **Utente Windows dedicato** e standard (es. `film_claude`) che ha solo lettura sulla cartella del gioco e scrittura solo su `D:\FILM_PRIVATO`. Le ACL si impostano a mano dall'utente; il launcher **non** modifica i permessi della cartella del gioco. | **DA DECIDERE** dall'utente |
 | 3 (facoltativo) | Claude Code dentro **WSL2** con sandbox attivo, con la cartella del gioco in sola lettura. Da valutare: AnvilToolkit è un programma Windows. | IPOTESI |
 
 Le impostazioni generate dal launcher (`D:\FILM_PRIVATO\.claude\settings.json`):
