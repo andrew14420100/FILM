@@ -53,6 +53,13 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - [docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md](docs/reference/CHR-001_EZIO_MASTER_DOSSIER_PROGETTAZIONE.md): **dossier integrale di Claude**, proposta D4–D7 da approvare
 - [docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md](docs/reference/CHR-001_DOSSIER_PROGETTAZIONE_SINTESI_DA_VALIDARE.md): sintesi storica precedente all'arrivo del dossier completo
 
+- [Fuga da Firenze — trattamento cinematografico V1](docs/preproduzione/SEQ02_TRATTAMENTO_CINEMATOGRAFICO_V1.md)
+- [Fuga da Firenze — cast e ambientazioni V1](docs/preproduzione/SEQ02_CAST_LOCATION_CONTINUITA_V1.md)
+- [Fuga da Firenze — verifica delle fonti e decisioni](docs/preproduzione/SEQ02_VERIFICHE_E_DECISIONI_V0.md)
+
+- [Fuga da Firenze — sceneggiatura italiana V0](docs/preproduzione/SEQ02_SCENEGGIATURA_ORIGINALE_V0.md)
+- [Fuga da Firenze — audit di fedeltà della sceneggiatura](docs/preproduzione/SEQ02_AUDIT_SCENEGGIATURA_V0.md)
+
 ## GitHub e media
 Git non è il posto giusto per grandi file video, scene renderizzate, pesi dei modelli IA o asset protetti. Conservare i file pesanti sul PC e archiviare solo metadati e riferimenti leciti. **Verificare la visibilità del repository: risulta pubblico; per un progetto privato impostarlo manualmente su Private.**
 
