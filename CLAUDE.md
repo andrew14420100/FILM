@@ -44,6 +44,12 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 - **Aggiornamento 2026-10-13:** l'utente ha **APPROVATO D4-a/b/c, D5, D6-a/b/c e D7/D7-b esattamente come proposte nel dossier integrale** (vedi `docs/05_DECISIONI.md`). Il dossier resta il riferimento; i punti segnati DA VERIFICARE restano tali. Le approvazioni sono di progettazione, non autorizzano la produzione.
 - Restare in pre-produzione esclusivamente documentale e da browser; nessuna cattura personale obbligatoria, nessun modello, immagine o video.
 
+## Prossima fase attiva dopo PR #6 (merge 2026-10-13)
+- In `docs/preproduzione/` sono presenti: `CHR-002_014_CAST_BIBLE_INIZIALE.md`, `PROLOGO_BREAKDOWN_V0.md`, `LOC-001_005_SCHEDE_OPERATIVE.md`.
+- Questi sono **nuovi documenti di pre-produzione**, non prove di verifica delle missioni. Restano in stato BOZZA/DA VERIFICARE.
+- Il dossier integrale Ezio mantiene la sua intestazione storica 'D4–D7 NON APPROVATE'; prevalgono però le approvazioni esplicite del 2026-10-13 già unite in `docs/05_DECISIONI.md`. Non riscrivere il dossier originale per correggerne retroattivamente lo stato.
+- Proseguire con schede visive documentali CHR-002–014, validazione prologo e location LOC-001–005, poi trattamento filmico. **Niente generazione di modelli, immagini, audio, video o render.**
+
 ## Flusso iniziale
 Leggi README e docs, quindi:
 1. Convalida l'apertura del gioco sulle fonti;
