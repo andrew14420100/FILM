@@ -44,3 +44,7 @@ Fonte: [Sibling Rivalry — Assassin's Creed Wiki](https://assassinscreedwiki.ac
 **La PR #8 è coerente come base di pre-produzione e non richiede nuovi screenshot.** Richiede però una decisione **R-TITOLO**, oltre alle quattro SEQ1-A/B/C/D ancora non approvate, prima che il trattamento diventi un blocco di sceneggiatura consolidato. Questa revisione NON conferisce approvazioni, non modifica il prologo già su `main` e NON autorizza il merge della PR #8.
 
 **Fase invariata: SOLO PRE-PRODUZIONE.** Nessun asset proprietario Ubisoft caricato su GitHub, nessun modello 3D, immagine, audio, video, animazione o render generato.
+
+
+## Addendum 2026-10-13 — R-TITOLO APPROVATA
+L'utente ha scelto esplicitamente la **soluzione A**: l'**unico** cartello `Assassin's Creed II` viene spostato al termine di `Sibling Rivalry`, dopo la scena sui tetti con Federico, come nel videogioco. Questa decisione **rettifica il punto specifico del prologo V2**, senza alterarne gli altri eventi. Prologo aggiornato internamente alla **revisione V3** nel medesimo nome file per mantenere i collegamenti; trattamento e scaletta di Seq. 1 aggiornati nella **PR #8**, che rimane in bozza. Le proposte **SEQ1-A/B/C/D NON sono state approvate**; il resto delle osservazioni della revisione V1 rimane storico.
