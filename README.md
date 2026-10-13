@@ -14,6 +14,8 @@ Obiettivo: pianificare un adattamento cinematografico privato di *Assassin's Cre
 - Questo repository contiene per ora **solo documentazione di progetto**. Niente rendering o scene generate finché non sono approvati copione e schede.
 - Destinazione dichiarata: visione personale. L'uso privato non concede automaticamente diritti Ubisoft.
 
+**Regola approvata di adattamento:** FILM non contiene gameplay, tutorial, comandi né interfacce ludiche. Le sequenze di AC II sono riferimenti interni per ricostruire la storia, non capitoli mostrati allo spettatore. Consultare [regola cinematografica](docs/preproduzione/REGOLA_ADATTAMENTO_CINEMATOGRAFICO.md).
+
 ## Percorso di lavoro
 1. Ricostruire una cronologia **verificata** sulle fonti di gioco.
 2. Catalogare sequenze, scene, personaggi, costumi e ambientazioni.
