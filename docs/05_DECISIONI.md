@@ -13,6 +13,7 @@
 | D8 — Volto maturo nel finale | APPROVATA · 2026-10-13 | **Cappuccio alzato** durante le scene delle Seq. 13–14, inclusi Vaticano e Cripta, per una resa fedele; mantenere comunque uno stesso modello facciale in tutte le età. |
 | D9 — Reference di terzi per modello iniziale | APPROVATA · 2026-10-13 | Autorizzato utilizzare screenshot **A-EXT** come riferimento **solo per il futuro blockout provvisorio**. Non attestano automaticamente la versione PC e non bastano per approvare EZIO_MASTER. **Nessun modello o render deve essere generato in questa fase.** |
 | D3 — Cappa con Armatura di Altaïr | APPROVATA · 2026-10-13 | Configurazione cinematografica: **esterno scuro, fodera interna rossa** nelle scene con Armatura di Altaïr; eventuali differenze rispetto ai fotogrammi del gioco devono restare documentate. |
+| D1 — Versione canonica AC II | **APPROVATA · 2026-10-13** | **Assassin's Creed II originale per PC Windows, posseduto su Ubisoft Connect**. Usare tale installazione come riferimento primario A, senza mod, ReShade o cambio di shader; *Ezio Collection* solo fonte secondaria. **Build/patch, risoluzione effettiva e presenza/accessibilità delle Seq. 12–13 restano DA VERIFICARE sull'installazione**, senza acquisti. |
 | Personaggi dall'aspetto umano e ambienti reali | APPROVATA | Live-action fotorealistico digitale |
 | Qualità obiettivo 4K UHD | APPROVATA | Pianificare per 3840 × 2160, testare effettivamente |
 | Tutto il workflow di produzione sul PC Windows | APPROVATA | RTX 5070 Ti 16 GB, niente rendering cloud richiesto |
@@ -27,7 +28,10 @@
 Ogni cambiamento ad una decisione APPROVATA va annotato con data, motivo e approvazione esplicita. Non convertire bozze in canon implicitamente.
 
 ## Stato creativo confermato
-Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. Non autorizzano la generazione del blockout, di digital doubles, di immagini sintetiche, modelli 3D, animazioni, audio o video. Le decisioni D1, D4, D5, D6, D7 sono ancora da ratificare.
+Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. Non autorizzano la generazione del blockout, di digital doubles, di immagini sintetiche, modelli 3D, animazioni, audio o video. La **D1 è approvata per l'edizione originale PC posseduta su Ubisoft Connect**; build, patch e DLC restano da verificare. D4, D5, D6 e D7 sono ancora da ratificare.
+
+## Protocollo ufficiale D1
+Vedi [Piano catture AC II PC / Ubisoft Connect](reference/CHR-001_D1_CATTURE_PC_UBISOFT_CONNECT.md). Le catture A sono locali e gli screenshot di terzi A-EXT restano riferimenti preliminari, non prova di piattaforma PC. Non salvare né immagini né video del gioco in questo repository (al momento pubblico).
 
 ## Prossimi passi
 1. Rendere privato il repository nelle impostazioni GitHub.
