@@ -26,6 +26,7 @@
 | S-02 — Collocazione «La Verità» | **APPROVATA · 2026-10-13** | Porre il video/nodo narrativo del **Soggetto 16** prima della Seq. 14, come climax dei glifi. Contenuto e integrazione scenica da verificare; nessun filmato protetto nel repository. |
 | S-03 — Tombe e sigilli | **APPROVATA · 2026-10-13** | Mostrare **Novella's Secret / Santa Maria Novella integralmente** nella struttura narrativa; sintetizzare le altre **cinque tombe in montaggio** e poi l'apertura del Santuario, **prima della Seq. 13**, rispettando D2-bis e i sei sigilli. |
 | S-04 — Durata e formato | **APPROVATA · 2026-10-13** | **Rinviare la scelta** fra film unico o più parti e la durata definitiva fino ai trattamenti delle **Seq. 1–3**. L'approvazione riguarda il metodo decisionale; formato e durata restano **DA DEFINIRE**. |
+| R-TITOLO — Posizione del titolo di apertura | **APPROVATA · 2026-10-13** | **Un'unica comparsa del titolo**, dopo la gara e il momento sui tetti di **Ezio e Federico** in `Sibling Rivalry` (Seq. 1, memoria 3), come nel gioco. **Rettifica espressa dall'utente** del precedente posizionamento dopo la rissa `PRO-014` nel prologo V2. Il prologo termina alla rissa senza cartello; la sequenza riprende senza duplicare la pietra. Mantenere invariati eventi, ferita, raccordo e destinazione di Federico. Nessuna produzione audiovisiva autorizzata. |
 | Personaggi dall'aspetto umano e ambienti reali | APPROVATA | Live-action fotorealistico digitale |
 | Qualità obiettivo 4K UHD | APPROVATA | Pianificare per 3840 × 2160, testare effettivamente |
 | Tutto il workflow di produzione sul PC Windows | APPROVATA | RTX 5070 Ti 16 GB, niente rendering cloud richiesto |
@@ -53,6 +54,9 @@ Le approvazioni D2-bis, D8, D9 e D3 riguardano **soltanto la progettazione**. No
 
 ~~D4-a/b/c, D5, D6-a/b/c, D7 e D7-b restano in attesa di approvazione.~~ **Aggiornamento 2026-10-13: l'utente ha approvato D4 (a/b/c), D5, D6 (a/b/c) e D7 (+ D7-b) esattamente come proposte nel dossier integrale.** La sintesi storica resta solo traccia. Non generare modelli, immagini, render o video.
 
+## Rettifica approvata del montaggio: collocazione del titolo (2026-10-13)
+**R-TITOLO** è una modifica circoscritta del prologo V2 già approvato: **il titolo non compare più dopo la rissa**, ma sulla vista di Firenze alla fine della sfida fra Ezio e Federico (`Sibling Rivalry`). Si preservano tutti gli altri vincoli P-01–P-04, senza duplicare scene o ferite. Il cambiamento è stato richiesto espressamente dall'utente ed è tracciato nella PR #8, non nelle versioni storiche già unite. Le SEQ1-A/B/C/D sono ora **APPROVATE** (vedi appendice in fondo, 2026-10-13). Restano proposti i nuovi codici dei personaggi.
+
 ## Decisioni del prologo e della struttura — approvazioni del 2026-10-13
 Le scelte **P-01/P-02/P-03/P-04** e **S-01/S-02/S-03/S-04** sono state confermate esplicitamente dall'utente e applicate alla PR #7. Prevale il trattamento **V2** nel file `docs/preproduzione/PROLOGO_TRATTAMENTO_V1.md` e il piano `docs/preproduzione/PIANO_SEQUENZE_01_14.md`. L'approvazione riguarda struttura narrativa, codici e regia **soltanto sulla carta**. Restano DA VERIFICARE la data esatta dell'arrivo al rifugio, il luogo della visione di Ezio adulto, gli elementi scenografici non confermati e l'incongruenza sulla nascita; la durata e il formato sono ancora DA DEFINIRE per S-04.
 
@@ -64,3 +68,11 @@ Le scelte **P-01/P-02/P-03/P-04** e **S-01/S-02/S-03/S-04** sono state confermat
 3. Compilare le schede per tutte le missioni e personaggi.
 4. Preparare un trattamento cinematografico verificato.
 5. Sottoporre il primo blocco di sceneggiatura ad approvazione.
+
+## SEQ1-A/B/C/D — approvazione del 2026-10-13
+- **SEQ1-A APPROVATA:** mantenere 12 memorie, condensando le azioni ripetitive; le commissioni domestiche possono avvenire in ordine variabile nel gioco.
+- **SEQ1-B APPROVATA:** sviluppo in tre blocchi (giovinezza, famiglia, tradimento), senza ripetere il prologo. Titolo unico sui tetti con Federico, come previsto da R-TITOLO.
+- **SEQ1-C APPROVATA:** decidere durata e formato dopo i trattamenti delle prime tre sequenze.
+- **SEQ1-D APPROVATA:** dare priorità alle schede della famiglia, di Uberto e alle proposte relative ad Annetta e Duccio. Questa scelta non approva automaticamente i nuovi ID.
+
+La fase resta soltanto di pre-produzione documentale; nessun contenuto audiovisivo è autorizzato.

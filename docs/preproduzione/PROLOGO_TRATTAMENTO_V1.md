@@ -1,6 +1,6 @@
-# PROLOGO — Verifica dell'ordine, scene card e trattamento cinematografico (revisione V2)
+# PROLOGO — Verifica dell'ordine, scene card e trattamento cinematografico (revisione V3)
 
-**Stato:** TRATTAMENTO V2 · **SCELTE P-01–P-04 APPROVATE** · DETTAGLI CANONICI NON VERIFICATI · **Data:** 2026-10-13
+**Stato:** TRATTAMENTO V3 · **SCELTE P-01–P-04 E R-TITOLO APPROVATE** · DETTAGLI CANONICI NON VERIFICATI · **Data:** 2026-10-13
 **Nome del file:** resta `PROLOGO_TRATTAMENTO_V1.md` per non rompere i collegamenti; la versione corrente è indicata qui e nel registro delle revisioni in fondo.
 **Sostituisce per la consultazione:** [PROLOGO_BREAKDOWN_V0.md](PROLOGO_BREAKDOWN_V0.md), che resta invariato come storico.
 **Natura del documento:** è un **trattamento**, non la sceneggiatura. Non contiene battute del gioco. I contenuti dei dialoghi sono riassunti in parafrasi solo per orientare la futura scrittura, che dovrà essere originale (vincolo 5 di `CLAUDE.md`).
@@ -223,7 +223,7 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 | Luogo / tempo | LOC-003 Firenze · **Ponte Vecchio, sera del 26/12/1476** |
 | Personaggi | CHR-001 Ezio (**17 anni**, COS-EZ-01, variante EZ_17_A → EZ_17_B), CMP-FIR (amici di Ezio), CHR-017 Vieri de' Pazzi e banda, CHR-008 Federico (entra durante la rissa) |
 | Avvenimento (V-C) | Le due bande ai lati del ponte. Ezio arringa i suoi sull'onore della famiglia; Vieri lo insulta; Ezio lo provoca. **Vieri tira una pietra che ferisce Ezio al labbro** (lato destro di Ezio, A-EXT). Inizia la rissa; arriva Federico |
-| Raccordo | Fine del prologo: è l'inizio della Sequenza 1 |
+| Raccordo | Fine del prologo: è l'inizio della Sequenza 1. **Nessun titolo dopo la rissa**: per R-TITOLO approvata il 2026-10-13, il titolo appare **una volta sola dopo la gara sui tetti con Federico** (`Sibling Rivalry`, S01-M03). |
 | Necessità | Set Ponte Vecchio 1476; scena notturna; rissa di massa a mani nude (D4: nessuna arma); trucco della ferita |
 | Continuità | **Nessuna ferita prima della pietra** → ferita fresca da qui (D5). Collana e nastro rosso (D7) |
 | Da verificare | Numero di comparse; posizione esatta della banda di Vieri |
@@ -254,7 +254,7 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 
 **10. Baby.** Una poltrona, cavi, monitor. Rebecca gli infila un ago nel braccio; Shaun commenta acido. Desmond chiude gli occhi.
 
-**11. Firenze, 1476.** Notte d'inverno sul Ponte Vecchio. Due gruppi di ragazzi, torce, fiato che si condensa. Ezio, diciassette anni, sale su un rialzo e parla ai suoi di onore e di famiglia. Dall'altra parte, Vieri de' Pazzi. Insulti, una provocazione di troppo. Una pietra vola e colpisce Ezio al labbro: sangue. La rissa esplode, e nel caos compare Federico. *(Regia: primo piano di Ezio prima della pietra, volto intatto; dopo, la ferita che lo accompagnerà per tutta la vita. Fine del prologo, titolo del film.)*
+**11. Firenze, 1476.** Notte d'inverno sul Ponte Vecchio. Due gruppi di ragazzi, torce, fiato che si condensa. Ezio, diciassette anni, sale su un rialzo e parla ai suoi di onore e di famiglia. Dall'altra parte, Vieri de' Pazzi. Insulti, una provocazione di troppo. Una pietra vola e colpisce Ezio al labbro: sangue. La rissa esplode, e nel caos compare Federico. *(Regia: primo piano di Ezio prima della pietra, volto intatto; dopo, la ferita che lo accompagnerà per tutta la vita. Fine del prologo **senza cartello**; dopo la rissa si prosegue in continuità con le memorie di Ezio, fino al **titolo unico al termine della scena sui tetti con Federico** (`Sibling Rivalry`).)*
 
 **Stima di durata (PROPOSTA, da verificare in montaggio):** 12–16 minuti complessivi.
 
@@ -316,5 +316,9 @@ Codici: personaggi da [02_PERSONAGGI.md](../02_PERSONAGGI.md) e [Cast Bible](CHR
 | V1 | 2026-10-13 | Prima stesura: ordine verificato, 14 scene card, trattamento, continuità |
 | **V2** | 2026-10-13 | Correzioni della revisione dell'utente su PR #7: (1) data del rifugio «settembre 2012 — DA VERIFICARE», con le varianti 8/9 e 9/9 e le fonti; (2) nascita di Ezio come contraddizione fra fonti (memoria → Palazzo Auditore; Database → completato nel 1473), interno della memoria in scena, identificazione in P-01; (3) «Soggetto 16» senza anticiparne l'identità; (4) S-01 come scelta di montaggio (nel piano); (5) titolo della Seq. 12 allineato in `01_CRONOLOGIA.md`; (6) luogo e data della visione di Ezio adulto DA VERIFICARE |
 | **V2 — approvazione** | 2026-10-13 | P-01–P-04 e S-01–S-04 approvate esplicitamente; fonti e incongruenze ancora da verificare. |
+| **V3 — R-TITOLO** | 2026-10-13 | L'utente ha espressamente spostato il cartello dall'ultima inquadratura della rissa PRO-014 alla conclusione di `Sibling Rivalry` sui tetti con Federico, come nel gioco. Nessun altro evento modificato; una sola comparsa del titolo. |
+
+
+**Nota approvata R-TITOLO (2026-10-13):** il precedente riferimento al titolo dopo `PRO-014` è **superato** per la collocazione del cartello, non per i fatti raccontati. La memoria `Sibling Rivalry` resta nella Sequenza 1 e ospita il titolo dopo il momento tra i fratelli. Prologo e Seq. 1 formano **un'unica apertura senza duplicazioni**. Le ulteriori proposte SEQ1-A/B/C/D non sono automaticamente approvate.
 
 **Aggiornamento approvazioni (2026-10-13):** l'utente ha **APPROVATO P-01, P-02, P-03 e P-04** come formulate in questa revisione V2; e **S-01, S-02, S-03, S-04** come formulate nel piano. Vedi [registro decisioni](../05_DECISIONI.md). I dettagli che questo documento segnala come DA VERIFICARE rimangono tali. Il monologo specifico e le battute restano da scrivere e approvare. Nessuna generazione di asset autorizzata.
