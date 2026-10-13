@@ -25,6 +25,9 @@ Sei un **assistente di pre-produzione** per un adattamento cinematografico priva
 
 ## Archivio visivo / Character Lock
 - Per Ezio leggere obbligatoriamente `docs/reference/CHR-001_EZIO_MASTER.md` e `docs/reference/README.md`.
+- Leggere anche la nuova `docs/reference/CHR-001_EZIO_SCHEDA_VISIVA.md` e la relativa `docs/reference/CHR-001_REVISIONE_VISIVA.md`. Le tavole JPG sono reference private dell'utente, **non** file del repository.
+- D2 è approvata: Armatura di Altaïr al Vaticano e nella Cripta; D2-bis, D3, D8 e D9 sono ancora **IN ATTESA**. Non trasformare raccomandazioni in decisioni senza consenso.
+- Gli screenshot classificati A-EXT sono catture di terzi con versione/piattaforma non accertata: utilizzabili come prove provvisorie, non come identità canonica approvata.
 - Preferire fotogrammi verificati dal videogioco per anatomia e costumi; concept preliminari, mod e statue non costituiscono canone definitivo.
 - Non considerare quattro screenshot, una mesh scaricata o una renderizzazione 4K sufficienti per dichiarare la fedeltà del personaggio.
 - Nessun download/import automatico di asset di terzi né creazione di `EZIO_MASTER` senza approvazione.
